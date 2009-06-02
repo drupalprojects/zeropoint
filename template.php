@@ -657,3 +657,13 @@ function menupos() {
 	}
 }
 
+
+
+
+
+/**
+ * Use this to return links or whatever
+ */
+function toplinks() {
+	return '';
+}
