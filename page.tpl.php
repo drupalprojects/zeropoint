@@ -4,14 +4,6 @@
 <head>
 <title><?php print $head_title ?></title>
 <?php print $head ?>
-<meta name="language" content="<?php print $language->language ?>" />
-<meta name="author" content="Dr. Catalin Florian Radut" />
-<meta name="MSSmartTagsPreventParsing" content="TRUE" />
-<meta name="robots" content="noodp" />
-<meta name="verify-v1" content="" />
-<meta name="y_key" content="" />
-<meta name="msvalidate.01" content="" />
-<link rel="pingback" href="<?php print $GLOBALS['base_url'] ?>/xmlrpc.php" />
 <?php print $styles ?>
 <?php print $scripts ?>
 <script type="text/javascript"><?php /* Needed to avoid Flash of Unstyle Content in IE */ ?> </script>

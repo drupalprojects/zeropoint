@@ -182,6 +182,8 @@ function phptemplate_preprocess_page(&$vars) {
 			$body_classes[] = 'browser-firefox2';
 		} else if (strpos($user_agent, 'Firefox/3')) {
 			$body_classes[] = 'browser-firefox3';
+		} else if (strpos($user_agent, 'Chrome')) {
+			$body_classes[] = 'browser-chrome';
 		} else if (strpos($user_agent, 'Safari')) {
 			$body_classes[] = 'browser-safari';
 		} else if (strpos($user_agent, 'Presto')) {
@@ -647,17 +649,15 @@ $dropdown = theme_get_setting('menutype'); // if dropdown enabled
 function menupos() {
 	$navpos = theme_get_setting('navpos'); // Primary links position 
 		if ($navpos == '0'){ 
-			return 'navcenter';
+			return 'navleft';
 	}
 		if ($navpos == '1'){ 
-			return 'navleft';
+			return 'navcenter';
 	}
 		if ($navpos == '2'){ 
 			return 'navright';
 	}
 }
-
-
 
 
 

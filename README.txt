@@ -14,24 +14,38 @@ works perfect in Firefox, IE 6, IE 7, IE8, Safari, Opera and Google Chrome.
 Layout features
 ===============
 - 1, 2, or 3 column layout with adaptive width based on "The Jello Mold 
-Piefecta Layout" (http://www.positioniseverything.net/articles/jello.html); 
+	Piefecta Layout" (http://www.positioniseverything.net/articles/jello.html); 
 - 16+1 collapsible block regions; 
 - 7 colour styles; 
 - built-in IE transparent PNG fix; 
 - jQuery CSS image preload (optional) 
-(http://www.filamentgroup.com/lab/update_automatically_preload_images_from_css_with_jquery/); 
+	(http://www.filamentgroup.com/lab/update_automatically_preload_images_from_css_with_jquery/); 
 - Fixed / Variable width sidebars (optional); 
 - Round corners for page elements and primary menu (optional); 
 - Block icons (optional); 
 - Page icons (optional); 
 - SuckerFish Drop-down primary links menu (optional); 
 - Primary links menu position (center, left, right); 
-- Helpful body classes (unique classes for each page, term, website section, browser, etc.); 
+- Helpful body classes (unique classes for each page, term, website section, 
+	browser, etc.). Everything can be controlled via CSS, including each menu
+	item (for statis menu), how colours and other items will be displayed in
+	different browsers, or by terms, sections, etc.; 
 - Full breadcrumb; 
 - Works perfect in Multilanguage installations. 
 
 Advanced theme settings features
 ===============================
+Layout settings
+- Style - Choose a colour palette from 7 options: 0 Point (default), 
+	Sky, Nature, Ivy, Ink, Sangue and Lime. More colour options to come.
+- jQuery CSS image preload - Choose a colour.
+- Sidebars layout - Fixed width sidebars or variable width sidebars.
+- Rounded corners - Option to have rounded corners in all browsers but IE.
+- Block icons - Choose between none, 32x32 pixel icons and 48x48 pixels icons.
+- Page icons - Choose a layout with or without page icons.
+- Menu style - Two-level Static or SuckerFish drop-down menu.
+- Menu position - Left, center or right.
+
 General settings
 - Mission statement - Display mission statement only on front page or on all pages; 
 - Display Breadcrumb; 
@@ -101,17 +115,21 @@ links will display the appropriate second level of your navigation hierarchy.
 Choose "Suckerfish" to enable support for Suckerfish drop menus. 
 NOTE: Go to /admin/build/menu and expand all parents in your primary menu.
 
+KNOWN ISSUES: In order to avoid Opera's rendering problems, SuckerFish position
+can be only left.
+
 
 
 CONTACT
 -------------------------------------------------------------------------+
-My drupal nick is florian – and I can be reached at cfradut@gmail.com or 
-florian@radut.net
+My drupal nick is florian – and I can be reached at florian@radut.net or 
+cfradut@gmail.com.
 
 I can also be contacted for paid customizations of Zero Point theme as well as
 Drupal consulting, installation and customizations.
 
 The theme is installed at: 
+http://www.eureko.ro/
 http://www.ecoimm.ro/
 http://www.boaz.ro/
-
+http://www.mlnar.ro/

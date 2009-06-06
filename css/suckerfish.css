@@ -3,9 +3,6 @@
 #navlinks ul li.expanded a {
 	background: #777 url(../images/nav-down.png) 95% 50% no-repeat;
 }
-.browser-opera #navlinks ul li.expanded a {
-	background-image: none;
-}
 #navlinks li ul a:link, 
 #navlinks li ul a:visited {
 	color: #fff;
@@ -61,9 +58,6 @@ http://www.alistapart.com/articles/horizdropdowns
 	list-style: none;
 	margin: 24px 0 0 -100px;
 	padding: 1px 0 0 0;
-}
-.browser-opera #navlinks ul ul {
-	display: none;
 }
 #navlinks ul ul a {
 	display: block;

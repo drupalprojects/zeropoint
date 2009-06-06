@@ -136,7 +136,7 @@ SCRIPT;
 
 	$form['tnt_container']['layout_settings']['roundcorners'] = array(
 		'#type' => 'checkbox',
-		'#title' => t('Round corners'),
+		'#title' => t('Rounded corners'),
 		'#description' => t('Some page elements (as, mission statement, comments, search, sidebar blocks) and primary menu will have rounded corners in all browsers but Internet Explorer. NOTE: With this option enebled 0 Point will not validate CSS2.'),
 		'#default_value' => $settings['roundcorners'],
 	);
@@ -176,14 +176,14 @@ SCRIPT;
 	$form['tnt_container']['layout_settings']['navpos'] = array(
 		'#type' => 'select',
 		'#title' => t('Menu position'),
+		'#description' => t('Choose menu position: left (default), center or right.'),
 		'#default_value' => $settings['navpos'],
 		'#options' => array(
-			0 => 'center',
-			1 => 'Left',
+			0 => 'Left',
+			1 => 'Center',
 			2 => 'Right',
 		)
 	);
-
 
 	// General Settings
 	$form['tnt_container']['general_settings'] = array(
