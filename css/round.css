@@ -1,5 +1,5 @@
 #sidebar-left .block, #sidebar-right .block,
-#mission, .comment,
+#mission, .comment, blockquote,
 #search .form-text, #search .form-submit {
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;	
