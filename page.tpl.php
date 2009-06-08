@@ -184,8 +184,6 @@
 </div> <!-- /footer-wrapper -->
 
 <div id="belowme">
-  <!--/Start Trafic.ro/-->  
-  <!--/End Trafic.ro/-->
 </div>
 
 </div><!-- /expander -->

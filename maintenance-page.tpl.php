@@ -10,7 +10,7 @@
 <!--[if lte IE 6]>
 <link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie6.css" />
 <![endif]-->
-<!--[if gte IE 7]>
+<!--[if IE 7]>
 <link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie7.css" />
 <![endif]-->
 </head>
@@ -19,7 +19,7 @@
 
 <div id="top_bg" class="page">
 <div class="sizer">
-<div class="expander">
+<div id="topex" class="expander">
 <div id="top_left">
 <div id="top_right">
 
@@ -56,7 +56,6 @@
 </div><!-- /sizer -->
 </div><!-- /top_bg -->
 
-
 <div id="body_bg" class="page">
 <div class="sizer">
 <div class="expander">
@@ -83,36 +82,35 @@
   </div><!-- /wrapper -->
 </div>
 
+<div id="bar"></div>
+
 </div><!-- /body_right -->
 </div><!-- /body_left -->
 </div><!-- /expander -->
 </div><!-- /sizer -->
 </div><!-- /body_bg -->
 
+<div class="eopage">
 <div class="page">
 <div class="sizer">
 <div class="expander">
 
 <div id="footer-wrapper" class="clear-block">
   <div id="footer">
-    <?php if ($below) { ?><div id="below"><?php print $below; ?></div><?php } ?>
     <div class="legal">
       Copyright &copy; <?php print date('Y') ?> <a href="/"><?php print $site_name ?></a>. <?php print $footer_message ?>
       <div id="brand"></div>
     </div>
-    <div class="by">
-      <?php print xmll() ?>
-    </div>
+  </div>
 </div> <!-- /footer-wrapper -->
 
 <div id="belowme">
-  <!--/Start Trafic.ro/-->
-  <!--/End Trafic.ro/-->
 </div>
 
 </div><!-- /expander -->
 </div><!-- /sizer -->
 </div><!-- /page -->
+</div>
 
 <?php print $closure ?>
 </body>
