@@ -24,9 +24,12 @@ body {
 	line-height: 0;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2 {
 	padding-bottom: 5px;
 	margin: 10px 0;
+}
+h3, h4, h5, h6 {
+	margin: 15px 0 0 0;
 }
 h1 {
 	font-size: 160%;
@@ -86,10 +89,6 @@ table.sections {
 #section1 td.section, #section2 td.section {
 	padding: 10px 20px 0 20px;
 }
-#above {
-	padding: 0 20px;
-	min-height: 20px;
-}
 #header, #content {
 	width: 100%;
 }
@@ -141,10 +140,6 @@ table.sections {
 }
 #middlecontainer {
 	padding: 1px 0 0 0;
-}
-#wrapper {
-	position: relative;
-	width: 100%; /* helps IE get the child percentages right */
 }
 #main {
 	padding: 10px 20px;

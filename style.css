@@ -345,17 +345,19 @@ ul.links li {
 }
 .book-navigation {
 	padding-top: 20px;
-	clear: both;
 }
 #footer ul.links li {
 	border-left: 1px solid #909090;
 }
 
-#main .content li a {
-	text-decoration: none;
-}
-#main .content li a:hover, #main .content a {
+#main .content a {
 	text-decoration: underline;
+}
+#attachments a {
+	text-decoration: none !important;
+}
+#attachments a:hover {
+	text-decoration: underline !important;
 }
 .book-navigation a {
 	text-decoration: none !important;
