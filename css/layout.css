@@ -321,9 +321,6 @@ body.in-maintenance #main {
 
 /* MODULE SPECIFIC STYLES */
 
-#block-user-0 h2, #block-logintoboggan-0 h2, .block-image h2, #block-i18n-0 h2, #block-translation-0 h2 {
-	display: none;
-}
 .block-i18n, .block-translation {
 	padding: 0 !important;
 	margin: 5px !important;
@@ -365,4 +362,3 @@ body.mceContentBody a:link {
 .view .views-admin-links li {
 	background: transparent !important;
 }
-

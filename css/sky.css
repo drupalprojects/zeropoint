@@ -18,7 +18,7 @@ div.admin-panel .description {
 }
 
 #sidebar-left .block, #sidebar-right .block {
-	background: transparent url(../images/sky/fill_block.png) 0 100% repeat-x;
+	background: #fff url(../images/sky/fill_block.png) 0 100% repeat-x;
 }
 
 h1, h2, h3 {

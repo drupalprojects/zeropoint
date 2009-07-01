@@ -66,15 +66,21 @@ MODULE SUPPORT
 -------------------------------------------------------------------------+
 This theme can support virtualy any module.
 It has been heavily tested with:
-	- i18n;
-  - AdSense module;
-  - Image module;
+  - AdSense;
+  - Fivestar;
+  - Google_cse;
+  - Google_groups;
+  - i18n;
+  - Image;
   - Pathauto;
-  - Logintoboggan;
   - Lightbox2;
+  - Logintoboggan;
+  - Print;
+  - Simplenews;
   - Panels;
   - Views;
   - TinyMCE;
+  - Weather
 
 
   
@@ -129,7 +135,6 @@ I can also be contacted for paid customizations of Zero Point theme as well as
 Drupal consulting, installation and customizations.
 
 The theme is installed at: 
-http://www.eureko.ro/
-http://www.ecoimm.ro/
 http://www.boaz.ro/
-http://www.mlnar.ro/
+http://www.ecoimm.ro/
+http://www.eureko.ro/

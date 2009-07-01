@@ -53,7 +53,7 @@ div.admin-panel .description {
 }
 
 #sidebar-left .block, #sidebar-right .block {
-	background: transparent url(images/fill_block.png) 0 100% repeat-x;
+	background: #fff url(images/fill_block.png) 0 100% repeat-x;
 	border: 1px solid #ddd;
 	padding: 5px;
 	margin-bottom: 15px;
