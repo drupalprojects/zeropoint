@@ -1,11 +1,11 @@
-README.TXT // Zero Point theme for Drupal 6.
+README.TXT // 0 Point theme for Drupal 6.
 
 Thank you for downloading this theme!
 
 
-ABOUT THE ZERO POINT THEME:
+ABOUT THE 0 POINT THEME:
 -------------------------------------------------------------------------+
-Zero Point is an advanced theme. It contains the same kinds of features 
+0 Point is an advanced theme. It contains the same kinds of features 
 you'll find in our other Drupal themes, plus many more.
 
 The theme validates XHTML 1.0 Strict / CSS 2, and it is cross-browser compatible; 
@@ -86,7 +86,7 @@ It has been heavily tested with:
   
 THEME MODIFICATION
 -------------------------------------------------------------------------+
-Zero Point theme alow many sub-themes as plugins. More sub-themes will 
+0 Point theme alow many sub-themes as plugins. More sub-themes will 
 be available at http://www.radut.net/drupal/
 
 If you feel like giving the theme a look of your own, I recommend to play
@@ -131,7 +131,7 @@ CONTACT
 My drupal nick is florian – and I can be reached at florian@radut.net or 
 cfradut@gmail.com.
 
-I can also be contacted for paid customizations of Zero Point theme as well as
+I can also be contacted for paid customizations of 0 Point theme as well as
 Drupal consulting, installation and customizations.
 
 The theme is installed at: 
