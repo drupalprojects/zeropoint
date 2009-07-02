@@ -13,7 +13,7 @@ works perfect in Firefox, IE 6, IE 7, IE8, Safari, Opera and Google Chrome.
 
 Layout features
 ===============
-- 1, 2, or 3 column layout with adaptive width (min. 1040px max.1280px at 1440px 
+- 1, 2, or 3 column layout with adaptive width (min. 1040px max.1200px at 1440px 
 	disply width) based on "The Jello Mold Piefecta Layout" 
 	(http://www.positioniseverything.net/articles/jello.html); 
 - 16+1 collapsible block regions; 
