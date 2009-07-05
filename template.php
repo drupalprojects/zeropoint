@@ -661,35 +661,9 @@ function menupos() {
 
 
 
-
-/**
- * CUSTOM
- */
-
-
-/**
- * Search area
- */
-function toplinks() {
-  global $language;
-  switch ($language->language)
-  {
-  case 'en':
-    return '<a href="/ro">Romana</a> | <a href="/en/sitemap">Site map</a>';
-    break;
-  case 'ro':
-    return '<a href="/en">English</a> | <a href="/ro/sitemap">Harta site</a>';
-    break;
-  default:
-    return '<a href="/ro">Romana</a> | <a href="/en/sitemap">Site map</a>';
-  }
-}
-
-
-
 /**
  * Use this to return links or whatever
  */
-//function toplinks() {
-//  return '<a href="/sitemap">Harta site</a>';
-//}
+function toplinks() {
+	return '';
+}

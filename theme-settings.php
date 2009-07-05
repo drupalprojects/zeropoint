@@ -110,9 +110,6 @@ SCRIPT;
       'ink' => t('Ink'),
       'sangue' => t('Sangue'),
       'lime' => t('Lime'),
-      '_greenery' => t('Greenry'),
-      '_pam' => t('Bzz'),
-      '_boaz' => t('Boaz'),
     ),
   );
 
