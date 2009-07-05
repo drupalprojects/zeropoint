@@ -4,6 +4,11 @@
 <head>
 <title><?php print $head_title ?></title>
 <?php print $head ?>
+<meta name="language" content="<?php print $language->language ?>" />
+<meta name="author" content="Dr. Catalin Florian Radut" />
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+<meta name="robots" content="noodp" />
+<link rel="pingback" href="<?php print $GLOBALS['base_url'] ?>/xmlrpc.php" />
 <?php print $styles ?>
 <?php print $scripts ?>
 <script type="text/javascript"><?php /* Needed to avoid Flash of Unstyle Content in IE */ ?> </script>
@@ -23,7 +28,7 @@
 
 <div id="top_bg" class="page">
 <div class="sizer">
-<div id="topex" class="expander">
+<div id="topex" class="expander0">
 <div id="top_left">
 <div id="top_right">
 
@@ -76,13 +81,13 @@
 
 </div><!-- /top_right -->
 </div><!-- /top_left -->
-</div><!-- /expander -->
+</div><!-- /expander0 -->
 </div><!-- /sizer -->
 </div><!-- /top_bg -->
 
 <div id="body_bg" class="page">
 <div class="sizer">
-<div class="expander">
+<div class="expander0">
 <div id="body_left">
 <div id="body_right">
 
@@ -164,14 +169,14 @@
 
 </div><!-- /body_right -->
 </div><!-- /body_left -->
-</div><!-- /expander -->
+</div><!-- /expander0 -->
 </div><!-- /sizer -->
 </div><!-- /body_bg -->
 
 <div class="eopage">
 <div class="page">
 <div class="sizer">
-<div class="expander">
+<div class="expander0">
 
 <div id="footer-wrapper" class="clear-block">
   <div id="footer">
@@ -186,7 +191,7 @@
 <div id="belowme">
 </div>
 
-</div><!-- /expander -->
+</div><!-- /expander0 -->
 </div><!-- /sizer -->
 </div><!-- /page -->
 </div>

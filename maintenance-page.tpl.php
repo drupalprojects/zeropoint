@@ -19,7 +19,7 @@
 
 <div id="top_bg" class="page">
 <div class="sizer">
-<div id="topex" class="expander">
+<div id="topex" class="expander0">
 <div id="top_left">
 <div id="top_right">
 
@@ -52,13 +52,13 @@
 
 </div><!-- /top_right -->
 </div><!-- /top_left -->
-</div><!-- /expander -->
+</div><!-- /expander0 -->
 </div><!-- /sizer -->
 </div><!-- /top_bg -->
 
 <div id="body_bg" class="page">
 <div class="sizer">
-<div class="expander">
+<div class="expander0">
 <div id="body_left">
 <div id="body_right">
 
@@ -86,14 +86,14 @@
 
 </div><!-- /body_right -->
 </div><!-- /body_left -->
-</div><!-- /expander -->
+</div><!-- /expander0 -->
 </div><!-- /sizer -->
 </div><!-- /body_bg -->
 
 <div class="eopage">
 <div class="page">
 <div class="sizer">
-<div class="expander">
+<div class="expander0">
 
 <div id="footer-wrapper" class="clear-block">
   <div id="footer">
@@ -107,7 +107,7 @@
 <div id="belowme">
 </div>
 
-</div><!-- /expander -->
+</div><!-- /expander0 -->
 </div><!-- /sizer -->
 </div><!-- /page -->
 </div>
