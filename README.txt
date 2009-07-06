@@ -132,7 +132,7 @@ UPGRADING to a new version of 0 Point
 -------------------------------------------------------------------------+
 Prior to copying the new files go to admin/build/themes/settings/zeropoint and 
 change the theme development settings to "rebuild theme registry on every page". 
-Then clear the Drupal cache and deactivate the "ebuild theme registry on every page" 
+Then clear the Drupal cache and deactivate the "rebuild theme registry on every page" 
 option. It is always a good idea to refresh the browser cache (CTRL+F5 or browser's 
 refresh button).
 
