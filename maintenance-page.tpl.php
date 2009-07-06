@@ -23,6 +23,9 @@
 <div id="top_left">
 <div id="top_right">
 
+<div id="above" class="clear-block">
+</div>
+
 <div id="header" class="clear-block">
   <div id="logo">
     <?php if ($logo): ?>
@@ -31,6 +34,9 @@
       </a>
     <?php endif; ?>
   </div> <!-- /logo -->
+  <div id="top-elements">
+  <div id="toplinks"><?php print toplinks() ?></div>
+  </div><!-- /top-elements -->
   <div id="name-and-slogan">
   <?php if ($site_name): ?>
     <h1 id="site-name">
