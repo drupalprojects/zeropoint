@@ -71,6 +71,7 @@ It has been heavily tested with:
   - Fivestar;
   - Google_cse;
   - Google_groups;
+  - Gmaplocation;
   - i18n;
   - Image;
   - Pathauto;
@@ -124,6 +125,18 @@ NOTE: Go to /admin/build/menu and expand all parents in your primary menu.
 
 KNOWN ISSUES: In order to avoid Opera's rendering problems, SuckerFish position
 can be only left.
+
+
+
+UPGRADING to a new version of 0 Point
+-------------------------------------------------------------------------+
+Prior to copying the new files go to admin/build/themes/settings/zeropoint and 
+change the theme development settings to "rebuild theme registry on every page". 
+Then clear the Drupal cache and deactivate the "ebuild theme registry on every page" 
+option. It is always a good idea to refresh the browser cache (CTRL+F5 or browser's 
+refresh button).
+
+In case you have customized 0 Point, be sure you keep your _custom folder untouched.
 
 
 

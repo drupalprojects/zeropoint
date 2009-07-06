@@ -1,4 +1,4 @@
-/* layout.css, v2.2 2009/2/15 
+/* layout.css, v2.3 2009/2/15 
  *
  * ZERO POINT theme, for Drupal 6
  * Dr. Florian Radut, florian[at]radut.net
@@ -11,6 +11,24 @@ body {
 	font-size: 83%;
 	line-height: 125%;
 }
+
+.page {
+	padding: 0 520px; /* the critical side padding that sets the natural min-width! */
+}
+.sizer {
+	margin: 0 auto;
+	padding: 0;
+	width: 40%; /* this value controls liquidity; 0% = full rigid, 100% = full liquid */
+	max-width: 160px; /* IE7 supports this property, doesn't need the fancy MS expression */
+}
+.expander0 {
+	margin: 0 -520px; /* neg side margin values should be < or = to side body padding and 1/2 of min-width below */
+	min-width: 1040px; /* This prevents Safari from losing the negative margins in narrow windows */
+	position: relative; /* makes .expander0 visible outside .sizer in IEwin */
+	min-height: 1px; /* This harmless declaration gives Layout to IE7, which can't read the star/html hack */
+} /* .expander0 must receive "hasLayout" for IEwin bug fixing; applied in ie6.css and ie7.css */
+
+/* ... see layout-fixed.css and layout-variable.css */
 
 /* SPECIAL FIXES */
 #middlecontainer img {max-width: 100%;} /* prevents oversize images from breaking layout in browsers that support max-width */
@@ -89,6 +107,10 @@ table.sections {
 #section1 td.section, #section2 td.section {
 	padding: 10px 20px 0 20px;
 }
+#above {
+	padding: 0 20px;
+	min-height: 20px;
+}
 #header, #content {
 	width: 100%;
 }
@@ -140,6 +162,10 @@ table.sections {
 }
 #middlecontainer {
 	padding: 1px 0 0 0;
+}
+#wrapper {
+	position: relative;
+	width: 100%; /* helps IE get the child percentages right */
 }
 #main {
 	padding: 10px 20px;
@@ -361,4 +387,7 @@ body.mceContentBody a:link {
 }
 .view .views-admin-links li {
 	background: transparent !important;
+}
+#middlecontainer #gmaplocation_map img {
+	max-width: none;
 }

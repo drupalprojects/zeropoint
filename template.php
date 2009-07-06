@@ -270,7 +270,7 @@ function phptemplate_preprocess_page(&$vars) {
       $vars['head'] .= $keywords ."\n";
     } 
   }
-  $vars['closure'] .= '<div class="page"><div class="sizer"><div class="expander"><div class="by"><a href="http://www.radut.net">Theme by Dr. Radut</a>.</div></div></div></div>';
+  $vars['closure'] .= '<div class="page"><div class="sizer"><div class="expander0"><div class="by"><a href="http://www.radut.net">Theme by Dr. Radut</a>.</div></div></div></div>';
 }
 
 
