@@ -34,7 +34,7 @@
 <div id="header" class="clear-block">
   <div id="logo">
     <?php if ($logo): ?>
-      <a href="<?php print $base_path; ?>" title="<?php print t('Home'); ?>">
+      <a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>">
         <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
       </a>
     <?php endif; ?>
