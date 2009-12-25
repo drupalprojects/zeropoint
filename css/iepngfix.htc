@@ -9,6 +9,8 @@
 // This is licensed under the GNU LGPL, version 2.1 or later.
 // For details, see: http://creativecommons.org/licenses/LGPL/2.1/
 
+// This must be a path to a blank image, relative to the HTML document(s).
+// In production use I suggest '/images/blank.gif' or similar. That's all!
 if (typeof blankImg == 'undefined') var blankImg = '/sites/all/themes/zeropoint/images/all/spacer.gif';
 
 

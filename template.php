@@ -3,7 +3,7 @@
 /**
  * Initialize theme settings
  */
-if (is_null(theme_get_setting('zeropoint_style' || 'user_notverified_display')) || theme_get_setting('rebuild_registry')) {
+if (is_null(theme_get_setting('user_notverified_display')) || theme_get_setting('rebuild_registry')) {
 
   // Auto-rebuild the theme registry during theme development.
   if(theme_get_setting('rebuild_registry')) {
@@ -19,14 +19,16 @@ if (is_null(theme_get_setting('zeropoint_style' || 'user_notverified_display')) 
  * matches the $defaults in the theme-settings.php file.
  */
   $defaults = array(
-    'zeropoint_style' => 'grey',
-    'cssPreload'      => 0,
-    'pagelayout'      => 1,
-    'roundcorners'    => 1,
+    'style' => 'grey',
+    'layout-width'    => 0,
+    'sidebarslayout'  => 0,
+    'themedblocks'    => 0,
     'blockicons'      => 2,
     'pageicons'       => 1,
     'menutype'        => 0,
     'navpos'          => 0,
+    'roundcorners'    => 1,
+    'cssPreload'      => 0,
     'user_notverified_display'         => 1,
     'breadcrumb_display'               => 1,
     'search_snippet'                   => 1,
@@ -84,16 +86,37 @@ if (is_null(theme_get_setting('zeropoint_style' || 'user_notverified_display')) 
 }
 
 
+// Get styles (add style.css here to avoid IE 30 stylesheets limit)
 function get_zeropoint_style() {
-  $style = theme_get_setting('zeropoint_style');
-  //if (isset($_COOKIE["zeropointstyle"])) {
-    //$style = $_COOKIE["zeropointstyle"];
-  //}
+  $style = theme_get_setting('style');
   return $style;
 }
+drupal_add_css(drupal_get_path('theme','zeropoint').'/css/style-zero.css');
+drupal_add_css(drupal_get_path('theme','zeropoint') . '/css/' . get_zeropoint_style() . '.css');
 
-drupal_add_css(drupal_get_path('theme', 'zeropoint') . '/css/' . get_zeropoint_style() . '.css', 'theme');
+// Check what the visitor's browser is and add css and js as needed
+$menu_type = theme_get_setting('menutype');
+$user_agent = $_SERVER['HTTP_USER_AGENT'];
+if($user_agent) {
+  if ((strpos($user_agent, 'MSIE 6.0')) and (theme_get_setting('menutype')!= '1')) {
+    drupal_add_css(drupal_get_path('theme','zeropoint').'/css/ie6.css');
+  } else if ((strpos($user_agent, 'MSIE 6.0')) and (theme_get_setting('menutype')== '1')) {
+	  drupal_add_css(drupal_get_path('theme','zeropoint').'/css/ie6.css');
+	  drupal_add_js(drupal_get_path('theme', 'zeropoint') . '/js/suckerfish.js');
+  } else if (strpos($user_agent, 'MSIE 7.0')) {
+    drupal_add_css(drupal_get_path('theme','zeropoint').'/css/ie7.css');
+  } else if (strpos($user_agent, 'Presto')) {
+    drupal_add_css(drupal_get_path('theme','zeropoint').'/css/opera.css');
+  }
+}
 
+// add custom-style.css
+drupal_add_css(drupal_get_path('theme','zeropoint').'/_custom/custom-style.css');
+
+$roundcorners = theme_get_setting('roundcorners');
+  if ($roundcorners == '1'){ 
+	  drupal_add_css(drupal_get_path('theme','zeropoint').'/css/round.css', 'theme');
+}
 
 
 /**
@@ -106,8 +129,9 @@ function phptemplate_preprocess(&$vars) {
 }
 
 
-
 function phptemplate_preprocess_page(&$vars) {
+// Remove the duplicate meta content-type tag, a bug in Drupal 6
+	$vars['head'] = preg_replace('/<meta http-equiv=\"Content-Type\"[^>]*>/', '', $vars['head']);
 // Remove sidebars if disabled
   if (!$vars['show_blocks']) {
     $vars['left'] = '';
@@ -163,33 +187,52 @@ function phptemplate_preprocess_page(&$vars) {
     }
   }
 
+// Build array of additional body classes and retrieve custom theme settings
+$layoutwidth = theme_get_setting('layout-width');
+  if ($layoutwidth == '0'){ 
+    $body_classes[] = 'layout-jello';
+  }
+  if ($layoutwidth == '1'){ 
+    $body_classes[] = 'layout-fluid';
+  }
+  if ($layoutwidth == '2'){ 
+    $body_classes[] = 'layout-fixed';
+  }
+$sidebarslayout = theme_get_setting('sidebarslayout');
+  if ($sidebarslayout == '0'){ 
+	  $body_classes[] = (($vars['left']) ? 'l-m' : 'm') . (($vars['right']) ? '-r' : '') . '-var';
+  }
+  if ($sidebarslayout == '1'){ 
+	  $body_classes[] = (($vars['left']) ? 'l-m' : 'm') . (($vars['right']) ? '-r' : '') . '-fix';
+  }
+  if ($sidebarslayout == '2'){ 
+	  $body_classes[] = (($vars['left']) ? 'l-m' : 'm') . (($vars['right']) ? '-r' : '') . '-var1';
+  }
+  if ($sidebarslayout == '3'){ 
+	  $body_classes[] = (($vars['left']) ? 'l-m' : 'm') . (($vars['right']) ? '-r' : '') . '-fix1';
+  }
+  if ($sidebarslayout == '4'){ 
+	  $body_classes[] = (($vars['left']) ? 'l-m' : 'm') . (($vars['right']) ? '-r' : '') . '-eq';
+  }
+$dropdown = theme_get_setting('menutype'); // if dropdown enabled 
+  if ($dropdown == '1'){ 
+    $body_classes[] = 'sfish';
+	}
+$blockicons = theme_get_setting('blockicons');
+  if ($blockicons == '1'){ 
+    $body_classes[] = 'bicons32';
+  }
+  if ($blockicons == '2'){ 
+    $body_classes[] = 'bicons48';
+  }
+$pageicons = theme_get_setting('pageicons');
+  if ($pageicons == '1'){ 
+    $body_classes[] = 'picons';
+  }
+
 // Add Panels classes and lang
   $body_classes[] = (module_exists('panels_page') && (panels_page_get_current())) ? 'panels' : '';  // Page is Panels page
   $body_classes[] = ($vars['language']->language) ? 'lg-'. $vars['language']->language : '';        // Page has lang-x
-
-// Check what the user's browser is and add it as a body class
-  $user_agent = $_SERVER['HTTP_USER_AGENT'];
-  if($user_agent) {
-    if (strpos($user_agent, 'MSIE 6.0')) {
-      $body_classes[] = 'browser-ie6';
-    } else if (strpos($user_agent, 'MSIE 7.0')) {
-      $body_classes[] = 'browser-ie7';
-    } else if (strpos($user_agent, 'MSIE 8.0')) {
-      $body_classes[] = 'browser-ie8';
-    } else if (strpos($user_agent, 'MSIE')) {
-      $body_classes[] = 'browser-ie';
-    } else if (strpos($user_agent, 'Firefox/2')) {
-      $body_classes[] = 'browser-firefox2';
-    } else if (strpos($user_agent, 'Firefox/3')) {
-      $body_classes[] = 'browser-firefox3';
-    } else if (strpos($user_agent, 'Chrome')) {
-      $body_classes[] = 'browser-chrome';
-    } else if (strpos($user_agent, 'Safari')) {
-      $body_classes[] = 'browser-safari';
-    } else if (strpos($user_agent, 'Presto')) {
-      $body_classes[] = 'browser-opera';
-    }
-  }
 
   $body_classes = array_filter($body_classes);                                                      // Remove empty elements
   $vars['body_classes'] = implode(' ', $body_classes);                                              // Create class list separated by spaces
@@ -274,14 +317,17 @@ function phptemplate_preprocess_page(&$vars) {
 }
 
 
-
 function phptemplate_preprocess_block(&$vars) {
-// Add regions with themed blocks (e.g., left, right) to $themed_regions array
+// Add regions with themed blocks (e.g., left, right) to $themed_regions array and retrieve custom theme settings
+$themedblocks = theme_get_setting('themedblocks');
+  if ($themedblocks == '0'){ 
   $themed_regions = array('left','right');
+}
+  if ($themedblocks == '1'){ 
+  $themed_regions = array('left','right','user1','user2','user3','user4','user5','user6','user7','user8');
+}
   $vars['themed_block'] = (in_array($vars['block']->region, $themed_regions)) ? TRUE : FALSE;
 }
-
-
 
 function phptemplate_preprocess_node(&$vars) {
 // Add node region
@@ -317,6 +363,21 @@ function phptemplate_preprocess_node(&$vars) {
 // Add node_bottom region content
   $vars['node_bottom'] = theme('blocks', 'node_bottom');
 
+// Render Ubercart fields into separate variables for node-product.tpl.php
+if (module_exists('uc_product') && uc_product_is_product($vars) && $vars['template_files'][0] == 'node-product') {
+  $node = node_build_content(node_load($vars['nid']));
+  $vars['uc_image'] = drupal_render($node->content['image']);
+  $vars['uc_body'] = drupal_render($node->content['body']);
+  $vars['uc_display_price'] = drupal_render($node->content['display_price']);
+  $vars['uc_add_to_cart'] = drupal_render($node->content['add_to_cart']);
+  $vars['uc_weight'] = drupal_render($node->content['weight']);
+  $vars['uc_dimensions'] = drupal_render($node->content['dimensions']);
+  $vars['uc_model'] = drupal_render($node->content['model']);
+  $vars['uc_list_price'] = drupal_render($node->content['list_price']);
+  $vars['uc_sell_price'] = drupal_render($node->content['sell_price']);
+  $vars['uc_cost'] = drupal_render($node->content['cost']);
+  $vars['uc_additional'] = drupal_render($node->content);
+}
 
 
 
@@ -377,7 +438,6 @@ function phptemplate_preprocess_node(&$vars) {
 }
 
 
-
 function phptemplate_preprocess_comment(&$vars) {
   global $user;
   // Build array of handy comment classes
@@ -401,7 +461,6 @@ function phptemplate_preprocess_comment(&$vars) {
 }
 
 
-
 /**
  * Set defaults for comments display
  * (Requires comment-wrapper.tpl.php file in theme directory)
@@ -413,7 +472,6 @@ function phptemplate_preprocess_comment_wrapper(&$vars) {
 }
 
 
-
 /**
  * Adds a class for the style of view  
  * (e.g., node, teaser, list, table, etc.)
@@ -422,7 +480,6 @@ function phptemplate_preprocess_comment_wrapper(&$vars) {
 function phptemplate_preprocess_views_view(&$vars) {
   $vars['css_name'] = $vars['css_name'] .' view-style-'. views_css_safe(strtolower($vars['view']->type));
 }
-
 
 
 /**
@@ -472,7 +529,6 @@ function phptemplate_preprocess_search_result(&$variables) {
 }
 
 
-
 /**
  * Override username theming to display/hide 'not verified' text
  */
@@ -513,7 +569,6 @@ function phptemplate_username($object) {
   }
   return $output;
 }
-
 
 
 /**
@@ -564,7 +619,6 @@ function _themesettings_link($prefix, $suffix, $text, $path, $options) {
 }
 
 
-
 /**
  * Breadcrumb override
  */
@@ -574,7 +628,6 @@ function phptemplate_breadcrumb($breadcrumb) {
     return '<div class="breadcrumb">'. implode(' &raquo; ', $breadcrumb) .'</div>';
   }
 }
-
 
 
 /**
@@ -603,8 +656,7 @@ function id_safe($string) {
 }
 
 
-
-// retrieve custom theme settings
+// retrieve additional custom theme settings
 
 $preload = theme_get_setting('cssPreload'); // print the js file if css image preload enabled
   if ($preload == '1'){
@@ -613,37 +665,6 @@ $preload = theme_get_setting('cssPreload'); // print the js file if css image pr
     $.preloadCssImages();
   });
   ','inline');
-}
-
-$pagelayout = theme_get_setting('pagelayout');
-  if ($pagelayout == '0'){ 
-    drupal_add_css(drupal_get_path('theme','zeropoint').'/css/layout-fixed.css');
-}
-  if ($pagelayout == '1'){ 
-    drupal_add_css(drupal_get_path('theme','zeropoint').'/css/layout-variable.css');
-}
-
-$roundcorners = theme_get_setting('roundcorners');
-  if ($roundcorners == '1'){ 
-    drupal_add_css(drupal_get_path('theme','zeropoint').'/css/round.css');
-}
-
-$blockicons = theme_get_setting('blockicons');
-  if ($blockicons == '1'){ 
-    drupal_add_css(drupal_get_path('theme','zeropoint').'/css/block-icons-32.css');
-}
-  if ($blockicons == '2'){ 
-    drupal_add_css(drupal_get_path('theme','zeropoint').'/css/block-icons-48.css');
-}
-
-$pageicons = theme_get_setting('pageicons');
-  if ($pageicons == '1'){ 
-    drupal_add_css(drupal_get_path('theme','zeropoint').'/css/icons.css');
-}
-
-$dropdown = theme_get_setting('menutype'); // if dropdown enabled 
-  if ($dropdown == '1'){ 
-    drupal_add_css(drupal_get_path('theme','zeropoint').'/css/suckerfish.css');
 }
 
 function menupos() {
@@ -660,10 +681,21 @@ function menupos() {
 }
 
 
+// Quick fix for the validation error: 'ID "edit-submit" already defined'
+$elementCountForHack = 0;
+function phptemplate_submit($element) {
+	global $elementCountForHack;
+	return str_replace('edit-submit', 'edit-submit-' . ++$elementCountForHack, theme('button', $element));
+}
+
+
+/**
+ * CUSTOM
+ */
 
 /**
  * Use this to return links or whatever
  */
 function toplinks() {
-	return '';
 }
+

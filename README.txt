@@ -68,21 +68,30 @@ MODULE SUPPORT
 This theme can support virtualy any module.
 It has been heavily tested with:
   - AdSense;
+  - Advanced Forum;
+  - Blockquotes;
+  - CAPTCHA;
+  - CCK;
   - Fivestar;
+  - Gallerix;
+  - Gallery Assist;
   - Google_cse;
   - Google_groups;
   - Gmaplocation;
   - i18n;
   - Image;
+  - ImageCache;
+  - Panels;
   - Pathauto;
   - Lightbox2;
   - Logintoboggan;
   - Print;
   - Simplenews;
-  - Panels;
+  - Thickbox;
+  - ÜBERCART;
   - Views;
-  - TinyMCE;
-  - Weather
+  - Wysiwyg (TinyMCE and FCKeditor);
+  - Weather;
 
 
   
@@ -98,14 +107,20 @@ with /_custom/custom-style.css; please read the comments in this file.
 
 SIDEBARS DIMMENSIONS
 -------------------------------------------------------------------------+
-The maximum with available is as follow:
+The maximum with available for sidebars is as follow:
 
-								|	left	|	right	|	both
------------------------------------------
-layout-fixed		|	160		|	234		|	160-234
------------------------------------------
-layout-variable	|	250		|	300		|	160-234
------------------------------------------
+                                         | left | right | both
+-----------------------------------------------------------------
+Variable asyimmetrical sidebars (wide)   | 250  |  300  | 160-234
+-----------------------------------------------------------------
+Fixed asyimmetrical sidebars (wide)      | 160  |  234  | 160-234
+-----------------------------------------------------------------
+Variable asyimmetrical sidebars (narrow) | 230  |  280  | 140-214
+-----------------------------------------------------------------
+Fixed asyimmetrical sidebars (narrow)    | 140  |  214  | 140-214
+-----------------------------------------------------------------
+Equal width sidebars (narrow)            | 155  |  155  | 155-155
+-----------------------------------------------------------------
 
 NOTE: Do not exceed the available width (especially with images) or IE will 
 not behave so the sidebars may drop. 
@@ -128,22 +143,43 @@ can be only left.
 
 
 
+INSTALLATION INSTRUCTIONS
+-------------------------------------------------------------------------+
+
+1) Place the zeropoint directory into your themes directory (sites/all/themes/zeropoint).
+
+2) Enable the 0 Point theme (/admin/build/themes).
+
+3) You can configure settings for the 0 Point theme at /admin/build/themes/settings/zeropoint.  
+
+
+
 UPGRADING to a new version of 0 Point
 -------------------------------------------------------------------------+
-Prior to copying the new files go to admin/build/themes/settings/zeropoint and 
-change the theme development settings to "rebuild theme registry on every page". 
-Then clear the Drupal cache and deactivate the "rebuild theme registry on every page" 
-option. It is always a good idea to refresh the browser cache (CTRL+F5 or browser's 
-refresh button).
 
-In case you have customized 0 Point, be sure you keep your _custom folder untouched.
+1) If possible, log on as the user with user ID 1. 
+
+2) Put the site in "Off-line" mode.
+
+3) Go to admin/build/themes/settings/zeropoint and change the theme development
+   settings to "rebuild theme registry on every page". 
+
+4) Place the zeropoint directory into your themes directory (sites/all/themes/zeropoint).
+   In case you have done customization to 0 Point theme, remember to overwrite theme
+   custom-style.css with your custom-style.css file.
+
+5) Configure the new settings for the 0 Point theme at /admin/build/themes/settings/zeropoint. 
+
+6) Clear the Drupal cache and deactivate the "rebuild theme registry on every page"
+   option and put the site in "On-line" mode. It is always a good idea to refresh 
+   the browser's cache (CTRL+F5).
 
 
 
 CONTACT
 -------------------------------------------------------------------------+
-My drupal nick is florian – and I can be reached at florian@radut.net or 
-cfradut@gmail.com.
+My drupal nick is florian <http://drupal.org/user/35316> – and I can be reached 
+at florian@radut.net.
 
 I can also be contacted for paid customizations of 0 Point theme as well as
 Drupal consulting, installation and customizations.

@@ -3,16 +3,11 @@
 
 <head>
 <title><?php print $head_title ?></title>
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
 <?php print $head ?>
 <?php print $styles ?>
 <?php print $scripts ?>
 <script type="text/javascript"><?php /* Needed to avoid Flash of Unstyle Content in IE */ ?> </script>
-<!--[if lte IE 6]>
-<link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie6.css" />
-<![endif]-->
-<!--[if IE 7]>
-<link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie7.css" />
-<![endif]-->
 </head>
 
 <body class="<?php print $body_classes; ?>">
@@ -23,10 +18,10 @@
 <div id="top_left">
 <div id="top_right">
 
-<div id="above" class="clear-block">
+<div id="above" class="clearfix">
 </div>
 
-<div id="header" class="clear-block">
+<div id="header" class="clearfix">
   <div id="logo">
     <?php if ($logo): ?>
       <a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>">
@@ -35,12 +30,11 @@
     <?php endif; ?>
   </div> <!-- /logo -->
   <div id="top-elements">
-  <div id="toplinks"><?php print toplinks() ?></div>
   </div><!-- /top-elements -->
   <div id="name-and-slogan">
   <?php if ($site_name): ?>
     <h1 id="site-name">
-      <a href="<?php print $base_path ?>" title="<?php print t('Home'); ?>">
+      <a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>">
         <?php print $site_name; ?>
       </a>
     </h1>
@@ -52,7 +46,7 @@
   <?php endif; ?>
   </div> <!-- /name-and-slogan -->
 
-<br class="brclear" />
+<div class="brclear"></div>
 
 </div> <!-- /header -->
 
@@ -101,7 +95,7 @@
 <div class="sizer">
 <div class="expander0">
 
-<div id="footer-wrapper" class="clear-block">
+<div id="footer-wrapper" class="clearfix">
   <div id="footer">
     <div class="legal">
       Copyright &copy; <?php print date('Y') ?> <a href="/"><?php print $site_name ?></a>. <?php print $footer_message ?>

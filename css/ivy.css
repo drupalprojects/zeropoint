@@ -17,7 +17,7 @@ div.admin-panel .description {
 	color: #5A7D4F;
 }
 
-#sidebar-left .block, #sidebar-right .block {
+.block.themed-block {
 	background: #fff url(../images/ivy/fill_block.png) 0 100% repeat-x;
 }
 
@@ -34,32 +34,32 @@ h1, h2, h3 {
 }
 #navlist li a:hover, #navlinks ul li a:hover {
 	color: #fff !important;
-	background-color: #6f9861  !important;
+	background-color: #6f9861 !important;
 }
 
 /* SUCKERFISHMENU */
 
-#navlinks ul li.expanded a {
+body.sfish #navlinks ul li.expanded a {
 	background: #5a7d4f url(../images/nav-down.png) 95% 50% no-repeat;
 }
-#navlinks li ul a:link, 
-#navlinks li ul a:visited {
+body.sfish #navlinks li ul a:link, 
+body.sfish #navlinks li ul a:visited {
 	background: #6f9861;
 	border-left: 1px solid #8eaf83;
 	border-top: 1px solid #8eaf83;
 	border-right: 1px solid #5a7d4f;
 	border-bottom: 1px solid #5a7d4f;
 }
-#navlinks ul.menu li ul.menu li.expanded a,
-#navlinks ul.menu li ul.menu li ul.menu li.expanded a,
-#navlinks ul.menu li ul.menu li ul.menu li ul.menu li.expanded a {
+body.sfish #navlinks ul.menu li ul.menu li.expanded a,
+body.sfish #navlinks ul.menu li ul.menu li ul.menu li.expanded a,
+body.sfish #navlinks ul.menu li ul.menu li ul.menu li ul.menu li.expanded a {
 	background: #6f9861 url(../images/nav-right.png) 100% 50% no-repeat;
 }
-#navlinks ul.menu li li.expanded ul.menu a, 
-#navlinks ul.menu li li.expanded ul.menu li.expanded ul.menu a,
-#navlinks ul.menu li li.expanded ul.menu li.expanded ul.menu li.expanded ul.menu a {
+body.sfish #navlinks ul.menu li li.expanded ul.menu a, 
+body.sfish #navlinks ul.menu li li.expanded ul.menu li.expanded ul.menu a,
+body.sfish #navlinks ul.menu li li.expanded ul.menu li.expanded ul.menu li.expanded ul.menu a {
 	background: #6f9861;
 }
-#navlinks li ul a:hover {
+body.sfish #navlinks li ul a:hover {
 	background-color: #5a7d4f !important;
 }

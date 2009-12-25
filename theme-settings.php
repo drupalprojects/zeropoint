@@ -1,24 +1,24 @@
 <?php
 
 function phptemplate_settings($saved_settings) {
-  $settings = theme_get_settings('zeropoint');
+//  $settings = theme_get_settings('zeropoint');
 
   // Only open one of the general or node setting fieldsets at a time
-  $js = <<<SCRIPT
-    $(document).ready(function(){
-      $("fieldset.general_settings > legend > a").click(function(){
-        if(!$("fieldset.node_settings").hasClass("collapsed")) {
-          Drupal.toggleFieldset($("fieldset.node_settings"));
-        }
-      });
-      $("fieldset.node_settings > legend > a").click(function(){
-        if (!$("fieldset.general_settings").hasClass("collapsed")) {
-          Drupal.toggleFieldset($("fieldset.general_settings"));
-        }
-      });
+$js = <<<SCRIPT
+  $(document).ready(function(){
+    $("fieldset.general_settings > legend > a").click(function(){
+      if(!$("fieldset.node_settings").hasClass("collapsed")) {
+        Drupal.toggleFieldset($("fieldset.node_settings"));
+      }
     });
+    $("fieldset.node_settings > legend > a").click(function(){
+      if (!$("fieldset.general_settings").hasClass("collapsed")) {
+        Drupal.toggleFieldset($("fieldset.general_settings"));
+      }
+    });
+  });
 SCRIPT;
-  drupal_add_js($js, 'inline');
+drupal_add_js($js, 'inline');
 
   // Get the node types
   $node_types = node_get_types('names');
@@ -28,14 +28,16 @@ SCRIPT;
  * matches the $defaults in the template.php file.
  */
   $defaults = array(
-    'zeropoint_style' => 'grey',
-    'cssPreload'      => 0,
-    'pagelayout'      => 1,
-    'roundcorners'    => 1,
+    'style' => 'grey',
+    'layout-width'    => 0,
+    'sidebarslayout'  => 0,
+    'themedblocks'    => 0,
     'blockicons'      => 2,
     'pageicons'       => 1,
     'menutype'        => 0,
     'navpos'          => 0,
+    'roundcorners'    => 1,
+    'cssPreload'      => 0,
     'user_notverified_display'         => 1,
     'breadcrumb_display'               => 1,
     'search_snippet'                   => 1,
@@ -98,10 +100,10 @@ SCRIPT;
     '#attributes' => array('class' => 'layout_settings'),
   );
 
-  $form['tnt_container']['layout_settings']['zeropoint_style'] = array(
+  $form['tnt_container']['layout_settings']['style'] = array(
     '#type' => 'select',
     '#title' => t('Style'),
-    '#default_value' => $settings['zeropoint_style'],
+    '#default_value' => $settings['style'],
     '#options' => array(
       'grey' => t('0 Point'),
       'sky' => t('Sky'),
@@ -113,32 +115,40 @@ SCRIPT;
     ),
   );
 
-  $form['tnt_container']['layout_settings']['cssPreload'] = array(
+  $form['tnt_container']['layout_settings']['layout-width'] = array(
     '#type' => 'select',
-    '#title' => t('jQuery CSS image preload'),
-    '#default_value' => $settings['cssPreload'],
+    '#title' => t('Layout width'),
+    '#default_value' => $settings['layout-width'],
+    '#description' => t('<em>Fluid width</em> and <em>Fixed width</em> can be customized in _custom/custom-style.css.'),
     '#options' => array(
-      0 => 'No',
-      1 => 'Yes',
-    )
+      0 => 'Adaptive width',
+      1 => 'Fluid width (custom)',
+      2 => 'Fixed width (custom)',
+    ),
   );
 
-  $form['tnt_container']['layout_settings']['pagelayout'] = array(
+  $form['tnt_container']['layout_settings']['sidebarslayout'] = array(
     '#type' => 'select',
     '#title' => t('Sidebars layout'),
-    '#default_value' => $settings['pagelayout'],
-    '#description' => t('<b>Fixed width sidebars:</b> Content width is 160px for left sidebar and 234px for right sidebar (default). <br /> <b>Variable width sidebars:</b> If only one sidebar is enabled, content width is 250px for left sidebar and 300px for right sidebar. If both sidebars are enabled, content width is 160px for left sidebar and 234px for right sidebar.'),
+    '#default_value' => $settings['sidebarslayout'],
+    '#description' => t('<b>Variable width sidebars (wide)</b>: If only one sidebar is enabled, content width is 250px for left sidebar and 300px for right sidebar. If both sidebars are enabled, content width is 160px for left sidebar and 234px for right sidebar. <br /> <b>Fixed width sidebars (wide)</b>: Content width is 160px for left sidebar and 234px for right sidebar. <br /> <em>Equal width sidebars</em> ca be customized in _custom/custom-style.css. For other details, please refer to readme.txt.'),
     '#options' => array(
-      0 => 'Fixed width sidebars',
-      1 => 'Variable width sidebars',
+      0 => 'Variable asyimmetrical sidebars (wide)',
+      1 => 'Fixed asyimmetrical sidebars (wide)',
+      2 => 'Variable asyimmetrical sidebars (narrow)',
+      3 => 'Fixed asyimmetrical sidebars (narrow)',
+      4 => 'Equal width sidebars (custom)',
     )
   );
 
-  $form['tnt_container']['layout_settings']['roundcorners'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Rounded corners'),
-    '#description' => t('Some page elements (as, mission statement, comments, search, sidebar blocks) and primary menu will have rounded corners in all browsers but Internet Explorer. NOTE: With this option enebled 0 Point will not validate CSS2.'),
-    '#default_value' => $settings['roundcorners'],
+  $form['tnt_container']['layout_settings']['themedblocks'] = array(
+    '#type' => 'select',
+    '#title' => t('Themed blocks'),
+    '#default_value' => $settings['themedblocks'],
+    '#options' => array(
+      0 => 'Sidebars only',
+      1 => 'Sidebars + User regions',
+    )
   );
 
   $form['tnt_container']['layout_settings']['blockicons'] = array(
@@ -153,20 +163,16 @@ SCRIPT;
   );
 
   $form['tnt_container']['layout_settings']['pageicons'] = array(
-    '#type' => 'select',
+    '#type' => 'checkbox',
     '#title' => t('Page icons'),
     '#default_value' => $settings['pageicons'],
-    '#options' => array(
-      0 => 'No',
-      1 => 'Yes',
-    )
   );
 
   $form['tnt_container']['layout_settings']['menutype'] = array(
     '#type' => 'select',
     '#title' => t('Menu type'),
     '#default_value' => $settings['menutype'],
-    '#description' => t('Choose "Suckerfish" to enable support for Suckerfish drop menus. NOTE: Go to <b><a href="/admin/build/menu">admin/build/menu</a></b> and expand all parents in your primary menu.'),
+    '#description' => t('Choose "Suckerfish" to enable support for Suckerfish drop down menus. <br /> NOTE: Go to <b><a href="/admin/build/menu">admin/build/menu</a></b> and expand all parents in primary menu.'),
     '#options' => array(
       0 => 'Static',
       1 => 'Suckerfish',
@@ -176,13 +182,26 @@ SCRIPT;
   $form['tnt_container']['layout_settings']['navpos'] = array(
     '#type' => 'select',
     '#title' => t('Menu position'),
-    '#description' => t('Choose menu position: left (default), center or right.'),
     '#default_value' => $settings['navpos'],
     '#options' => array(
       0 => 'Left',
       1 => 'Center',
       2 => 'Right',
     )
+  );
+
+  $form['tnt_container']['layout_settings']['roundcorners'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Rounded corners'),
+    '#description' => t('Some page elements (mission, comments, search, blocks) and primary menu will have rounded corners in all browsers but IE. NOTE: With this option enabled 0 Point will not validate CSS2.'),
+    '#default_value' => $settings['roundcorners'],
+  );
+
+  $form['tnt_container']['layout_settings']['cssPreload'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('jQuery CSS image preload'),
+    '#description' => t('Automatically Preload images from CSS.'),
+    '#default_value' => $settings['cssPreload'],
   );
 
   // General Settings
@@ -532,5 +551,3 @@ SCRIPT;
   // Return theme settings form
   return $form;
 }  
-
-?>
