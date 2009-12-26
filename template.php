@@ -86,31 +86,13 @@ if (is_null(theme_get_setting('user_notverified_display')) || theme_get_setting(
 }
 
 
-// Get styles (add style.css here to avoid IE 30 stylesheets limit)
+// Get styles (add css stylesheets here to avoid IE 30 stylesheets limit)
 function get_zeropoint_style() {
   $style = theme_get_setting('style');
   return $style;
 }
 drupal_add_css(drupal_get_path('theme','zeropoint').'/css/style-zero.css');
 drupal_add_css(drupal_get_path('theme','zeropoint') . '/css/' . get_zeropoint_style() . '.css');
-
-// Check what the visitor's browser is and add css and js as needed
-$menu_type = theme_get_setting('menutype');
-$user_agent = $_SERVER['HTTP_USER_AGENT'];
-if($user_agent) {
-  if ((strpos($user_agent, 'MSIE 6.0')) and (theme_get_setting('menutype')!= '1')) {
-    drupal_add_css(drupal_get_path('theme','zeropoint').'/css/ie6.css');
-  } else if ((strpos($user_agent, 'MSIE 6.0')) and (theme_get_setting('menutype')== '1')) {
-	  drupal_add_css(drupal_get_path('theme','zeropoint').'/css/ie6.css');
-	  drupal_add_js(drupal_get_path('theme', 'zeropoint') . '/js/suckerfish.js');
-  } else if (strpos($user_agent, 'MSIE 7.0')) {
-    drupal_add_css(drupal_get_path('theme','zeropoint').'/css/ie7.css');
-  } else if (strpos($user_agent, 'Presto')) {
-    drupal_add_css(drupal_get_path('theme','zeropoint').'/css/opera.css');
-  }
-}
-
-// add custom-style.css
 drupal_add_css(drupal_get_path('theme','zeropoint').'/_custom/custom-style.css');
 
 $roundcorners = theme_get_setting('roundcorners');
@@ -699,3 +681,23 @@ function phptemplate_submit($element) {
 function toplinks() {
 }
 
+
+// ** RADUT ** 
+
+/**
+ * Search area
+ */
+//function toplinks() {
+//  global $language;
+//  switch ($language->language)
+//  {
+//  case 'en':
+//    return '<a href="/ro">Romana</a> | <a href="/en/sitemap">Site map</a>';
+//    break;
+//  case 'ro':
+//    return '<a href="/en">English</a> | <a href="/ro/sitemap">Harta site</a>';
+//    break;
+//  default:
+//    return '<a href="/ro">Romana</a> | <a href="/en/sitemap">Site map</a>';
+//  }
+//}

@@ -33,7 +33,7 @@ body.layout-jello .expander0 {
 	min-width: 1040px; /* This prevents Safari from losing the negative margins in narrow windows */
 } /* .expander0 must receive "hasLayout" for IEwin bug fixing; applied in ie6.css and ie7.css */
 
-body.layout-fluid .sizer { /* custom */
+body.layout-fluid .sizer, body.in-maintenance .sizer { /* custom */
 	width: 90%;
 }
 body.layout-fixed .sizer { /* custom */

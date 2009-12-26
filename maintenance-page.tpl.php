@@ -5,6 +5,12 @@
 <title><?php print $head_title ?></title>
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <?php print $head ?>
+<?php if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 6.0')) : ?>
+<link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie6.css" />
+<?php endif; ?>
+<?php if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 7.0')) : ?>
+<link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie7.css" />
+<?php endif; ?>
 <?php print $styles ?>
 <?php print $scripts ?>
 <script type="text/javascript"><?php /* Needed to avoid Flash of Unstyle Content in IE */ ?> </script>
@@ -17,6 +23,7 @@
 <div id="topex" class="expander0">
 <div id="top_left">
 <div id="top_right">
+<div id="headimg">
 
 <div id="above" class="clearfix">
 </div>
@@ -50,6 +57,7 @@
 
 </div> <!-- /header -->
 
+</div>
 </div><!-- /top_right -->
 </div><!-- /top_left -->
 </div><!-- /expander0 -->
@@ -76,6 +84,7 @@
             <?php print $feed_icons; ?>
           </div>
         </div> <!-- /colmain -->
+        <br class="brclear" />
       </div> <!-- /float-wrap -->
       <br class="brclear" />
     </div><!-- /outer -->

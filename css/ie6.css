@@ -9,7 +9,7 @@ body.layout-left-main-right .outer a, body.layout-left-main .outer a, body.layou
 	word-wrap: break-word;
 }
 .comment {
-	margin: 0;
+	margin: 0 !important;
 }
 .block .item-list li {
 	vertical-align: top;
