@@ -5,24 +5,15 @@
 <title><?php print $head_title ?></title>
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <?php print $head ?>
-<meta name="language" content="<?php print $language->language ?>" />
-<meta name="author" content="Dr. Catalin Florian Radut" />
-<meta name="MSSmartTagsPreventParsing" content="TRUE" />
-<meta name="robots" content="noodp" />
-<link rel="pingback" href="<?php print $GLOBALS['base_url'] ?>/xmlrpc.php" />
-<?php if ((strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 6.0')) and (theme_get_setting('menutype')!= '1')) : ?>
-<link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie6.css" />
-<?php endif; ?>
-<?php if ((strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 6.0')) and (theme_get_setting('menutype')== '1')) : ?>
-<link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie6.css" />
+<!--[if lte IE 6]>
+<?php if (theme_get_setting('menutype')== '1') { ?>
 <script type="text/javascript" src="/<?php print $directory; ?>/js/suckerfish.js"></script>
-<?php endif; ?>
-<?php if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 7.0')) : ?>
+<?php } ?>
+<link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie6.css" />
+<![endif]-->
+<!--[if IE 7]>
 <link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie7.css" />
-<?php endif; ?>
-<?php if (strpos($_SERVER['HTTP_USER_AGENT'], 'Presto')) : ?>
-<link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/opera.css" />
-<?php endif; ?>
+<![endif]-->
 <?php print $styles ?>
 <?php print $scripts ?>
 <script type="text/javascript"><?php /* Needed to avoid Flash of Unstyle Content in IE */ ?> </script>

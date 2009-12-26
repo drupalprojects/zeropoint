@@ -680,24 +680,3 @@ function phptemplate_submit($element) {
  */
 function toplinks() {
 }
-
-
-// ** RADUT ** 
-
-/**
- * Search area
- */
-//function toplinks() {
-//  global $language;
-//  switch ($language->language)
-//  {
-//  case 'en':
-//    return '<a href="/ro">Romana</a> | <a href="/en/sitemap">Site map</a>';
-//    break;
-//  case 'ro':
-//    return '<a href="/en">English</a> | <a href="/ro/sitemap">Harta site</a>';
-//    break;
-//  default:
-//    return '<a href="/ro">Romana</a> | <a href="/en/sitemap">Site map</a>';
-//  }
-//}
