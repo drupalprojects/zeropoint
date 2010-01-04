@@ -727,14 +727,13 @@ li.collapsed {
 	text-align: center;
 }
 .navleft {
-	text-align: left;
 	padding-left: 20px;
 }
 .navcenter {
 	text-align: center;
 }
 .navright {
-	text-align: right;
+	float: right;
 	padding-right: 20px;
 }
 #navlist.links li, #navlinks a {
