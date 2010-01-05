@@ -1135,6 +1135,10 @@ body.picons .print_mail a, body.picons .book_mail a {
 	background: url(../images/icons/mail.png) no-repeat left center;
 	padding-left: 20px;
 }
+body.picons .print_pdf a, body.picons .book_pdf a {
+	background: url(../images/icons/pdf_icon.gif) no-repeat left center;
+	padding-left: 20px;
+}
 body.picons .terms li.first, body.picons .terms ul.taxonomy {
 	background: url(../images/icons/tag.png) no-repeat left top;
 	padding-left: 20px;
