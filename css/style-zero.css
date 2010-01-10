@@ -727,13 +727,14 @@ li.collapsed {
 	text-align: center;
 }
 .navleft {
+	text-align: left;
 	padding-left: 20px;
 }
 .navcenter {
 	text-align: center;
 }
 .navright {
-	float: right;
+	text-align: right;
 	padding-right: 20px;
 }
 #navlist.links li, #navlinks a {
@@ -1123,30 +1124,17 @@ body.picons .book_add_child a {
 	background: url(../images/icons/page-add.png) no-repeat left center;
 	padding-left: 20px;
 }
+body.picons .print_html a, body.picons .print a, body.picons .book_printer a {
+	background: url(../images/icons/printer.png) no-repeat left center;
+	padding-left: 20px;
+}
 body.picons .comment_add a {
 	background: url(../images/icons/comment.png) no-repeat left center;
 	padding-left: 20px;
 }
-body.picons .print-icon {
-	display: none;
-}
-body.picons .print_html a, body.picons .book_printer a {
-	background: url(../images/icons/print.png) no-repeat left center;
-	padding-left: 20px;
-	height: 16px;
-	display: inline-block;
-}
 body.picons .print_mail a, body.picons .book_mail a {
 	background: url(../images/icons/mail.png) no-repeat left center;
 	padding-left: 20px;
-	height: 16px;
-	display: inline-block;
-}
-body.picons .print_pdf a, body.picons .book_pdf a {
-	background: url(../images/icons/pdf.png) no-repeat left center;
-	padding-left: 20px;
-	height: 16px;
-	display: inline-block;
 }
 body.picons .terms li.first, body.picons .terms ul.taxonomy {
 	background: url(../images/icons/tag.png) no-repeat left top;
@@ -1235,6 +1223,9 @@ body.mceContentBody a:link {
 }
 .view .views-admin-links li {
 	background: transparent !important;
+}
+.print-icon {
+	display: none;
 }
 .block-gmaplocation .content {
 	text-align: center;

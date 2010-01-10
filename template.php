@@ -308,9 +308,7 @@ $themedblocks = theme_get_setting('themedblocks');
   if ($themedblocks == '1'){ 
   $themed_regions = array('left','right','user1','user2','user3','user4','user5','user6','user7','user8');
 }
-  if (is_array($themed_regions))
   $vars['themed_block'] = (in_array($vars['block']->region, $themed_regions)) ? TRUE : FALSE;
-  else $vars['themed_block'] = FALSE;
 }
 
 function phptemplate_preprocess_node(&$vars) {
