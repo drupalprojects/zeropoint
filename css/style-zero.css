@@ -285,6 +285,7 @@ pre {
 }
 .links {
 	margin: 0;
+	clear: both;
 }
 .comment .links {
 	margin-bottom: 0;
