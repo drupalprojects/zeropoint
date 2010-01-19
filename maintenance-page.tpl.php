@@ -3,45 +3,38 @@
 
 <head>
 <title><?php print $head_title ?></title>
-<meta http-equiv="X-UA-Compatible" content="IE=8" />
 <?php print $head ?>
-<!--[if lte IE 6]>
-<link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie6.css" />
-<![endif]-->
-<!--[if IE 7]>
-<link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie7.css" />
-<![endif]-->
 <?php print $styles ?>
 <?php print $scripts ?>
 <script type="text/javascript"><?php /* Needed to avoid Flash of Unstyle Content in IE */ ?> </script>
+<!--[if lte IE 6]>
+<link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie6.css" />
+<![endif]-->
+<!--[if gte IE 7]>
+<link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie7.css" />
+<![endif]-->
 </head>
 
 <body class="<?php print $body_classes; ?>">
 
 <div id="top_bg" class="page">
 <div class="sizer">
-<div id="topex" class="expander0">
+<div class="expander">
 <div id="top_left">
 <div id="top_right">
-<div id="headimg">
 
-<div id="above" class="clearfix">
-</div>
-
-<div id="header" class="clearfix">
+<div id="header" class="clear-block">
   <div id="logo">
     <?php if ($logo): ?>
-      <a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>">
+      <a href="<?php print $base_path; ?>" title="<?php print t('Home'); ?>">
         <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
       </a>
     <?php endif; ?>
   </div> <!-- /logo -->
-  <div id="top-elements">
-  </div><!-- /top-elements -->
   <div id="name-and-slogan">
   <?php if ($site_name): ?>
     <h1 id="site-name">
-      <a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>">
+      <a href="<?php print $base_path ?>" title="<?php print t('Home'); ?>">
         <?php print $site_name; ?>
       </a>
     </h1>
@@ -53,20 +46,20 @@
   <?php endif; ?>
   </div> <!-- /name-and-slogan -->
 
-<div class="brclear"></div>
+<br class="brclear" />
 
 </div> <!-- /header -->
 
-</div>
 </div><!-- /top_right -->
 </div><!-- /top_left -->
-</div><!-- /expander0 -->
+</div><!-- /expander -->
 </div><!-- /sizer -->
 </div><!-- /top_bg -->
 
+
 <div id="body_bg" class="page">
 <div class="sizer">
-<div class="expander0">
+<div class="expander">
 <div id="body_left">
 <div id="body_right">
 
@@ -84,42 +77,42 @@
             <?php print $feed_icons; ?>
           </div>
         </div> <!-- /colmain -->
-        <br class="brclear" />
       </div> <!-- /float-wrap -->
       <br class="brclear" />
     </div><!-- /outer -->
   </div><!-- /wrapper -->
 </div>
 
-<div id="bar"></div>
-
 </div><!-- /body_right -->
 </div><!-- /body_left -->
-</div><!-- /expander0 -->
+</div><!-- /expander -->
 </div><!-- /sizer -->
 </div><!-- /body_bg -->
 
-<div class="eopage">
 <div class="page">
 <div class="sizer">
-<div class="expander0">
+<div class="expander">
 
-<div id="footer-wrapper" class="clearfix">
+<div id="footer-wrapper" class="clear-block">
   <div id="footer">
+    <?php if ($below) { ?><div id="below"><?php print $below; ?></div><?php } ?>
     <div class="legal">
       Copyright &copy; <?php print date('Y') ?> <a href="/"><?php print $site_name ?></a>. <?php print $footer_message ?>
       <div id="brand"></div>
     </div>
-  </div>
+    <div class="by">
+      <?php print xmll() ?>
+    </div>
 </div> <!-- /footer-wrapper -->
 
 <div id="belowme">
+  <!--/Start Trafic.ro/-->
+  <!--/End Trafic.ro/-->
 </div>
 
-</div><!-- /expander0 -->
+</div><!-- /expander -->
 </div><!-- /sizer -->
 </div><!-- /page -->
-</div>
 
 <?php print $closure ?>
 </body>
