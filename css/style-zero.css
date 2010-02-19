@@ -33,7 +33,7 @@ body.layout-jello .expander0 {
 	min-width: 1040px; /* This prevents Safari from losing the negative margins in narrow windows */
 } /* .expander0 must receive "hasLayout" for IEwin bug fixing; applied in ie6.css and ie7.css */
 
-body.layout-fluid .sizer, body.in-maintenance .sizer { /* custom */
+body.layout-fluid .sizer { /* custom */
 	width: 90%;
 }
 body.layout-fixed .sizer { /* custom */
@@ -226,9 +226,9 @@ body.m-r-eq .colright {
 
 /* UTILITY RULES */
 .brclear {
-	clear: both;
-	height: 0;
-	margin: 0;
+	clear:both;
+	height:0;
+	margin:0;
 	font-size: 1px;
 	line-height: 0;
 }
@@ -285,7 +285,6 @@ pre {
 }
 .links {
 	margin: 0;
-	clear: both;
 }
 .comment .links {
 	margin-bottom: 0;
@@ -311,7 +310,7 @@ table.sections {
 	padding: 0;
 }
 td.section {
-	padding: 0 20px;
+	padding: 0 20px 0 20px;
 	vertical-align: top;
 }
 td.section.divider {
@@ -369,7 +368,7 @@ td.section.divider {
 	margin: .5em 0 2em 0;
 }
 .node .content, .comment .content {
-	margin: .5em 0;
+	margin: .5em 0 .5em 0;
 }
 .node .terms {
 	font-size: 0.8em;
@@ -621,7 +620,7 @@ div.admin-panel h3 {
 }
 .legal {
 	margin: 5px auto 0 auto;
-	padding: 0 90px;
+	padding: 0 90px 0 90px;
 }
 .xmll {
 	position: relative;
@@ -701,7 +700,7 @@ div.admin-panel h3 {
 }
 #user-login-form ul li.openid-link ,
 #user-login-form ul li.user-link {
-	padding: 5px 0 0 0;
+	padding: 5px 0 0 0px;
 	margin-left: 0;
 	list-style-type: none;
 }
@@ -717,9 +716,6 @@ body.in-maintenance #main {
 
 /* MENU & link STYLES */
 
-li.leaf {
-	list-style-image: url(../images/all/menu-leaf.png);
-}
 li.expanded {
 	list-style-image: url(../images/all/menu-expanded.png);
 }
@@ -731,13 +727,14 @@ li.collapsed {
 	text-align: center;
 }
 .navleft {
+	text-align: left;
 	padding-left: 20px;
 }
 .navcenter {
 	text-align: center;
 }
 .navright {
-	float: right;
+	text-align: right;
 	padding-right: 20px;
 }
 #navlist.links li, #navlinks a {
@@ -1127,36 +1124,17 @@ body.picons .book_add_child a {
 	background: url(../images/icons/page-add.png) no-repeat left center;
 	padding-left: 20px;
 }
+body.picons .print_html a, body.picons .print a, body.picons .book_printer a {
+	background: url(../images/icons/printer.png) no-repeat left center;
+	padding-left: 20px;
+}
 body.picons .comment_add a {
 	background: url(../images/icons/comment.png) no-repeat left center;
 	padding-left: 20px;
 }
-body.picons .print-icon {
-	display: none;
-}
-body.picons .print_html a, body.picons .book_printer a {
-	background: url(../images/icons/print.png) no-repeat left center;
-	padding-left: 20px;
-	height: 16px;
-	display: inline-block;
-}
 body.picons .print_mail a, body.picons .book_mail a {
 	background: url(../images/icons/mail.png) no-repeat left center;
 	padding-left: 20px;
-	height: 16px;
-	display: inline-block;
-}
-body.picons .print_pdf a, body.picons .book_pdf a {
-	background: url(../images/icons/pdf.png) no-repeat left center;
-	padding-left: 20px;
-	height: 16px;
-	display: inline-block;
-}
-body.picons .print_html, body.picons .book_printer,
-body.picons .print_mail, body.picons .book_mail,
-body.picons .print_pdf, body.picons .book_pdf {
-	margin: auto 0;
-	padding-right: 0;
 }
 body.picons .terms li.first, body.picons .terms ul.taxonomy {
 	background: url(../images/icons/tag.png) no-repeat left top;
@@ -1245,6 +1223,9 @@ body.mceContentBody a:link {
 }
 .view .views-admin-links li {
 	background: transparent !important;
+}
+.print-icon {
+	display: none;
 }
 .block-gmaplocation .content {
 	text-align: center;
