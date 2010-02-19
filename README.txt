@@ -17,7 +17,7 @@ Layout features
 	disply width) based on "The Jello Mold Piefecta Layout" 
 	(http://www.positioniseverything.net/articles/jello.html); 
 - 16+1 collapsible block regions; 
-- 7 colour styles; 
+- 9 colour styles; 
 - built-in IE transparent PNG fix; 
 - jQuery CSS image preload (optional) 
 	(http://www.filamentgroup.com/lab/update_automatically_preload_images_from_css_with_jquery/); 
@@ -37,15 +37,19 @@ Layout features
 Advanced theme settings features
 ===============================
 Layout settings
-- Style - Choose a colour palette from 7 options: 0 Point (default), 
-	Sky, Nature, Ivy, Ink, Sangue and Lime. More colour options to come.
-- jQuery CSS image preload - Choose a colour.
+- Style - Choose a colour palette from 7 options: 0 Point (Grey default), 
+	Sky, Nature, Ivy, Ink, Orange, Sangue, Lime and Themer. More colour options to come.
+- Layout width - adaptive, fluid and fixed width.
 - Sidebars layout - Fixed width sidebars or variable width sidebars.
-- Rounded corners - Option to have rounded corners in all browsers but IE.
+- Themed blocks 
 - Block icons - Choose between none, 32x32 pixel icons and 48x48 pixels icons.
 - Page icons - Choose a layout with or without page icons.
 - Menu style - Two-level Static or SuckerFish drop-down menu.
 - Menu position - Left, center or right.
+- Rounded corners - Option to have rounded corners in all browsers but IE.
+- Header image rotator 
+- jQuery CSS image preload - Choose a colour.
+- 0 Point login/register links.
 
 General settings
 - Mission statement - Display mission statement only on front page or on all pages; 
@@ -60,6 +64,12 @@ Node settings
 Search engine optimization (SEO) settings
 - Page titles - Format the title that displays in the browser's title bar; 
 - Meta tags. 
+
+Theme development settings
+- Site ID bodyclass - usefull in a multisite environment.
+- Fix IE stylesheet limit - useful when you cannot use aggregation (e.g., when 
+  developing or using private file downloads), especially for RTL sites.
+- Rebuild theme registry on every page.
 
 
 
@@ -138,9 +148,6 @@ links will display the appropriate second level of your navigation hierarchy.
 Choose "Suckerfish" to enable support for Suckerfish drop menus. 
 NOTE: Go to /admin/build/menu and expand all parents in your primary menu.
 
-KNOWN ISSUES: In order to avoid Opera's rendering problems, SuckerFish position
-can be only left.
-
 
 
 INSTALLATION INSTRUCTIONS
@@ -150,7 +157,10 @@ INSTALLATION INSTRUCTIONS
 
 2) Enable the 0 Point theme (/admin/build/themes).
 
-3) You can configure settings for the 0 Point theme at /admin/build/themes/settings/zeropoint.  
+3) You can configure settings for the 0 Point theme at /admin/build/themes/settings/zeropoint. 
+
+If you place the theme in a location other than /sites/all/themes/zeropoint you should 
+modify the path in /zeropoint/css/iepngfix.htc and /zeropoint/css/ie.6, accordingly.
 
 
 
@@ -174,17 +184,22 @@ UPGRADING to a new version of 0 Point
    option and put the site in "On-line" mode. It is always a good idea to refresh 
    the browser's cache (CTRL+F5).
 
+NOTE: In rare cases, if after upgrading the theme can not be configured you should delete 
+all the zeropoint records in the data base.
+
 
 
 CONTACT
 -------------------------------------------------------------------------+
 My drupal nick is florian <http://drupal.org/user/35316> – and I can be reached 
-at florian@radut.net.
+at florian@radut.net (http://www.radut.net).
 
 I can also be contacted for paid customizations of 0 Point theme as well as
 Drupal consulting, installation and customizations.
 
 The theme is installed at: 
-http://www.boaz.ro/
-http://www.ecoimm.ro/
-http://www.eureko.ro/
+http://www.radut.net/
+http://www.eucopyright.com/
+http://www.301.ro/
+http://www.mlnar.ro/
+http://www.parmena.com/

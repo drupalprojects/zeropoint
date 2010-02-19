@@ -33,4 +33,3 @@
 <div id="comments" class="block">
   <?php print $content; ?>
 </div>
-
