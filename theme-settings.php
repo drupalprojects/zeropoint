@@ -37,6 +37,7 @@ drupal_add_js($js, 'inline');
     'menutype'        => 0,
     'navpos'          => 0,
     'roundcorners'    => 1,
+    'headerimg'       => 0,
     'cssPreload'      => 0,
     'user_notverified_display'         => 1,
     'breadcrumb_display'               => 1,
@@ -195,6 +196,13 @@ drupal_add_js($js, 'inline');
     '#title' => t('Rounded corners'),
     '#description' => t('Some page elements (mission, comments, search, blocks) and primary menu will have rounded corners in all browsers but IE. NOTE: With this option enabled 0 Point will not validate CSS2.'),
     '#default_value' => $settings['roundcorners'],
+  );
+
+  $form['tnt_container']['layout_settings']['headerimg'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Header image rotator'),
+    '#description' => t('Rotates images in the _custom/headerimg folder.'),
+    '#default_value' => $settings['headerimg'],
   );
 
   $form['tnt_container']['layout_settings']['cssPreload'] = array(

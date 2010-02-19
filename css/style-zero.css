@@ -226,9 +226,9 @@ body.m-r-eq .colright {
 
 /* UTILITY RULES */
 .brclear {
-	clear:both;
-	height:0;
-	margin:0;
+	clear: both;
+	height: 0;
+	margin: 0;
 	font-size: 1px;
 	line-height: 0;
 }
@@ -311,7 +311,7 @@ table.sections {
 	padding: 0;
 }
 td.section {
-	padding: 0 20px 0 20px;
+	padding: 0 20px;
 	vertical-align: top;
 }
 td.section.divider {
@@ -369,7 +369,7 @@ td.section.divider {
 	margin: .5em 0 2em 0;
 }
 .node .content, .comment .content {
-	margin: .5em 0 .5em 0;
+	margin: .5em 0;
 }
 .node .terms {
 	font-size: 0.8em;
@@ -621,7 +621,7 @@ div.admin-panel h3 {
 }
 .legal {
 	margin: 5px auto 0 auto;
-	padding: 0 90px 0 90px;
+	padding: 0 90px;
 }
 .xmll {
 	position: relative;
@@ -701,7 +701,7 @@ div.admin-panel h3 {
 }
 #user-login-form ul li.openid-link ,
 #user-login-form ul li.user-link {
-	padding: 5px 0 0 0px;
+	padding: 5px 0 0 0;
 	margin-left: 0;
 	list-style-type: none;
 }
@@ -717,6 +717,9 @@ body.in-maintenance #main {
 
 /* MENU & link STYLES */
 
+li.leaf {
+	list-style-image: url(../images/all/menu-leaf.png);
+}
 li.expanded {
 	list-style-image: url(../images/all/menu-expanded.png);
 }
@@ -1148,6 +1151,12 @@ body.picons .print_pdf a, body.picons .book_pdf a {
 	padding-left: 20px;
 	height: 16px;
 	display: inline-block;
+}
+body.picons .print_html, body.picons .book_printer,
+body.picons .print_mail, body.picons .book_mail,
+body.picons .print_pdf, body.picons .book_pdf {
+	margin: auto 0;
+	padding-right: 0;
 }
 body.picons .terms li.first, body.picons .terms ul.taxonomy {
 	background: url(../images/icons/tag.png) no-repeat left top;

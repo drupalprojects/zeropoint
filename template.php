@@ -28,6 +28,7 @@ if (is_null(theme_get_setting('user_notverified_display')) || theme_get_setting(
     'menutype'        => 0,
     'navpos'          => 0,
     'roundcorners'    => 1,
+    'headerimg'       => 0,
     'cssPreload'      => 0,
     'user_notverified_display'         => 1,
     'breadcrumb_display'               => 1,
@@ -210,6 +211,10 @@ $blockicons = theme_get_setting('blockicons');
 $pageicons = theme_get_setting('pageicons');
   if ($pageicons == '1'){ 
     $body_classes[] = 'picons';
+  }
+$headerimg = theme_get_setting('headerimg');
+  if ($headerimg == '1'){ 
+    $body_classes[] = 'himg';
   }
 
 // Add Panels classes and lang

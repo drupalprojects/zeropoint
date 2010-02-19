@@ -7,12 +7,12 @@
 <?php print $head ?>
 <!--[if lte IE 6]>
 <?php if (theme_get_setting('menutype')== '1') { ?>
-<script type="text/javascript" src="/<?php print $directory; ?>/js/suckerfish.js"></script>
+<script type="text/javascript" src="<?php print $base_path . $directory; ?>/js/suckerfish.js"></script>
 <?php } ?>
-<link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie6.css" />
+<link type="text/css" rel="stylesheet" media="all" href="<?php print $base_path . $directory; ?>/css/ie6.css" />
 <![endif]-->
 <!--[if IE 7]>
-<link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie7.css" />
+<link type="text/css" rel="stylesheet" media="all" href="<?php print $base_path . $directory; ?>/css/ie7.css" />
 <![endif]-->
 <?php print $styles ?>
 <?php print $scripts ?>
@@ -47,6 +47,7 @@
 		<?php endif; ?>
   <div id="toplinks"><?php print toplinks() ?></div>
 	<?php if ($banner): ?>
+	  <div class="brclear"></div>
 	  <div id="banner"><?php print $banner; ?></div>
 	<?php endif; ?>
   </div><!-- /top-elements -->

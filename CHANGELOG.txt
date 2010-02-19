@@ -1,6 +1,20 @@
-CHANGELOG for 0 Point 2 for Drupal 6
+CHANGELOG - 0 Point for Drupal 6
 
+0 Point (Feb 19, 2010)
+----------------------
+
+  Bug fixes:
+    o #676012: Line 311 of template.php throws a warning if there are no themes issues and the array has not been initialized.
+    o #673954: Erratic behaviour for print and pdf icons.
+    o #648792: IE6/IE7 CSSs doesn't load in a non root Drupal installation.
+
+  Other changes:
+    o Added header image rotator as a theme settings option.
+    o #675694: Added RTL language support.
+    
+    
 0 Point (Dec 25, 2009)
+----------------------
 
   Bug fixes:
     o #598024: Print icon shows twice.
@@ -26,4 +40,3 @@ CHANGELOG for 0 Point 2 for Drupal 6
     o #487588: 0 Point has now three widths: adaptive, fluid and fixed width. Fluid width and Fixed width can be customized in custom-style.css.
     o Added different sidebars behaviours (widths).
     o Themed blocks for user regions can now be added through theme advanced settings.
-    
