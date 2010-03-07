@@ -5,6 +5,11 @@
 <title><?php print $head_title ?></title>
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <?php print $head ?>
+<meta name="language" content="<?php print $language->language ?>" />
+<meta name="author" content="Dr. Catalin Florian Radut" />
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+<meta name="robots" content="noodp" />
+<link rel="pingback" href="<?php print $GLOBALS['base_url'] ?>/xmlrpc.php" />
 <!--[if lte IE 6]>
 <?php if (theme_get_setting('menutype')== '1') { ?>
 <script type="text/javascript" src="<?php print $base_path . $directory; ?>/js/suckerfish.js"></script>
@@ -66,11 +71,11 @@
   <?php endif; ?>
   </div> <!-- /name-and-slogan -->
 
-<div class="brclear"></div>
-
 <?php if ($header): ?>
   <?php print $header; ?>
 <?php endif; ?>
+
+  <div class="brclear"></div>
 
 <?php if (isset($primary_links)) { ?>
 <?php if (theme_get_setting('menutype')== '0'): ?><div class="<?php print menupos() ?>"><?php print theme('links', $primary_links, array('class' =>'links', 'id' => 'navlist')); ?></div><?php endif; ?>
@@ -173,9 +178,11 @@
 </div><!-- /body_bg -->
 
 <div class="eopage">
-<div class="page">
+<div id="bottom_bg" class="page">
 <div class="sizer">
 <div class="expander0">
+<div id="bottom_left">
+<div id="bottom_right">
 
 <div id="footer-wrapper" class="clearfix">
   <div id="footer">
@@ -190,6 +197,8 @@
 <div id="belowme">
 </div>
 
+</div><!-- /bottom_right -->
+</div><!-- /bottom_left -->
 </div><!-- /expander0 -->
 </div><!-- /sizer -->
 </div><!-- /page -->
