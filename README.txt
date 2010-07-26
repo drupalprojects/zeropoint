@@ -1,11 +1,11 @@
-README.TXT // 0 Point theme for Drupal 6.
+README.TXT // Zero Point theme for Drupal 6.
 
 Thank you for downloading this theme!
 
 
-ABOUT THE 0 POINT THEME:
+ABOUT THE ZERO POINT THEME:
 -------------------------------------------------------------------------+
-0 Point is an advanced theme. It contains the same kinds of features 
+Zero Point is an advanced theme. It contains the same kinds of features 
 you'll find in our other Drupal themes, plus many more.
 
 The theme validates XHTML 1.0 Strict / CSS 2, and it is cross-browser compatible; 
@@ -13,9 +13,8 @@ works perfect in Firefox, IE 6, IE 7, IE8, Safari, Opera and Google Chrome.
 
 Layout features
 ===============
-- 1, 2, or 3 column layout with adaptive width (min. 1040px max.1200px at 1440px 
-	disply width) based on "The Jello Mold Piefecta Layout" 
-	(http://www.positioniseverything.net/articles/jello.html); 
+- 1, 2, or 3 column layout with adaptive width based on "The Jello Mold 
+	Piefecta Layout" (http://www.positioniseverything.net/articles/jello.html); 
 - 16+1 collapsible block regions; 
 - 7 colour styles; 
 - built-in IE transparent PNG fix; 
@@ -67,37 +66,21 @@ MODULE SUPPORT
 -------------------------------------------------------------------------+
 This theme can support virtualy any module.
 It has been heavily tested with:
-  - AdSense;
-  - Advanced Forum;
-  - Blockquotes;
-  - CAPTCHA;
-  - CCK;
-  - Fivestar;
-  - Gallerix;
-  - Gallery Assist;
-  - Google_cse;
-  - Google_groups;
-  - Gmaplocation;
-  - i18n;
-  - Image;
-  - ImageCache;
-  - Panels;
+	- i18n;
+  - AdSense module;
+  - Image module;
   - Pathauto;
-  - Lightbox2;
   - Logintoboggan;
-  - Print;
-  - Simplenews;
-  - Thickbox;
-  - ÜBERCART;
+  - Lightbox2;
+  - Panels;
   - Views;
-  - Wysiwyg (TinyMCE and FCKeditor);
-  - Weather;
+  - TinyMCE;
 
 
   
 THEME MODIFICATION
 -------------------------------------------------------------------------+
-0 Point theme alow many sub-themes as plugins. More sub-themes will 
+Zero Point theme alow many sub-themes as plugins. More sub-themes will 
 be available at http://www.radut.net/drupal/
 
 If you feel like giving the theme a look of your own, I recommend to play
@@ -107,20 +90,14 @@ with /_custom/custom-style.css; please read the comments in this file.
 
 SIDEBARS DIMMENSIONS
 -------------------------------------------------------------------------+
-The maximum with available for sidebars is as follow:
+The maximum with available is as follow:
 
-                                         | left | right | both
------------------------------------------------------------------
-Variable asyimmetrical sidebars (wide)   | 250  |  300  | 160-234
------------------------------------------------------------------
-Fixed asyimmetrical sidebars (wide)      | 160  |  234  | 160-234
------------------------------------------------------------------
-Variable asyimmetrical sidebars (narrow) | 230  |  280  | 140-214
------------------------------------------------------------------
-Fixed asyimmetrical sidebars (narrow)    | 140  |  214  | 140-214
------------------------------------------------------------------
-Equal width sidebars (narrow)            | 155  |  155  | 155-155
------------------------------------------------------------------
+								|	left	|	right	|	both
+-----------------------------------------
+layout-fixed		|	160		|	234		|	160-234
+-----------------------------------------
+layout-variable	|	250		|	300		|	160-234
+-----------------------------------------
 
 NOTE: Do not exceed the available width (especially with images) or IE will 
 not behave so the sidebars may drop. 
@@ -143,48 +120,16 @@ can be only left.
 
 
 
-INSTALLATION INSTRUCTIONS
--------------------------------------------------------------------------+
-
-1) Place the zeropoint directory into your themes directory (sites/all/themes/zeropoint).
-
-2) Enable the 0 Point theme (/admin/build/themes).
-
-3) You can configure settings for the 0 Point theme at /admin/build/themes/settings/zeropoint.  
-
-
-
-UPGRADING to a new version of 0 Point
--------------------------------------------------------------------------+
-
-1) If possible, log on as the user with user ID 1. 
-
-2) Put the site in "Off-line" mode.
-
-3) Go to admin/build/themes/settings/zeropoint and change the theme development
-   settings to "rebuild theme registry on every page". 
-
-4) Place the zeropoint directory into your themes directory (sites/all/themes/zeropoint).
-   In case you have done customization to 0 Point theme, remember to overwrite theme
-   custom-style.css with your custom-style.css file.
-
-5) Configure the new settings for the 0 Point theme at /admin/build/themes/settings/zeropoint. 
-
-6) Clear the Drupal cache and deactivate the "rebuild theme registry on every page"
-   option and put the site in "On-line" mode. It is always a good idea to refresh 
-   the browser's cache (CTRL+F5).
-
-
-
 CONTACT
 -------------------------------------------------------------------------+
-My drupal nick is florian <http://drupal.org/user/35316> – and I can be reached 
-at florian@radut.net.
+My drupal nick is florian – and I can be reached at florian@radut.net or 
+cfradut@gmail.com.
 
-I can also be contacted for paid customizations of 0 Point theme as well as
+I can also be contacted for paid customizations of Zero Point theme as well as
 Drupal consulting, installation and customizations.
 
 The theme is installed at: 
-http://www.boaz.ro/
-http://www.ecoimm.ro/
 http://www.eureko.ro/
+http://www.ecoimm.ro/
+http://www.boaz.ro/
+http://www.mlnar.ro/

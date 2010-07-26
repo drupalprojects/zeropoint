@@ -17,8 +17,8 @@ div.admin-panel .description {
 	color: #900;
 }
 
-.block.themed-block {
-	background: #fff url(../images/sangue/fill_block.png) 0 100% repeat-x;
+#sidebar-left .block, #sidebar-right .block {
+	background: transparent url(../images/sangue/fill_block.png) 0 100% repeat-x;
 }
 
 h1, h2, h3 {
@@ -36,27 +36,27 @@ h1, h2, h3 {
 
 /* SUCKERFISHMENU */
 
-body.sfish #navlinks ul li.expanded a {
+#navlinks ul li.expanded a {
 	background: #900 url(../images/nav-down.png) 95% 50% no-repeat;
 }
-body.sfish #navlinks li ul a:link, 
-body.sfish #navlinks li ul a:visited {
+#navlinks li ul a:link, 
+#navlinks li ul a:visited {
 	background: #ca0000;
 	border-left: 1px solid #df0000;
 	border-top: 1px solid #df0000;
 	border-right: 1px solid #900;
 	border-bottom: 1px solid #900;
 }
-body.sfish #navlinks ul.menu li ul.menu li.expanded a,
-body.sfish #navlinks ul.menu li ul.menu li ul.menu li.expanded a,
-body.sfish #navlinks ul.menu li ul.menu li ul.menu li ul.menu li.expanded a {
+#navlinks ul.menu li ul.menu li.expanded a,
+#navlinks ul.menu li ul.menu li ul.menu li.expanded a,
+#navlinks ul.menu li ul.menu li ul.menu li ul.menu li.expanded a {
 	background: #ca0000 url(../images/nav-right.png) 100% 50% no-repeat;
 }
-body.sfish #navlinks ul.menu li li.expanded ul.menu a, 
-body.sfish #navlinks ul.menu li li.expanded ul.menu li.expanded ul.menu a,
-body.sfish #navlinks ul.menu li li.expanded ul.menu li.expanded ul.menu li.expanded ul.menu a {
+#navlinks ul.menu li li.expanded ul.menu a, 
+#navlinks ul.menu li li.expanded ul.menu li.expanded ul.menu a,
+#navlinks ul.menu li li.expanded ul.menu li.expanded ul.menu li.expanded ul.menu a {
 	background: #ca0000;
 }
-body.sfish #navlinks li ul a:hover {
+#navlinks li ul a:hover {
 	background-color: #df0000 !important;
 }
