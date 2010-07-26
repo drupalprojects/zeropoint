@@ -114,7 +114,7 @@ function phptemplate_preprocess(&$vars) {
 
 function phptemplate_preprocess_page(&$vars) {
 // Remove the duplicate meta content-type tag, a bug in Drupal 6
-	$vars['head'] = preg_replace('/<meta http-equiv=\"Content-Type\"[^>]*>/', '', $vars['head']);
+  $vars['head'] = preg_replace('/<meta http-equiv=\"Content-Type\"[^>]*>/', '', $vars['head']);
 // Remove sidebars if disabled
   if (!$vars['show_blocks']) {
     $vars['left'] = '';
@@ -200,7 +200,7 @@ $sidebarslayout = theme_get_setting('sidebarslayout');
 $dropdown = theme_get_setting('menutype'); // if dropdown enabled 
   if ($dropdown == '1'){ 
     $body_classes[] = 'sfish';
-	}
+  }
 $blockicons = theme_get_setting('blockicons');
   if ($blockicons == '1'){ 
     $body_classes[] = 'bicons32';
@@ -690,24 +690,3 @@ function phptemplate_submit($element) {
  */
 function toplinks() {
 }
-
-
-// ** RADUT ** 
-
-/**
- * Search area
- */
-//function toplinks() {
-//  global $language;
-//  switch ($language->language)
-//  {
-//  case 'en':
-//    return '<a href="/ro">Romana</a> | <a href="/en/sitemap">Site map</a>';
-//    break;
-//  case 'ro':
-//    return '<a href="/en">English</a> | <a href="/ro/sitemap">Harta site</a>';
-//    break;
-//  default:
-//    return '<a href="/ro">Romana</a> | <a href="/en/sitemap">Site map</a>';
-//  }
-//}

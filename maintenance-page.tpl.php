@@ -81,7 +81,6 @@
             <?php print $help ?>
             <?php print $messages ?>
             <?php print $content; ?>
-            <?php print $feed_icons; ?>
           </div>
         </div> <!-- /colmain -->
         <br class="brclear" />

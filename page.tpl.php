@@ -5,11 +5,6 @@
 <title><?php print $head_title ?></title>
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <?php print $head ?>
-<meta name="language" content="<?php print $language->language ?>" />
-<meta name="author" content="Dr. Catalin Florian Radut" />
-<meta name="MSSmartTagsPreventParsing" content="TRUE" />
-<meta name="robots" content="noodp" />
-<link rel="pingback" href="<?php print $GLOBALS['base_url'] ?>/xmlrpc.php" />
 <!--[if lte IE 6]>
 <?php if (theme_get_setting('menutype')== '1') { ?>
 <script type="text/javascript" src="<?php print $base_path . $directory; ?>/js/suckerfish.js"></script>
