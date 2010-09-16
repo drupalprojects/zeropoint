@@ -66,11 +66,11 @@
   <?php endif; ?>
   </div> <!-- /name-and-slogan -->
 
+<div class="brclear"></div>
+
 <?php if ($header): ?>
   <?php print $header; ?>
 <?php endif; ?>
-
-  <div class="brclear"></div>
 
 <?php if (isset($primary_links)) { ?>
 <?php if (theme_get_setting('menutype')== '0'): ?><div class="<?php print menupos() ?>"><?php print theme('links', $primary_links, array('class' =>'links', 'id' => 'navlist')); ?></div><?php endif; ?>
