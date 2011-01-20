@@ -1,9 +1,32 @@
 <?php
 
+function phptemplate_settings($saved_settings) {
+//  $settings = theme_get_settings('zeropoint');
+
+  // Only open one of the general or node setting fieldsets at a time
+$js = <<<SCRIPT
+  $(document).ready(function(){
+    $("fieldset.general_settings > legend > a").click(function(){
+      if(!$("fieldset.node_settings").hasClass("collapsed")) {
+        Drupal.toggleFieldset($("fieldset.node_settings"));
+      }
+    });
+    $("fieldset.node_settings > legend > a").click(function(){
+      if (!$("fieldset.general_settings").hasClass("collapsed")) {
+        Drupal.toggleFieldset($("fieldset.general_settings"));
+      }
+    });
+  });
+SCRIPT;
+drupal_add_js($js, 'inline');
+
+  // Get the node types
+  $node_types = node_get_types('names');
+
 /**
- * Theme setting defaults
+ * The default values for the theme variables. Make sure $defaults exactly
+ * matches the $defaults in the template.php file.
  */
-function zeropoint_default_theme_settings() {
   $defaults = array(
     'style' => 'grey',
     'layout-width'    => 0,
@@ -16,7 +39,6 @@ function zeropoint_default_theme_settings() {
     'roundcorners'    => 1,
     'headerimg'       => 1,
     'cssPreload'      => 0,
-    'loginlinks'      => 1,
     'user_notverified_display'         => 1,
     'breadcrumb_display'               => 1,
     'search_snippet'                   => 1,
@@ -39,17 +61,14 @@ function zeropoint_default_theme_settings() {
     'submitted_by_author_default'      => 1,
     'submitted_by_date_default'        => 1,
     'submitted_by_enable_content_type' => 0,
-    'siteid'                           => '',
-    'fix_css_limit'                    => 0,
     'rebuild_registry'                 => 0,
   );
 
-  // Add site-wide theme settings
+  // Make the default content-type settings the same as the default theme settings,
+  // so we can tell if content-type-specific settings have been altered.
   $defaults = array_merge($defaults, theme_get_settings());
 
-  // Set initial content-type-specific settings to defaults
-  
-  $node_types = node_get_types('names');
+  // Set the default values for content-type-specific settings
   foreach ($node_types as $type => $name) {
     $defaults["taxonomy_display_{$type}"]    = $defaults['taxonomy_display_default'];
     $defaults["taxonomy_format_{$type}"]     = $defaults['taxonomy_format_default'];
@@ -57,60 +76,9 @@ function zeropoint_default_theme_settings() {
     $defaults["submitted_by_date_{$type}"]   = $defaults['submitted_by_date_default'];
   }
 
-  return $defaults;
-}
-
-
-/**
- * Theme setting initialization
- * if updated, unsaved, or registry rebuild mode
- */
-function zeropoint_initialize_theme_settings($theme_name) {
-  $theme_settings = theme_get_settings($theme_name);
-  if (is_null($theme_settings['fix_css_limit']) || $theme_settings['rebuild_registry'] == 1) {
-    // Rebuild theme registry & notify user
-    if($theme_settings['rebuild_registry'] == 1) {
-      drupal_rebuild_theme_registry();
-      drupal_set_message(t('Theme registry rebuild completed. <a href="!link">Turn off</a> this feature for production websites.', array('!link' => url('admin/build/themes/settings/' . $GLOBALS['theme']))), 'warning');
-    }
-  
-    // Retrieve saved or site-wide theme settings
-    $theme_setting_name = str_replace('/', '_', 'theme_'. $theme_name .'_settings');
-    $settings = (variable_get($theme_setting_name, FALSE)) ? theme_get_settings($theme_name) : theme_get_settings();
-  
-    // Skip toggle_node_info_ settings
-    if (module_exists('node')) {
-      foreach (node_get_types() as $type => $name) {
-        unset($settings['toggle_node_info_'. $type]);
-      }
-    }
-  
-    // Retrieve default theme settings
-    $defaults = zeropoint_default_theme_settings();
-  
-    // Set combined default & saved theme settings
-    variable_set($theme_setting_name, array_merge($defaults, $settings));
-  
-    // Force theme settings refresh
-    theme_get_setting('', TRUE);
-  }
-}
-
-
-/**
-* Implementation of THEMEHOOK_settings() function.
-*
-* @param $saved_settings
-*   array An array of saved settings for this theme.
-* @return
-*   array A form array.
-*/
-function zeropoint_settings($saved_settings) {
-  global $base_url;
-
-  // Retrieve & combine default and saved theme settings
-  $defaults = zeropoint_default_theme_settings();
+  // Merge the saved variables and their default values
   $settings = array_merge($defaults, $saved_settings);
+
 
 
   // Create theme settings form widgets using Forms API
@@ -145,7 +113,6 @@ function zeropoint_settings($saved_settings) {
       'ink' => t('Ink'),
       'sangue' => t('Sangue'),
       'lime' => t('Lime'),
-      'themer' => t('- Themer -'),
     ),
   );
 
@@ -206,10 +173,10 @@ function zeropoint_settings($saved_settings) {
     '#type' => 'select',
     '#title' => t('Menu type'),
     '#default_value' => $settings['menutype'],
-    '#description' => t('Choose "Drop Down" to enable support for Suckerfish drop down menus. <br /> NOTE: Go to <b><a href="/admin/build/menu">admin/build/menu</a></b> and expand all parents in primary menu.'),
+    '#description' => t('Choose "Suckerfish" to enable support for Suckerfish drop down menus. <br /> NOTE: Go to <b><a href="/admin/build/menu">admin/build/menu</a></b> and expand all parents in primary menu.'),
     '#options' => array(
-      0 => 'Static Menu',
-      1 => 'Drop Down Menu',
+      0 => 'Static',
+      1 => 'Suckerfish',
     )
   );
 
@@ -217,7 +184,6 @@ function zeropoint_settings($saved_settings) {
     '#type' => 'select',
     '#title' => t('Menu position'),
     '#default_value' => $settings['navpos'],
-    '#description' => t('NOTE: Only the static menu can be properly centered. <br /> NOTE for RTL sites: IE6 will accept only left positioned Drop-Down menu.'),
     '#options' => array(
       0 => 'Left',
       1 => 'Center',
@@ -228,7 +194,7 @@ function zeropoint_settings($saved_settings) {
   $form['tnt_container']['layout_settings']['roundcorners'] = array(
     '#type' => 'checkbox',
     '#title' => t('Rounded corners'),
-    '#description' => t('Some page elements (mission, comments, search, blocks) and primary menu will have rounded corners in all browsers but IE. <br /> NOTE: With this option enabled 0 Point will not validate CSS2.'),
+    '#description' => t('Some page elements (mission, comments, search, blocks) and primary menu will have rounded corners in all browsers but IE. NOTE: With this option enabled 0 Point will not validate CSS2.'),
     '#default_value' => $settings['roundcorners'],
   );
 
@@ -244,12 +210,6 @@ function zeropoint_settings($saved_settings) {
     '#title' => t('jQuery CSS image preload'),
     '#description' => t('Automatically Preload images from CSS.'),
     '#default_value' => $settings['cssPreload'],
-  );
-
-  $form['tnt_container']['layout_settings']['loginlinks'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('0 Point login/register links'),
-    '#default_value' => $settings['loginlinks'],
   );
 
   // General Settings
@@ -589,20 +549,7 @@ function zeropoint_settings($saved_settings) {
     '#collapsible' => TRUE,
     '#collapsed' => $settings['rebuild_registry'] ? FALSE : TRUE,
   );
-  $form['tnt_container']['themedev']['siteid'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Site ID bodyclass.'),
-   	'#description' => t('In order to have different styles of 0 Point in a multisite environment you may find usefull to choose a "one word" site ID and customize the look of each site in custom-style.css file.'),
-    '#default_value' => $settings['siteid'],
-    '#size' => 10,
-	);
- $form['tnt_container']['themedev']['fix_css_limit'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Fix IE stylesheet limit.'),
-    '#default_value' => $settings['fix_css_limit'],
-    '#description' => t('This setting groups css files so Internet Explorer can see more than 30 of them. This is useful when you cannot use aggregation (e.g., when developing or using private file downloads), especially for RTL sites. But because it degrades performance and can load files out of order, CSS aggregation (<a href="!link">Optimize CSS files</a>) is <b>strongly</b> recommended instead for any production website.', array('!link' => $base_url .'/admin/settings/performance')),
-  );
-  $form['tnt_container']['themedev']['rebuild_registry'] = array(
+ $form['tnt_container']['themedev']['rebuild_registry'] = array(
     '#type' => 'checkbox',
     '#title' => t('Rebuild theme registry on every page.'),
     '#default_value' => $settings['rebuild_registry'],
@@ -612,5 +559,3 @@ function zeropoint_settings($saved_settings) {
   // Return theme settings form
   return $form;
 }  
-
-?>

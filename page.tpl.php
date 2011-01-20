@@ -6,10 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <?php print $head ?>
 <!--[if lte IE 6]>
-<?php print $ie6_style; ?>
+<?php if (theme_get_setting('menutype')== '1') { ?>
+<script type="text/javascript" src="<?php print $base_path . $directory; ?>/js/suckerfish.js"></script>
+<?php } ?>
+<link type="text/css" rel="stylesheet" media="all" href="<?php print $base_path . $directory; ?>/css/ie6.css" />
 <![endif]-->
 <!--[if IE 7]>
-<?php print $ie7_style; ?>
+<link type="text/css" rel="stylesheet" media="all" href="<?php print $base_path . $directory; ?>/css/ie7.css" />
 <![endif]-->
 <?php print $styles ?>
 <?php print $scripts ?>
@@ -19,10 +22,8 @@
 <body class="<?php print $body_classes; ?>">
 <div id="skip-nav"><a href="#main">Skip to Content</a></div>
 
-<div id="bg1"><div id="bg2">
-
-<div id="top_bg" class="page0">
-<div class="sizer0">
+<div id="top_bg" class="page">
+<div class="sizer">
 <div id="topex" class="expander0">
 <div id="top_left">
 <div id="top_right">
@@ -33,34 +34,31 @@
 </div>
 
 <div id="header" class="clearfix">
-  <div id="top-elements">
-    <?php if ($search_box): ?>
-      <div id="search-box"><?php print $search_box; ?></div>
-    <?php endif; ?>
-    <?php if (function_exists('toplinks')): ?>
-      <div id="toplinks"><?php print toplinks() ?></div>
-    <?php endif; ?>
-      <div id="user_links"><?php print zeropoint_login() ?></div>
-    <?php if ($banner): ?>
-      <div id="banner"><?php print $banner; ?></div>
-    <?php endif; ?>
-  </div><!-- /top-elements -->
   <div id="logo">
-  <?php if ($logo): ?>
-    <a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>">
-      <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-    </a>
-  <?php endif; ?>
+    <?php if ($logo): ?>
+      <a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>">
+        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+      </a>
+    <?php endif; ?>
   </div> <!-- /logo -->
+  <div id="top-elements">
+		<?php if ($search_box): ?>
+		  <div id="search-box"><?php print $search_box; ?></div>
+		<?php endif; ?>
+  <div id="toplinks"><?php print toplinks() ?></div>
+	<?php if ($banner): ?>
+	  <div class="brclear"></div>
+	  <div id="banner"><?php print $banner; ?></div>
+	<?php endif; ?>
+  </div><!-- /top-elements -->
   <div id="name-and-slogan">
-<?php if ($site_name) : ?>
-  <?php if ($is_front): ?>
-    <h1 id="site-name"><a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a></h1>   
-  <?php endif; ?> 
-  <?php if (!$is_front): ?>
-    <p id="site-name"><a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a></p>
+  <?php if ($site_name): ?>
+    <h1 id="site-name">
+      <a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>">
+        <?php print $site_name; ?>
+      </a>
+    </h1>
   <?php endif; ?>
-<?php endif; ?>
   <?php if ($site_slogan): ?>
     <div id="site-slogan">
       <?php print $site_slogan; ?>
@@ -85,11 +83,11 @@
 </div><!-- /top_right -->
 </div><!-- /top_left -->
 </div><!-- /expander0 -->
-</div><!-- /sizer0 -->
-</div><!-- /page0 -->
+</div><!-- /sizer -->
+</div><!-- /top_bg -->
 
-<div id="body_bg" class="page0">
-<div class="sizer0">
+<div id="body_bg" class="page">
+<div class="sizer">
 <div class="expander0">
 <div id="body_left">
 <div id="body_right">
@@ -125,7 +123,7 @@
           <div id="main">
             <?php if ($mission) { ?><div id="mission"><?php print $mission ?></div><?php } ?>
             <?php if ($content_top):?><div id="content-top"><?php print $content_top; ?></div><?php endif; ?>
-            <?php if ($title): if ($is_front){ print '<h2 class="title">'. $title .'</h2>'; } else { print '<h1 class="title">'. $title .'</h1>'; } endif; ?>
+            <h1 class="title"><?php print $title ?></h1>
             <div class="tabs"><?php print $tabs ?></div>
             <?php print $help ?>
             <?php print $messages ?>
@@ -136,7 +134,7 @@
         </div> <!-- /colmain -->
         <?php if ($left) { ?>
           <div class="colleft">
-            <div id="sidebar-left"><?php print $left ?></div>
+            <div  id="sidebar-left"><?php print $left ?></div>
           </div>
         <?php } ?>
         <br class="brclear" />
@@ -171,12 +169,12 @@
 </div><!-- /body_right -->
 </div><!-- /body_left -->
 </div><!-- /expander0 -->
-</div><!-- /sizer0 -->
-</div><!-- /page0 -->
+</div><!-- /sizer -->
+</div><!-- /body_bg -->
 
 <div class="eopage">
-<div id="bottom_bg" class="page0">
-<div class="sizer0">
+<div id="bottom_bg" class="page">
+<div class="sizer">
 <div class="expander0">
 <div id="bottom_left">
 <div id="bottom_right">
@@ -197,11 +195,9 @@
 </div><!-- /bottom_right -->
 </div><!-- /bottom_left -->
 </div><!-- /expander0 -->
-</div><!-- /sizer0 -->
-</div><!-- /page0 -->
+</div><!-- /sizer -->
+</div><!-- /page -->
 </div>
-
-</div></div><!-- /bg# -->
 
 <?php print $closure ?>
 </body>

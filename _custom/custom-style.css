@@ -29,24 +29,12 @@ Steps to customize your 0 Point theme:
 	height: 50px;
 }
 
-/************************/
+
 /* HEADER IMAGE ROTATOR */
-/************************/
 .himg #headimg {
 	background: #fff url(headerimg/rotate.php) no-repeat 100% 100%; /* rotates images in the headerimg folder */
 	border-bottom: 1px solid #eee;
 }
-
-/********************/
-/* DROP DOWN SHADOW */
-/********************/
-
-ul.firstsublayer, 
-ul.sublayer {
-	background: url(../images/menushadow.png) no-repeat 7px 5px; 
-}
-
-
 
 
 /* Uncomment the first declaration below to hide the titles on the front page 
@@ -145,3 +133,15 @@ body.m-r-eq .colright {
 background: transparent url(../images/contact_48.png) no-repeat;
 }
 */
+
+
+.sitemap-box h2 {
+	display: none;
+}
+.views-exposed-widget #edit-submit {
+	border: 1px solid #555;
+	margin-top: 15px !important;
+}
+.pane-content h2.title a {
+	font-size: 140%;
+}

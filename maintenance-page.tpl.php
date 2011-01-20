@@ -1,15 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="<?php print $language->language; ?>" xml:lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?php print $language->language; ?>" xml:lang="<?php print $language->language; ?>">
 
 <head>
 <title><?php print $head_title ?></title>
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <?php print $head ?>
 <!--[if lte IE 6]>
-<?php print $ie6_style; ?>
+<link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie6.css" />
 <![endif]-->
 <!--[if IE 7]>
-<?php print $ie7_style; ?>
+<link type="text/css" rel="stylesheet" media="all" href="/<?php print $directory; ?>/css/ie7.css" />
 <![endif]-->
 <?php print $styles ?>
 <?php print $scripts ?>
@@ -18,10 +18,8 @@
 
 <body class="<?php print $body_classes; ?>">
 
-<div id="bg1"><div id="bg2">
-
-<div id="top_bg" class="page0">
-<div class="sizer0">
+<div id="top_bg" class="page">
+<div class="sizer">
 <div id="topex" class="expander0">
 <div id="top_left">
 <div id="top_right">
@@ -31,19 +29,23 @@
 </div>
 
 <div id="header" class="clearfix">
+  <div id="logo">
+    <?php if ($logo): ?>
+      <a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>">
+        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+      </a>
+    <?php endif; ?>
+  </div> <!-- /logo -->
   <div id="top-elements">
   </div><!-- /top-elements -->
-  <div id="logo">
-  <?php if ($logo): ?>
-    <a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>">
-      <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-    </a>
-  <?php endif; ?>
-  </div> <!-- /logo -->
   <div id="name-and-slogan">
-<?php if ($site_name) : ?>
-    <h1 id="site-name"><a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a></h1>   
-<?php endif; ?>
+  <?php if ($site_name): ?>
+    <h1 id="site-name">
+      <a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>">
+        <?php print $site_name; ?>
+      </a>
+    </h1>
+  <?php endif; ?>
   <?php if ($site_slogan): ?>
     <div id="site-slogan">
       <?php print $site_slogan; ?>
@@ -53,21 +55,17 @@
 
 <div class="brclear"></div>
 
-<?php if ($header): ?>
-  <?php print $header; ?>
-<?php endif; ?>
-
 </div> <!-- /header -->
 
 </div>
 </div><!-- /top_right -->
 </div><!-- /top_left -->
 </div><!-- /expander0 -->
-</div><!-- /sizer0 -->
-</div><!-- /page0 -->
+</div><!-- /sizer -->
+</div><!-- /top_bg -->
 
-<div id="body_bg" class="page0">
-<div class="sizer0">
+<div id="body_bg" class="page">
+<div class="sizer">
 <div class="expander0">
 <div id="body_left">
 <div id="body_right">
@@ -78,7 +76,10 @@
       <div class="float-wrap">
         <div class="colmain">
           <div id="main">
-            <h2 class="title"><?php print $title ?></h2>
+            <h1 class="title"><?php print $title ?></h1>
+            <div class="tabs"><?php print $tabs ?></div>
+            <?php print $help ?>
+            <?php print $messages ?>
             <?php print $content; ?>
           </div>
         </div> <!-- /colmain -->
@@ -94,35 +95,30 @@
 </div><!-- /body_right -->
 </div><!-- /body_left -->
 </div><!-- /expander0 -->
-</div><!-- /sizer0 -->
-</div><!-- /page0 -->
+</div><!-- /sizer -->
+</div><!-- /body_bg -->
 
 <div class="eopage">
-<div id="bottom_bg" class="page0">
-<div class="sizer0">
+<div class="page">
+<div class="sizer">
 <div class="expander0">
-<div id="bottom_left">
-<div id="bottom_right">
 
-<div id="footer" class="clearfix">
-  <?php if ($below) { ?><div id="below"><?php print $below; ?></div><?php } ?>
-  <div class="legal">
-    Copyright &copy; <?php print date('Y') ?> <a href="/"><?php print $site_name ?></a>. <?php print $footer_message ?>
-    <div id="brand"></div>
+<div id="footer-wrapper" class="clearfix">
+  <div id="footer">
+    <div class="legal">
+      Copyright &copy; <?php print date('Y') ?> <a href="/"><?php print $site_name ?></a>. <?php print $footer_message ?>
+      <div id="brand"></div>
+    </div>
   </div>
-</div>
+</div> <!-- /footer-wrapper -->
 
 <div id="belowme">
 </div>
 
-</div><!-- /bottom_right -->
-</div><!-- /bottom_left -->
 </div><!-- /expander0 -->
-</div><!-- /sizer0 -->
-</div><!-- /page0 -->
+</div><!-- /sizer -->
+</div><!-- /page -->
 </div>
-
-</div></div><!-- /bg# -->
 
 <?php print $closure ?>
 </body>
