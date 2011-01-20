@@ -1,4 +1,4 @@
-.expander0, #top_right, #body_right, 
+.expander0, #top_right, #body_right, #bottom_right, #sidebar-left, #sidebar-right, 
 body.layout-left-main-right .outer, body.layout-left-main .outer, body.layout-main-right .outer, 
 body.layout-left-main-right .outer a, body.layout-left-main .outer a, body.layout-main-right .outer a {
 	zoom: 1;
@@ -22,12 +22,6 @@ body.layout-left-main-right .outer a, body.layout-left-main .outer a, body.layou
 #main tr.odd th,
 #main tr.odd td {
 	border-bottom: 1px solid #ccc; /* IE doesn't display borders on table rows */
-}
-
-
-/* Primary menu */
-body.sfish #navlinks ul li.expanded {
-	margin-right: 4px;
 }
 
 

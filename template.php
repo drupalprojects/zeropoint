@@ -30,6 +30,7 @@ if (is_null(theme_get_setting('user_notverified_display')) || theme_get_setting(
     'roundcorners'    => 1,
     'headerimg'       => 1,
     'cssPreload'      => 0,
+    'loginlinks'      => 1,
     'user_notverified_display'         => 1,
     'breadcrumb_display'               => 1,
     'search_snippet'                   => 1,
@@ -52,6 +53,8 @@ if (is_null(theme_get_setting('user_notverified_display')) || theme_get_setting(
     'submitted_by_author_default'      => 1,
     'submitted_by_date_default'        => 1,
     'submitted_by_enable_content_type' => 0,
+    'siteid'                           => '',
+    'fix_css_limit'                    => 0,
     'rebuild_registry'                 => 0,
   );
 
@@ -98,21 +101,22 @@ drupal_add_css(drupal_get_path('theme','zeropoint').'/_custom/custom-style.css')
 
 $roundcorners = theme_get_setting('roundcorners');
   if ($roundcorners == '1'){ 
-	  drupal_add_css(drupal_get_path('theme','zeropoint').'/css/round.css', 'theme');
+  drupal_add_css(drupal_get_path('theme','zeropoint').'/css/round.css', 'theme');
 }
 
 
 /**
  * Modify theme variables
  */
-function phptemplate_preprocess(&$vars) {
+function zeropoint_preprocess(&$vars) {
   global $user;                                           // Get the current user
   $vars['is_admin'] = in_array('ADMIN', $user->roles);    // Check for Admin, logged in
   $vars['logged_in'] = ($user->uid > 0) ? TRUE : FALSE;
 }
 
 
-function phptemplate_preprocess_page(&$vars) {
+function zeropoint_preprocess_page(&$vars) {
+  global $language;
 // Remove the duplicate meta content-type tag, a bug in Drupal 6
   $vars['head'] = preg_replace('/<meta http-equiv=\"Content-Type\"[^>]*>/', '', $vars['head']);
 // Remove sidebars if disabled
@@ -123,6 +127,7 @@ function phptemplate_preprocess_page(&$vars) {
 
 // Build array of helpful body classes
   $body_classes = array();
+//$body_classes[] = ($vars['site_name']) ? $vars['site_name'] : '';         // Site name
   $body_classes[] = 'layout-'. (($vars['left']) ? 'left-main' : 'main') . (($vars['right']) ? '-right' : '');  // Page sidebars are active (Jello Mold)
   $body_classes[] = ($vars['is_admin']) ? 'admin' : 'not-admin';                                    // Page user is admin
   $body_classes[] = ($vars['logged_in']) ? 'logged-in' : 'not-logged-in';                           // Page user is logged in
@@ -197,10 +202,6 @@ $sidebarslayout = theme_get_setting('sidebarslayout');
   if ($sidebarslayout == '4'){ 
 	  $body_classes[] = (($vars['left']) ? 'l-m' : 'm') . (($vars['right']) ? '-r' : '') . '-eq';
   }
-$dropdown = theme_get_setting('menutype'); // if dropdown enabled 
-  if ($dropdown == '1'){ 
-    $body_classes[] = 'sfish';
-  }
 $blockicons = theme_get_setting('blockicons');
   if ($blockicons == '1'){ 
     $body_classes[] = 'bicons32';
@@ -221,12 +222,19 @@ $headerimg = theme_get_setting('headerimg');
   $body_classes[] = (module_exists('panels_page') && (panels_page_get_current())) ? 'panels' : '';  // Page is Panels page
   $body_classes[] = ($vars['language']->language) ? 'lg-'. $vars['language']->language : '';        // Page has lang-x
 
+$siteid = theme_get_setting('siteid');
+  $body_classes[] = $siteid;
+
   $body_classes = array_filter($body_classes);                                                      // Remove empty elements
   $vars['body_classes'] = implode(' ', $body_classes);                                              // Create class list separated by spaces
 
 // Generate menu tree from source of primary links
-  $vars['primary_links_tree'] = menu_tree(variable_get('menu_primary_links_source', 'primary-links'));
-
+  if (module_exists('i18nmenu')) {
+    $vars['primary_links_tree']=i18nmenu_translated_tree(variable_get('menu_primary_links_source', 'primary-links'));
+    }
+    else {
+      $vars['primary_links_tree'] = menu_tree(variable_get('menu_primary_links_source', 'primary-links'));
+    }
 
 
 // TNT THEME SETTINGS SECTION
@@ -300,11 +308,43 @@ $headerimg = theme_get_setting('headerimg');
       $vars['head'] .= $keywords ."\n";
     } 
   }
-  $vars['closure'] .= '<div class="page"><div class="sizer"><div class="expander0"><div class="by"><a href="http://www.radut.net">Theme by Dr. Radut</a>.</div></div></div></div>';
+
+// Set IE6 & IE7 stylesheets
+  $theme_path = base_path() . path_to_theme();
+  $vars['ie6_style'] = '<link type="text/css" rel="stylesheet" media="all" href="' . $theme_path . '/css/ie6.css" />' . "\n";
+  $vars['ie7_style'] = '<link type="text/css" rel="stylesheet" media="all" href="' . $theme_path . '/css/ie7.css" />' . "\n";
+
+// Use grouped import technique for more than 30 un-aggregated stylesheets (css limit fix for IE)
+  $css = drupal_add_css();
+  if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)) {
+    if (theme_get_setting('fix_css_limit') && !variable_get('preprocess_css', FALSE) && zeropoint_css_count($css) > 26) {
+      $styles = '';
+      $suffix = "\n".'</style>'."\n";
+      foreach ($css as $media => $types) {
+        $prefix = '<style type="text/css" media="'. $media .'">'."\n";
+        $imports = array();
+        foreach ($types as $files) {
+          foreach ($files as $file => $preprocess) {
+            $imports[] = '@import "'. base_path() . $file .'";';
+            if (count($imports) == 30) {
+              $styles .= $prefix . implode("\n", $imports) . $suffix;
+              $imports = array();
+            }
+          }
+        }
+        $styles .= (count($imports) > 0) ? ($prefix . implode("\n", $imports) . $suffix) : '';
+      }
+      $vars['styles'] = $styles;
+    }
+    else {
+      $vars['styles'] = drupal_get_css();                                   // Use normal link technique
+    }
+  }
+  $vars['closure'] .= '<div class="page0"><div class="sizer0"><div class="expander0"><div class="byy"><a href="http://www.radut.net">by Dr. Radut</a>.</div></div></div></div>';
 }
 
 
-function phptemplate_preprocess_block(&$vars) {
+function zeropoint_preprocess_block(&$vars) {
 // Add regions with themed blocks (e.g., left, right) to $themed_regions array and retrieve custom theme settings
 $themedblocks = theme_get_setting('themedblocks');
   if ($themedblocks == '0'){ 
@@ -318,7 +358,8 @@ $themedblocks = theme_get_setting('themedblocks');
   else $vars['themed_block'] = FALSE;
 }
 
-function phptemplate_preprocess_node(&$vars) {
+
+function zeropoint_preprocess_node(&$vars) {
 // Build array of handy node classes
   $node_classes = array();
   $node_classes[] = $vars['zebra'];                                              // Node is odd or even
@@ -363,7 +404,6 @@ if (module_exists('uc_product') && uc_product_is_product($vars) && $vars['templa
 }
 
 
-
 // Node Theme Settings
 
 // Date & author
@@ -400,7 +440,7 @@ if (module_exists('uc_product') && uc_product_is_product($vars) && $vars['templa
           }
           if ($taxonomy_format == 'vocab') {                 // Add vocabulary labels if separate
             $output .= '<li class="vocab vocab-'. $vocabulary->vid .'"><span class="vocab-name">'. $vocabulary->name .':</span> <ul class="vocab-list">';
-            //$output .= '<li class="vocab vocab-'. $vocabulary->vid .'"> <ul class="vocab-list">';
+          //$output .= '<li class="vocab vocab-'. $vocabulary->vid .'"> <ul class="vocab-list">';
             $output .= substr_replace($term_items, '</li>', -(strlen($term_delimiter) + 5)) .'</ul></li>';
           }
           else {
@@ -421,7 +461,7 @@ if (module_exists('uc_product') && uc_product_is_product($vars) && $vars['templa
 }
 
 
-function phptemplate_preprocess_comment(&$vars) {
+function zeropoint_preprocess_comment(&$vars) {
   global $user;
   // Build array of handy comment classes
   $comment_classes = array();
@@ -448,7 +488,7 @@ function phptemplate_preprocess_comment(&$vars) {
  * Set defaults for comments display
  * (Requires comment-wrapper.tpl.php file in theme directory)
  */
-function phptemplate_preprocess_comment_wrapper(&$vars) {
+function zeropoint_preprocess_comment_wrapper(&$vars) {
   $vars['display_mode']  = COMMENT_MODE_FLAT_EXPANDED;
   $vars['display_order'] = COMMENT_ORDER_OLDEST_FIRST;
   $vars['comment_controls_state'] = COMMENT_CONTROLS_HIDDEN;
@@ -460,7 +500,7 @@ function phptemplate_preprocess_comment_wrapper(&$vars) {
  * (e.g., node, teaser, list, table, etc.)
  * (Requires views-view.tpl.php file in theme directory)
  */
-function phptemplate_preprocess_views_view(&$vars) {
+function zeropoint_preprocess_views_view(&$vars) {
   $vars['css_name'] = $vars['css_name'] .' view-style-'. views_css_safe(strtolower($vars['view']->type));
 }
 
@@ -468,7 +508,7 @@ function phptemplate_preprocess_views_view(&$vars) {
 /**
  * Modify search results based on theme settings
  */
-function phptemplate_preprocess_search_result(&$variables) {
+function zeropoint_preprocess_search_result(&$variables) {
   static $search_zebra = 'even';
   $search_zebra = ($search_zebra == 'even') ? 'odd' : 'even';
   $variables['search_zebra'] = $search_zebra;
@@ -513,53 +553,63 @@ function phptemplate_preprocess_search_result(&$variables) {
 
 
 /**
- * Override username theming to display/hide 'not verified' text
+ * Hide or show username '(not verified)' text
  */
-function phptemplate_username($object) {
-  if ($object->uid && $object->name) {
-    // Shorten the name when it is too long or it will break many tables.
-    if (drupal_strlen($object->name) > 20) {
-      $name = drupal_substr($object->name, 0, 15) .'...';
-    }
-    else {
-      $name = $object->name;
-    }
-    if (user_access('access user profiles')) {
-      $output = l($name, 'user/'. $object->uid, array('attributes' => array('title' => t('View user profile.'))));
-    }
-    else {
-      $output = check_plain($name);
-    }
-  }
-  else if ($object->name) {
-    // Sometimes modules display content composed by people who are
-    // not registered members of the site (e.g. mailing list or news
-    // aggregator modules). This clause enables modules to display
-    // the true author of the content.
-    if (!empty($object->homepage)) {
-      $output = l($object->name, $object->homepage, array('attributes' => array('rel' => 'nofollow')));
-    }
-    else {
-      $output = check_plain($object->name);
-    }
-    // Display or hide 'not verified' text
-    if (theme_get_setting('user_notverified_display') == 1) {
-      $output .= ' ('. t('not verified') .')';
-    }
+function zeropoint_username($object) {
+  if ((!$object->uid) && $object->name) {
+    $output = (!empty($object->homepage)) ? l($object->name, $object->homepage, array('attributes' => array('rel' => 'nofollow'))) : check_plain($object->name);
+    $output .= (theme_get_setting('user_notverified_display') == 1) ? ' ('. t('not verified') .')' : '';
   }
   else {
-    $output = variable_get('anonymous', t('Anonymous'));
+    $output = theme_username($object);
   }
   return $output;
 }
 
 
 /**
+ * User links
+ */
+function zeropoint_login(){
+$loginlinks = theme_get_setting('loginlinks');
+  if ($loginlinks == '1'){ 
+    global $user;
+    $login = url(drupal_get_path_alias('user'));
+    $register = url(drupal_get_path_alias('user/register'));
+    $usr_path = 'user/'.$user->uid;
+    $myAccount = drupal_get_path_alias($usr_path);
+    $logOut = drupal_get_path_alias('logout');
+    if(!$user->uid) {
+      $output = "<a href=\"$login\">" . t('Log in') . '</a>' . " | <a href=\"$register\">" . t('Register') . "</a>";
+    }
+    if($user->uid) {
+      $output = theme('item_list', array(
+      l(t('My account |'), $myAccount, array('title' => t('My account'))),
+      l(t(' Log out'), $logOut)));
+    }
+    return $output;
+  }
+}
+
+
+/**
  * Set default form file input size 
  */
-function phptemplate_file($element) {
-  $element['#size'] = 40;
+function zeropoint_file($element) {
+  $element['#size'] = ($element['#size'] > 40) ? 40 : $element['#size'];
   return theme_file($element);
+}
+
+
+/**
+ * Count the total number of CSS files in $vars['css']
+ */
+function zeropoint_css_count($array) {
+  $count = 0;
+  foreach ($array as $item) {
+    $count = (is_array($item)) ? $count + zeropoint_css_count($item) : $count + 1;
+  }
+  return $count;
 }
 
 
@@ -597,7 +647,7 @@ function phptemplate_file($element) {
  * @return
  *   an HTML string containing a link to the given path.
  */
-function _themesettings_link($prefix, $suffix, $text, $path, $options) {
+function zeropoint_themesettings_link($prefix, $suffix, $text, $path, $options) {
   return $prefix . (($text) ? l($text, $path, $options) : '') . $suffix;
 }
 
@@ -605,7 +655,7 @@ function _themesettings_link($prefix, $suffix, $text, $path, $options) {
 /**
  * Breadcrumb override
  */
-function phptemplate_breadcrumb($breadcrumb) {
+function zeropoint_breadcrumb($breadcrumb) {
   if (!empty($breadcrumb)) {
     $breadcrumb[] = drupal_get_title();  // full breadcrumb ( › = â€º , » = &#187; &raquo;)
     return '<div class="breadcrumb">'. implode(' &raquo; ', $breadcrumb) .'</div>';
@@ -640,14 +690,19 @@ function id_safe($string) {
 
 
 // retrieve additional custom theme settings
-
 $preload = theme_get_setting('cssPreload'); // print the js file if css image preload enabled
   if ($preload == '1'){
     drupal_add_js(drupal_get_path('theme','zeropoint').'/js/preloadCssImages.jQuery_v5.js'); // load the javascript
-    drupal_add_js('$(document).ready(function(){
-    $.preloadCssImages();
+    drupal_add_js('jQuery(document).ready(function(){
+    jQuery.preloadCssImages();
   });
   ','inline');
+}
+
+$dropdownjs = theme_get_setting('menutype'); // if we choose dropdown
+if($dropdownjs == '1'){ 
+  drupal_add_js(drupal_get_path('theme','zeropoint').'/js/jquery.hoverIntent.minified.js'); // load the javascript
+	drupal_add_js(drupal_get_path('theme','zeropoint').'/js/dropdown.js'); // load the javascript	
 }
 
 function menupos() {
@@ -666,7 +721,7 @@ function menupos() {
 
 // Quick fix for the validation error: 'ID "edit-submit" already defined'
 $elementCountForHack = 0;
-function phptemplate_submit($element) {
+function zeropoint_submit($element) {
 	global $elementCountForHack;
 	return str_replace('edit-submit', 'edit-submit-' . ++$elementCountForHack, theme('button', $element));
 }
@@ -679,5 +734,6 @@ function phptemplate_submit($element) {
 /**
  * Use this to return links or whatever
  */
-function toplinks() {
-}
+//function toplinks() {
+//  return '';
+//}
