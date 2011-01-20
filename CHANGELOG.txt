@@ -2,7 +2,13 @@ CHANGELOG - 0 Point for Drupal 6
 
 0 Point (Jan 20, 2010)
 ----------------------
-  Just a few improvements
+  Bug fixes: all
+  
+  Other changes:
+    o New Drop Down menu system.
+    o Improved RTL language support.
+    o Added Site ID bodyclass in theme development settings
+    o Added Fix IE stylesheet limit in theme development settings
 
 0 Point (Feb 19, 2010)
 ----------------------

@@ -2,7 +2,7 @@
 */
 
 
-.page, .sizer, .expander0, 
+.page0, .sizer0, .expander0, 
 body.layout-left-main-right .outer,
 body.layout-left-main .outer,
 body.layout-main-right .outer {
@@ -14,7 +14,7 @@ body.layout-main-right .outer {
 #above,
 #top-elements,
 #header .block,
-#navlist, #subnavlist, #navlist2,
+#navlist, #navlinks, #subnavlist, #navlist2,
 #section1,
 .colleft,
 .colright,
@@ -29,7 +29,9 @@ body.layout-main-right .outer {
 .terms,
 .tabs,
 .feed-icon,
-.links {
+.links,
+.messages,
+.by {
 	display: none;
 }
 

@@ -1,4 +1,4 @@
-.expander0, #top_right, #body_right, 
+.expander0, #top_right, #body_right, #bottom_right, #sidebar-left, #sidebar-right, 
 body.layout-left-main-right .outer, body.layout-left-main .outer, body.layout-main-right .outer, 
 body.layout-left-main-right .outer a, body.layout-left-main .outer a, body.layout-main-right .outer a {
 	zoom: 1;
@@ -25,29 +25,29 @@ body.layout-left-main-right .outer a, body.layout-left-main .outer a, body.layou
 }
 
 
-/* Primary menu */
-body.sfish #navlinks ul li.expanded {
-	margin-right: 4px;
-}
-
-
 /* Ubercart */
 .uc-store-admin-panel .panel-title a {
 	margin-left: 25px !important;
 } 
 
 
+
+
 /* fix layout width in IE6 */
-body.layout-jello .sizer {
+body.layout-jello .sizer0 {
 	width:expression(document.body.clientWidth > 1440 ? "160px" : "40%" );
 }
 
-
 /* HOLLY HACK FOR IE 6 */
 * html { height: 0; }
-
 
 /* ALPHA TRANSPARENCY FIX */
 img, .pngfix { 
 	behavior: url(/sites/all/themes/zeropoint/css/iepngfix.htc);	/* change path here and in iepngfix.htc to match theme location */ 
 } 
+
+/* NO DROP-DOWN SHADOW */
+ul.firstsublayer, 
+ul.sublayer {
+	background-image: none !important;
+}
