@@ -5,18 +5,11 @@
 <title><?php print $head_title ?></title>
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <?php print $head ?>
-<!--[if lte IE 6]>
-<?php print $ie6_style; ?>
-<![endif]-->
-<!--[if IE 7]>
-<?php print $ie7_style; ?>
-<![endif]-->
 <?php print $styles ?>
 <?php print $scripts ?>
-<script type="text/javascript"><?php /* Needed to avoid Flash of Unstyle Content in IE */ ?> </script>
 </head>
 
-<body class="<?php print $body_classes; ?>">
+<body class="<?php print $classes; ?>">
 
 <div id="bg1"><div id="bg2">
 
@@ -52,10 +45,6 @@
   </div> <!-- /name-and-slogan -->
 
 <div class="brclear"></div>
-
-<?php if ($header): ?>
-  <?php print $header; ?>
-<?php endif; ?>
 
 </div> <!-- /header -->
 
@@ -105,9 +94,8 @@
 <div id="bottom_right">
 
 <div id="footer" class="clearfix">
-  <?php if ($below) { ?><div id="below"><?php print $below; ?></div><?php } ?>
   <div class="legal">
-    Copyright &copy; <?php print date('Y') ?> <a href="/"><?php print $site_name ?></a>. <?php print $footer_message ?>
+    Copyright &copy; <?php print date('Y') ?> <a href="/"><?php print $site_name ?></a>.
     <div id="brand"></div>
   </div>
 </div>
@@ -124,6 +112,5 @@
 
 </div></div><!-- /bg# -->
 
-<?php print $closure ?>
 </body>
 </html>

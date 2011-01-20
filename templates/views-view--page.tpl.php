@@ -4,6 +4,7 @@
  * Main view template
  *
  * Variables available:
+ * - $css_name: A css-safe version of the view name.
  * - $header: The view header
  * - $footer: The view footer
  * - $rows: The results of the view query, if any
@@ -18,12 +19,13 @@
  * @ingroup views_templates
  */
 ?>
-<div class="view view-<?php print $css_name; ?> view-id-<?php print $name; ?> view-display-id-<?php print $display_id; ?>">
+<div id="view-id-<?php print $name; ?>-<?php print $display_id; ?>" class="view view-<?php print $css_name; ?> view-id-<?php print $name; ?> view-display-id-<?php print $display_id; ?> view-dom-id-<?php print $dom_id; ?>">
   <?php if ($admin_links): ?>
     <div class="views-admin-links views-hide">
       <?php print $admin_links; ?>
     </div>
   <?php endif; ?>
+  
   <?php if ($header): ?>
     <div class="view-header">
       <?php print $header; ?>
@@ -37,7 +39,7 @@
   <?php endif; ?>
 
   <?php if ($attachment_before): ?>
-    <div class="attachment-before">
+    <div class="attachment attachment-before">
       <?php print $attachment_before; ?>
     </div>
   <?php endif; ?>
@@ -57,7 +59,7 @@
   <?php endif; ?>
 
   <?php if ($attachment_after): ?>
-    <div class="attachment-after">
+    <div class="attachment attachment-after">
       <?php print $attachment_after; ?>
     </div>
   <?php endif; ?>

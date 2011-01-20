@@ -1,6 +1,6 @@
-#above .block .title, #header .block .titl/* style.css, v3.0 2009/12/18
+/* style.css, v4.0 2010/01/18
  *
- * 0 POINT theme for Drupal 6
+ * 0 POINT theme for Drupal 7
  * Dr. Florian Radut, florian@radut.net
  */
 
@@ -35,7 +35,7 @@ body.layout-jello .expander0 {
 	min-width: 1040px; /* This prevents Safari from losing the negative margins in narrow windows */
 } /* .expander0 must receive "hasLayout" for IEwin bug fixing; applied in ie6.css and ie7.css */
 
-body.layout-fluid .sizer0, body.in-maintenance .sizer0 { /* custom */
+body.layout-fluid .sizer0 { /* custom */
 	width: 90%;
 }
 body.layout-fixed .sizer0 { /* custom */
@@ -266,6 +266,18 @@ pre {
 ul.primary {
 	white-space: normal;
 }
+ul.links {
+  margin: 0;
+  padding: 0;
+}
+ul.links.inline {
+  display: inline;
+}
+ul.links li {
+  display: inline;
+  list-style-type: none;
+  padding: 0 4px;
+}
 table {
 	width: 100%;
 	font-size: 1em;
@@ -295,44 +307,55 @@ td.section {
 	font-weight: bold;
 	margin: 0 auto;
 }
-.box {
-	padding: 0 0 1.5em 0;
-}
+
 .block {
 	padding-bottom: 0.75em;
 	margin-bottom: .5em;
-}
-.themed-block {
-	padding: 5px;
-	margin-bottom: 15px;
 }
 .section .block, .section .box {
 	padding: 0;
 	margin-bottom: 15px;
 }
 .block .title {
-	padding: 6px;
+	padding: 0;
 	margin: 0 0 .25em 0;
-	text-transform: uppercase;
 }
 .block h2.title a {
-	/*font-size: 100%;*/
+	font-size: 100%;
 	font-weight: bold;
 }
 .block .content {
-	padding: px;
+	padding: 0;
 	margin: 0;
 }
-#main .front h2.title a, #main .not-front h2.title a {			/* front, node */
+.themed-block {
+	padding: 5px;
+	margin-bottom: 15px;
+}
+.themed-block .title {
+	padding: 6px;
+	text-transform: uppercase;
+}
+.themed-block .content {
+	padding: 6px;
+}
+.themed-block ul {
+	padding: 6px;
+}
+
+#main h2.title a {			/* front, node */
 	font-size: 130%;
 	line-height: normal;
 	font-weight: normal;
+	text-transform: none;
 }
-#main .not-front h1.title {		/* node */
+#main h1.title {		/* node */
 	font-size: 180%;
 	padding: 10px 0;
 	font-weight: normal;
+	text-transform: none;
 }
+
 .node {
 	margin: .5em 0 2em 0;
 }
@@ -348,6 +371,7 @@ td.section {
 .node .terms a {
 	font-weight: normal;
 }
+
 .terms ul.taxonomy ul.vocab-list, .terms ul.taxonomy li.vocab-term {
 	display: inline;
 	padding: 0;
@@ -377,7 +401,10 @@ td.section {
 	float: right; /* LTR */
 	color: red;
 }
-.node .picture, .comment .picture {
+h2.title.comments-header, h2.title.comment-form {
+	margin: 25px 0 15px 0;
+}
+.node .user-picture, .comment .user-picture {
 	float: right; /* LTR */
 	padding: 0 0 .5em .5em; /* LTR */
 }
@@ -457,18 +484,8 @@ div.admin-panel h3 {
 	text-align: right; /* LTR */
 	padding: 0 20px 0 0; /* LTR */
 }
-#user_links ul li {
-	display: inline;
-	margin: 0;
-}
-#user_links ul {
-	margin: 0;
-}
 #search {
 	margin: 0 0 5px 0;
-}
-#search .form-item label, .block-search .form-item label {
-	display: none;
 }
 #search .form-text, #search .form-submit {
 	height: 22px;
@@ -479,6 +496,7 @@ div.admin-panel h3 {
 	padding: 0 0.4em;
 }
 #mission {
+	padding: 0 10px;
 	font-weight: normal;
 	font-size: 85%;
 }
@@ -492,10 +510,6 @@ div.admin-panel h3 {
 }
 #banner {
 	margin: 7px 0;
-}
-#mission {
-	padding: 1em 1em 0.75em 2em;
-	margin: 10px 0 20px;
 }
 #breadcrumb {
 	padding-left: 20px; /* LTR */
@@ -525,22 +539,11 @@ div.admin-panel h3 {
 	padding: 10px 20px 20px 20px;
 	overflow: visible;
 }
-#main .content a {
+#main .content .content a {
 	text-decoration: underline;
 }
 #main .block {
 	padding-top: 10px;
-}
-#node-middle {
-	margin-right: 10px; /* LTR */
-	float: left; /* LTR */
-}
-#node-middle .block, #node-middle .content {
-	padding: 0;
-	margin: 0 0 10px 0;
-}
-#content-top .content, #content-bottom .content, #node-bottom .content {
-	padding: 0;
 }
 #footer, #belowme {
 	text-align: center;
@@ -722,6 +725,7 @@ body.in-maintenance #main {
 	text-decoration: none;
 }
 
+
 /* DROP DOWN LI */
 
 /* li containing sublevels */
@@ -829,13 +833,13 @@ ul.sublayer {
 .bicons32 .block-blog .block-icon {
 	background: transparent url(../images/icons/blocks/icon_01_32.png) no-repeat;
 }
-.bicons32 #block-blog-0 .block-icon {
+.bicons32 #block-blog-recent .block-icon {
 	background: transparent url(../images/icons/blocks/icon_02_32.png) no-repeat;
 }
 .bicons48 .block-blog .block-icon {
 	background: transparent url(../images/icons/blocks/icon_01_48.png) no-repeat;
 }
-.bicons48 #block-blog-0 .block-icon {
+.bicons48 #block-blog-recent .block-icon {
 	background: transparent url(../images/icons/blocks/icon_02_48.png) no-repeat;
 }
 
@@ -882,10 +886,10 @@ ul.sublayer {
 }
 
 /*--- user login ---*/
-.bicons32 #block-user-0 .block-icon {
+.bicons32 #block-user-login .block-icon {
 	background: transparent url(../images/icons/blocks/icon_14_32.png) no-repeat;
 }
-.bicons48 #block-user-0 .block-icon {
+.bicons48 #block-user-login .block-icon {
 	background: transparent url(../images/icons/blocks/icon_14_48.png) no-repeat;
 }
 div.toboggan-login-link-container {
@@ -893,24 +897,30 @@ div.toboggan-login-link-container {
 }
 
 /*--- user ---*/
-.bicons32 .block-user .block-icon {
+.bicons32 #block-system-navigation .block-icon {
 	background: transparent url(../images/icons/blocks/icon_08_32.png) no-repeat;
 }
-.bicons32 .admin .block-user .block-icon {
+.bicons32 .block-shortcut .block-icon {
+	background: transparent url(../images/icons/blocks/icon_34_32.png) no-repeat;
+}
+.bicons32 #block-system-management .block-icon {
 	background: transparent url(../images/icons/blocks/icon_12_32.png) no-repeat;
 }
-.bicons48 .block-user .block-icon {
+.bicons48 #block-system-navigation .block-icon {
 	background: transparent url(../images/icons/blocks/icon_08_48.png) no-repeat;
 }
-.bicons48 .admin .block-user .block-icon {
+.bicons48 .block-shortcut .block-icon {
+	background: transparent url(../images/icons/blocks/icon_34_48.png) no-repeat;
+}
+.bicons48 #block-system-management .block-icon {
 	background: transparent url(../images/icons/blocks/icon_12_48.png) no-repeat;
 }
 
 /*--- user new/online ---*/
-.bicons32 #block-user-2 .block-icon, .bicons32 #block-user-3 .block-icon {
+.bicons32 #block-user-new .block-icon, .bicons32 #block-user-online .block-icon {
 	background: transparent url(../images/icons/blocks/icon_19_32.png) no-repeat;
 }
-.bicons48 #block-user-2 .block-icon, .bicons48 #block-user-3 .block-icon {
+.bicons48 #block-user-new .block-icon, .bicons48 #block-user-online .block-icon {
 	background: transparent url(../images/icons/blocks/icon_19_48.png) no-repeat;
 }
 
@@ -945,6 +955,9 @@ div.toboggan-login-link-container {
 .bicons48 .block-search .block-icon, .bicons48 .block-google_cse .block-icon {
 	background: transparent url(../images/icons/blocks/icon_15_48.png) no-repeat;
 }
+.bicons32 .themed-block #search-block-form, .bicons48 .themed-block #search-block-form {
+	text-align: right; /* RTL */
+}
 
 /*--- poll ---*/
 .bicons32 .block-poll .block-icon, .bicons32 .block-i18npoll .block-icon {
@@ -963,10 +976,10 @@ div.toboggan-login-link-container {
 }
 
 /*--- popular content ---*/
-.bicons32 .block-statistics .block-icon {
+.bicons32 #block-node-recent .block-icon {
 	background: transparent url(../images/icons/blocks/icon_18_32.png) no-repeat;
 }
-.bicons48 .block-statistics .block-icon {
+.bicons48 #block-node-recent .block-icon {
 	background: transparent url(../images/icons/blocks/icon_18_48.png) no-repeat;
 }
 
@@ -1000,19 +1013,19 @@ div.toboggan-login-link-container {
 	background: url(../images/icons/attach.png) no-repeat; /* LTR */
 	padding-left: 20px; /* LTR */
 }
-.picons .comment_comments a {
+.picons .comment-comments a {
 	background: url(../images/icons/comments.png) no-repeat; /* LTR */
 	padding-left: 20px; /* LTR */
 }
-.picons li.comment_delete a {
+.picons li.comment-delete a {
 	background: url(../images/icons/trash.png) no-repeat 0 2px; /* LTR */
 	padding-left: 15px; /* LTR */
 }
-.picons li.comment_edit a {
+.picons li.comment-edit a {
 	background: url(../images/icons/edit.png) no-repeat 0 2px; /* LTR */
 	padding-left: 15px; /* LTR */
 }
-.picons li.comment_reply a {
+.picons li.comment-reply a {
 	background: url(../images/icons/reply.png) no-repeat 0 2px; /* LTR */
 	padding-left: 15px; /* LTR */
 }
@@ -1020,7 +1033,7 @@ div.toboggan-login-link-container {
 	background: url(../images/icons/page-add.png) no-repeat left center; /* LTR */
 	padding-left: 20px; /* LTR */
 }
-.picons .comment_add a {
+.picons .comment-add a {
 	background: url(../images/icons/comment.png) no-repeat left center; /* LTR */
 	padding-left: 20px; /* LTR */
 }
@@ -1051,13 +1064,10 @@ div.toboggan-login-link-container {
 	margin: auto 0;
 	padding-right: 0; /* LTR */
 }
-.picons .terms li.first, .picons .terms ul.taxonomy {
+.picons .field-name-field-tags {
 	background: url(../images/icons/tag.png) no-repeat left top; /* LTR */
 	padding-left: 20px; /* LTR */
 	margin: 10px 0;
-}
-.terms li.first, .terms ul.taxonomy {
-	padding-left: 3px; /* LTR */
 }
 .picons #sidebar-left a.active, .picons #sidebar-right a.active {
 	background: url(../images/icons/check.png) no-repeat right center; /* LTR */
@@ -1067,7 +1077,7 @@ div.toboggan-login-link-container {
 	background: none;
 	padding: 0;
 }
-.picons .node_read_more a {
+.picons .node-readmore a {
 	background: url(../images/icons/read_more.png) no-repeat left center; /* LTR */
 	padding-left: 15px; /* LTR */
 }

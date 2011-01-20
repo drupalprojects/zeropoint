@@ -90,13 +90,13 @@ div.admin-panel h3 {
 
 /* MENU & link STYLES */
 
-li.leaf {
+ul li.leaf {
 	list-style-image: url(../images/all/menu-leaf.png);
 }
-li.expanded {
+ul li.expanded {
 	list-style-image: url(../images/all/menu-expanded.png);
 }
-li.collapsed {
+ul li.collapsed {
 	list-style-image: url(../images/all/menu-collapsed.png); /* LTR */
 }
 

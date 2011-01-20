@@ -8,14 +8,14 @@ th {
 	text-align: right;
 }
 
-#top-elements, .comment .new, .node .picture, .comment .picture, .by {
+#top-elements, .comment .new, .node .user-picture, .comment .user-picture, .by {
 	float: left;
 }
 #top-elements {
 	text-align: left;
 	padding: 0 0 0 20px;
 }
-#logo, #node-middle {
+#logo {
 	float: right;
 }
 .comment .title {
@@ -25,10 +25,6 @@ th {
 td.section.divider {
 	border-left: none;
 	border-right: 1px dashed #ddd;
-}
-#node-middle {
-	margin-right: 0;
-	margin-left: 10px;
 }
 #breadcrumb {
 	padding-right: 20px;
@@ -46,7 +42,7 @@ td.section.divider {
 div.toboggan-login-link-container {
 	padding-right: 20px;
 }
-li.collapsed {
+ul li.collapsed {
 	list-style-image: url(../images/all/menu-collapsed_rtl.png);
 }
 ul.links li {
@@ -71,7 +67,9 @@ ul.links li {
 	padding-right: 10px;
 	padding-left: 0;
 }
-
+.bicons32 .themed-block #search-block-form, .bicons48 .themed-block #search-block-form {
+	text-align: left;
+}
 
 /* PAGE ICONS */
 
@@ -82,19 +80,19 @@ ul.links li {
 	background: url(../images/icons/attach.png) no-repeat right;
 	padding-right: 20px;
 }
-.picons .comment_comments a {
+.picons .comment-comments a {
 	background: url(../images/icons/comments.png) no-repeat right;
 	padding-right: 20px;
 }
-.picons li.comment_delete a {
+.picons li.comment-delete a {
 	background: url(../images/icons/trash.png) no-repeat right 2px;
 	padding-right: 15px;
 }
-.picons li.comment_edit a {
+.picons li.comment-edit a {
 	background: url(../images/icons/edit.png) no-repeat right 2px;
 	padding-right: 15px;
 }
-.picons li.comment_reply a {
+.picons li.comment-reply a {
 	background: url(../images/icons/reply.png) no-repeat right 2px;
 	padding-right: 15px;
 }
@@ -102,7 +100,7 @@ ul.links li {
 	background: url(../images/icons/page-add.png) no-repeat right center;
 	padding-right: 20px;
 }
-.picons .comment_add a {
+.picons .comment-add a {
 	background: url(../images/icons/comment.png) no-repeat right center;
 	padding-right: 20px;
 }
@@ -123,19 +121,16 @@ ul.links li {
 .picons .print_pdf, .picons .book_pdf {
 	padding-left: 0;
 }
-.picons .terms li.first, .picons .terms ul.taxonomy {
+.picons .field-name-field-tags {
 	background: url(../images/icons/tag.png) no-repeat right top;
 	padding-right: 20px;
-}
-.terms li.first, .terms ul.taxonomy {
-	padding-right: 3px;
 }
 .picons #sidebar-left a.active, .picons #sidebar-right a.active {
 	background: url(../images/icons/check_rtl.png) no-repeat left center;
 	padding-left: 20px !important;
 	padding-right: 0;
 }
-.picons .node_read_more a {
+.picons .node-readmore a {
 	background: url(../images/icons/read_more_rtl.png) no-repeat right center;
 	padding-right: 15px;
 }
