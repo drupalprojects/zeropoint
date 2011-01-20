@@ -14,7 +14,7 @@ th {
 body.sfish #navlinks ul li li {
 	float: left;
 }
-#logo, #content-middle {
+#logo, #node-middle {
 	float: right;
 }
 #logo img {

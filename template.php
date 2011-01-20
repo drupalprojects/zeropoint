@@ -28,7 +28,7 @@ if (is_null(theme_get_setting('user_notverified_display')) || theme_get_setting(
     'menutype'        => 0,
     'navpos'          => 0,
     'roundcorners'    => 1,
-    'headerimg'       => 0,
+    'headerimg'       => 1,
     'cssPreload'      => 0,
     'user_notverified_display'         => 1,
     'breadcrumb_display'               => 1,
@@ -319,16 +319,6 @@ $themedblocks = theme_get_setting('themedblocks');
 }
 
 function phptemplate_preprocess_node(&$vars) {
-// Add node region
-  if (!$vars['teaser']){
-    foreach (array('content_middle') as $region) {
-    $vars[$region] = theme('blocks', $region);
-    }
-  }
-  else {
-    $vars['content_middle'] = '';
-  }
-
 // Build array of handy node classes
   $node_classes = array();
   $node_classes[] = $vars['zebra'];                                              // Node is odd or even
@@ -352,7 +342,8 @@ function phptemplate_preprocess_node(&$vars) {
   $node_classes = array_filter($node_classes);                                  // Remove empty elements
   $vars['node_classes'] = implode(' ', $node_classes);                          // Implode class list with spaces
 
-// Add node_bottom region content
+// Add node regions
+  $vars['node_middle'] = theme('blocks', 'node_middle');
   $vars['node_bottom'] = theme('blocks', 'node_bottom');
 
 // Render Ubercart fields into separate variables for node-product.tpl.php

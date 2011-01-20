@@ -186,5 +186,5 @@ Drupal consulting, installation and customizations.
 
 The theme is installed at: 
 http://www.boaz.ro/
-http://www.ecoimm.ro/
-http://www.eureko.ro/
+http://www.301.ro/
+

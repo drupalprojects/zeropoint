@@ -312,7 +312,7 @@ table.sections {
 }
 td.section {
 	padding: 0 20px;
-	vertical-align: top;
+	vertical-align: bottom;
 }
 td.section.divider {
 	border-left: 1px dashed #ddd;
@@ -592,14 +592,15 @@ div.admin-panel h3 {
 #main .content a {
 	text-decoration: underline;
 }
-#content-middle {
+#node-middle {
 	margin-right: 10px;
 	float: left;
 }
-#content-middle .block {
-	padding: 10px 0 0 0;
+#node-middle .block, #node-middle .content {
+	padding: 0;
+	margin: 0 0 10px 0;
 }
-#content-middle .content {
+#content-top .content, #content-bottom .content, #node-bottom .content {
 	padding: 0;
 }
 #footer {
@@ -709,7 +710,8 @@ div.admin-panel h3 {
 #profile .profile .name {
 	padding-bottom: 0.5em;
 }
-#user-login-form, div.toboggan-login-link-container, div.user-login-block, .block-logintoboggan {
+#user-login-form, div.toboggan-login-link-container, div.user-login-block, .block-logintoboggan, 
+#block-user-0 .content {
 	text-align: center;
 }
 #user-login-form .item-list {

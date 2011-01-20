@@ -37,7 +37,7 @@ drupal_add_js($js, 'inline');
     'menutype'        => 0,
     'navpos'          => 0,
     'roundcorners'    => 1,
-    'headerimg'       => 0,
+    'headerimg'       => 1,
     'cssPreload'      => 0,
     'user_notverified_display'         => 1,
     'breadcrumb_display'               => 1,

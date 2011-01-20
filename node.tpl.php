@@ -20,9 +20,9 @@
   </div>
   <?php endif;?>
 
-  <?php if ($content_middle):?>
-  <div id="content-middle">
-    <?php print $content_middle; ?>
+  <?php if ($node_middle && !$teaser): ?>
+  <div id="node-middle">
+    <?php print $node_middle; ?>
   </div>
   <?php endif; ?>
 
