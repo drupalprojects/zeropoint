@@ -3,29 +3,29 @@
 
 
 .page0, .sizer0, .expander0, 
-body.layout-left-main-right .outer,
-body.layout-left-main .outer,
-body.layout-main-right .outer {
+body.two-sidebars .outer,
+body.sidebar-first .outer,
+body.sidebar-second .outer {
 	margin: 0 !important;
 	padding: 0 !important;
 	width: 100% !important;
 }
 
+#toolbar,
 #above,
 #top-elements,
 #header .block,
 #navlist, #navlinks, #subnavlist, #navlist2,
+#breadcrumb,
+#mission,
 #section1,
 .colleft,
 .colright,
-#content-top,
-#content-bottom,
 #section2,
 #bar,
-#footer-wrapper,
-#shadow,
-#breadcrumb,
-.picture,
+#footer,
+.user-picture,
+.field-name-field-tags,
 .terms,
 .tabs,
 .feed-icon,

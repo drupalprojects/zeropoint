@@ -10,7 +10,6 @@
 <div id="above" class="clearfix">
   <?php if ($page['above']): ?><?php print render ($page['above']); ?><?php endif; ?>
 </div>
-
 <div id="header" class="clearfix">
   <div id="top-elements">
   	<?php if ($page['search']): ?>
@@ -102,11 +101,9 @@
   </div>
 <?php endif; ?>
 
-<?php if ($breadcrumb): ?>
-  <div id="breadcrumb">
-    <?php print $breadcrumb; ?>
-  </div>
-<?php endif; ?>
+<div id="breadcrumb">
+  <?php print $breadcrumb; ?>
+</div>
 
 <?php if (($page['user1']) or ($page['user2']) or ($page['user3']) or ($page['user4'])): ?>
   <div id="section1">

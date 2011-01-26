@@ -1,10 +1,8 @@
-/* style.css, v4.0 2010/01/18
+/* style.css, v4.1 2010/01/18
  *
  * 0 POINT theme for Drupal 7
  * Dr. Florian Radut, florian@radut.net
  */
-
-* {padding: 0;margin: 0;}
 
 body {
 	margin: 0;
@@ -76,107 +74,107 @@ body.layout-fixed .sizer0 { /* custom */
 "Critical Left (Right) col width value = cLcwv (cRcwv) also refer to the desired mod MUST be changed as a group. */
 
 /* Variable asyimmetrical sidebars (wide) (default) */
-body.layout-left-main-right .outer {
+body.two-sidebars .outer {
 	margin-left: 204px;			/*** cLcwv ***/
 	margin-right: 278px;			/*** cLcwv ***/
 }
-body.layout-left-main .outer {
+body.sidebar-first .outer {
 	margin-left: 294px;			/*** cLcwv ***/
 }
-body.layout-main-right .outer {
+body.sidebar-second .outer {
 	margin-right: 344px;			/*** cLcwv ***/
 }
-body.layout-left-main .colleft {
+body.sidebar-first .colleft {
 	width: 294px;			/*** cLcwv ***/
 	margin-left: -294px;		/*** cLcwv ***/ /*** cLddv ***/
 }
-body.layout-main-right .colright {
+body.sidebar-second .colright {
 	width: 344px;		/*** cRcwv ***/
 	margin-right: -344px;		/*** cRcwv ***/ /*** cRddv ***/
 }
 
 /* Fixed asyimmetrical sidebars (wide) */
-body.l-m-r-fix .outer, body.l-m-fix .outer, body.l-m-fix .outer {
+body.two-sidebars.fix .outer, body.sidebar-first.fix .outer, body.sidebar-first.fix .outer {
 	margin-left: 204px;
 }
-body.l-m-r-fix .outer, body.m-r-fix .outer, body.m-r-fix .outer {
+body.two-sidebars.fix .outer, body.sidebar-second.fix .outer, body.sidebar-second.fix .outer {
 	margin-right: 278px;
 }
-body.l-m-fix .colleft {
+body.sidebar-first.fix .colleft {
 	width: 204px;
 	margin-left: -204px;
 }
-body.m-r-fix .colright {
+body.sidebar-second.fix .colright {
 	width: 278px;
 	margin-right: -278px;
 }
 
 /* Variable asyimmetrical sidebars (narrow) */
-body.l-m-r-var1 .colleft, body.m-r-var1 .colleft, body.l-m-var1 .colleft, 
-body.l-m-r-fix1 .colleft, body.m-r-fix1 .colleft, body.l-m-fix1 .colleft {
+body.two-sidebars.var1 .colleft, body.sidebar-second.var1 .colleft, body.sidebar-first.var1 .colleft, 
+body.two-sidebars.fix1 .colleft, body.sidebar-second.fix1 .colleft, body.sidebar-first.fix1 .colleft {
 	width: 184px;
 	margin-left: -184px;
 }
-body.l-m-r-var1 .colright, body.m-r-var1 .colright, body.l-m-var1 .colright, 
-body.l-m-r-fix1 .colright, body.m-r-fix1 .colright, body.l-m-fix1 .colright {
+body.two-sidebars.var1 .colright, body.sidebar-second.var1 .colright, body.sidebar-first.var1 .colright, 
+body.two-sidebars.fix1 .colright, body.sidebar-second.fix1 .colright, body.sidebar-first.fix1 .colright {
 	width: 258px;
 	margin-right: -258px;
 }
-body.l-m-r-var1 .outer {
+body.two-sidebars.var1 .outer {
 	margin-left: 184px;
 	margin-right: 258px;
 }
-body.l-m-var1 .outer {
+body.sidebar-first.var1 .outer {
 	margin-left: 274px;
 }
-body.m-r-var1 .outer {
+body.sidebar-second.var1 .outer {
 	margin-right: 324px;
 }
-body.l-m-var1 .colleft {
+body.sidebar-first.var1 .colleft {
 	width: 274px;
 	margin-left: -274px;
 }
-body.m-r-var1 .colright {
+body.sidebar-second.var1 .colright {
 	width: 324px;
 	margin-right: -324px;
 }
 
 /* Fixed asyimmetrical sidebars (narrow)	*/
-body.l-m-r-fix1 .outer, body.l-m-fix1 .outer, body.l-m-fix1 .outer {
+body.two-sidebars.fix1 .outer, body.sidebar-first.fix1 .outer, body.sidebar-first.fix1 .outer {
 	margin-left: 184px;
 }
-body.l-m-r-fix1 .outer, body.m-r-fix1 .outer, body.m-r-fix1 .outer {
+body.two-sidebars.fix1 .outer, body.sidebar-second.fix1 .outer, body.sidebar-second.fix1 .outer {
 	margin-right: 258px;
 }
-body.l-m-fix1 .colleft {
+body.sidebar-first.fix1 .colleft {
 	width: 184px;
 	margin-left: -184px;
 }
-body.m-r-fix1 .colright {
+body.sidebar-second.fix1 .colright {
 	width: 258px;
 	margin-right: -258px;
 }
 
 /* Equal width sidebars (custom) */
-body.l-m-r-eq .colleft, body.m-r-eq .colleft, body.l-m-eq .colleft {
+body.two-sidebars.eq .colleft, body.sidebar-second.eq .colleft, body.sidebar-first.eq .colleft {
 	width: 199px;
 	margin-left: -199px;
 }
-body.l-m-r-eq .colright, body.m-r-eq .colright, body.l-m-eq .colright {
+body.two-sidebars.eq .colright, body.sidebar-second.eq .colright, body.sidebar-first.eq .colright {
 	width: 199px;
 	margin-right: -199px;
 }
-body.l-m-r-eq .outer, body.l-m-eq .outer, body.l-m-eq .outer {
+body.two-sidebars.eq .outer, body.sidebar-first.eq .outer, body.sidebar-first.eq .outer {
 	margin-left: 199px;
 }
-body.l-m-r-eq .outer, body.m-r-eq .outer, body.m-r-eq .outer {
+body.two-sidebars.eq .outer, body.sidebar-second.eq .outer, body.sidebar-second.eq .outer {
 	margin-right: 199px;
 }
-body.l-m-eq .colleft {
+body.sidebar-first.eq .colleft {
 	width: 199px;
 	margin-left: -199px;
 }
-body.m-r-eq .colright {
+body.sidebar-second.eq .colright {
 	width: 199px;
 	margin-right: -199px;
 }
@@ -270,7 +268,7 @@ ul.links {
   margin: 0;
   padding: 0;
 }
-ul.links.inline {
+ul.links.inline, #breadcrumb ul li {
   display: inline;
 }
 ul.links li {
@@ -304,10 +302,8 @@ td.section {
 	border-color: red;
 }
 .title, .title a {
-	font-weight: bold;
 	margin: 0 auto;
 }
-
 .block {
 	padding-bottom: 0.75em;
 	margin-bottom: .5em;
@@ -320,8 +316,7 @@ td.section {
 	padding: 0;
 	margin: 0 0 .25em 0;
 }
-.block h2.title a {
-	font-size: 100%;
+.block title a {
 	font-weight: bold;
 }
 .block .content {
@@ -344,13 +339,13 @@ td.section {
 }
 
 #main h2.title a {			/* front, node */
-	font-size: 130%;
+	font-size: 120%;
 	line-height: normal;
 	font-weight: normal;
 	text-transform: none;
 }
 #main h1.title {		/* node */
-	font-size: 180%;
+	font-size: 160%;
 	padding: 10px 0;
 	font-weight: normal;
 	text-transform: none;
@@ -371,15 +366,10 @@ td.section {
 .node .terms a {
 	font-weight: normal;
 }
-
 .terms ul.taxonomy ul.vocab-list, .terms ul.taxonomy li.vocab-term {
 	display: inline;
 	padding: 0;
 	margin: 0;
-}
-.terms ul.taxonomy li.vocab {
-	list-style: none;
-	font-weight: bold;
 }
 .submitted {
 	font-size: 0.8em;
@@ -496,6 +486,7 @@ div.admin-panel h3 {
 	padding: 0 0.4em;
 }
 #mission {
+  margin-top: 10px;
 	padding: 0 10px;
 	font-weight: normal;
 	font-size: 85%;
@@ -516,6 +507,9 @@ div.admin-panel h3 {
 	clear: both;
 	font-size: 80%;
 }
+#breadcrumb ul {
+	margin: 0;
+}
 #breadcrumb .breadcrumb {
 	padding: 0;
 }
@@ -523,7 +517,7 @@ div.admin-panel h3 {
 	font-weight: normal;
 }
 #section1 {
-	padding-top: 10px;
+	padding-top: 5px;
 }
 #section1 .block {
 	margin: 15px 0 0 0;
@@ -539,7 +533,7 @@ div.admin-panel h3 {
 	padding: 10px 20px 20px 20px;
 	overflow: visible;
 }
-#main .content .content a {
+#main .field-name-body a {
 	text-decoration: underline;
 }
 #main .block {
@@ -555,7 +549,8 @@ div.admin-panel h3 {
 #footer a {
 	font-weight: normal;
 }
-#footer ul.links li.first, ul.links li.first {
+#footer ul.links li.first, ul.links li.first,
+ul.links li.taxonomy-term-reference-0 {
 	border: none;
 }
 #footer .block ul, #footer ul.links li.first {
@@ -731,7 +726,7 @@ body.in-maintenance #main {
 /* li containing sublevels */
 #navlinks ul li {
 	position: relative;
-	z-index: 1;
+	/*z-index: 1;*/
 }
 
 /* set li width & color */
@@ -897,7 +892,7 @@ div.toboggan-login-link-container {
 }
 
 /*--- user ---*/
-.bicons32 #block-system-navigation .block-icon {
+.bicons32 #block-system-navigation .block-icon, .bicons32 #block-system-user-menu .block-icon {
 	background: transparent url(../images/icons/blocks/icon_08_32.png) no-repeat;
 }
 .bicons32 .block-shortcut .block-icon {
@@ -906,7 +901,7 @@ div.toboggan-login-link-container {
 .bicons32 #block-system-management .block-icon {
 	background: transparent url(../images/icons/blocks/icon_12_32.png) no-repeat;
 }
-.bicons48 #block-system-navigation .block-icon {
+.bicons48 #block-system-navigation .block-icon, .bicons48 #block-system-user-menu .block-icon {
 	background: transparent url(../images/icons/blocks/icon_08_48.png) no-repeat;
 }
 .bicons48 .block-shortcut .block-icon {
@@ -1064,7 +1059,7 @@ div.toboggan-login-link-container {
 	margin: auto 0;
 	padding-right: 0; /* LTR */
 }
-.picons .field-name-field-tags {
+.picons .field-type-taxonomy-term-reference {
 	background: url(../images/icons/tag.png) no-repeat left top; /* LTR */
 	padding-left: 20px; /* LTR */
 	margin: 10px 0;
