@@ -19,7 +19,6 @@ function zeropoint_preprocess_html(&$vars) {
 
 // Add to array of helpful body classes
   $vars['classes_array'][] = ($vars['is_admin']) ? 'admin' : 'not-admin';                                     // Page user is admin
-  $vars['classes_array'][] = 'layout-'. (($vars['page']['sidebar_first']) ? 'left-main' : 'main') . (($vars['page']['sidebar_second']) ? '-right' : '');  // Page sidebars are active (Jello Mold)
   if (isset($vars['node'])) {
     $vars['classes_array'][] = ($vars['node']) ? 'full-node' : '';                                            // Full node
     $vars['classes_array'][] = (($vars['node']->type == 'forum') || (arg(0) == 'forum')) ? 'forum' : '';      // Forum page
@@ -54,19 +53,19 @@ $layoutwidth = theme_get_setting('layout-width');
   }
 $sidebarslayout = theme_get_setting('sidebarslayout');
   if ($sidebarslayout == '0'){ 
-	  $vars['classes_array'][] = (($vars['page']['sidebar_first']) ? 'l-m' : 'm') . (($vars['page']['sidebar_second']) ? '-r' : '') . '-var';
+	  $vars['classes_array'][] = 'var';
   }
   if ($sidebarslayout == '1'){ 
-	  $vars['classes_array'][] = (($vars['page']['sidebar_first']) ? 'l-m' : 'm') . (($vars['page']['sidebar_second']) ? '-r' : '') . '-fix';
+	  $vars['classes_array'][] = 'fix';
   }
   if ($sidebarslayout == '2'){ 
-	  $vars['classes_array'][] = (($vars['page']['sidebar_first']) ? 'l-m' : 'm') . (($vars['page']['sidebar_second']) ? '-r' : '') . '-var1';
+	  $vars['classes_array'][] = 'var1';
   }
   if ($sidebarslayout == '3'){ 
-	  $vars['classes_array'][] = (($vars['page']['sidebar_first']) ? 'l-m' : 'm') . (($vars['page']['sidebar_second']) ? '-r' : '') . '-fix1';
+	  $vars['classes_array'][] = 'fix1';
   }
   if ($sidebarslayout == '4'){ 
-	  $vars['classes_array'][] = (($vars['page']['sidebar_first']) ? 'l-m' : 'm') . (($vars['page']['sidebar_second']) ? '-r' : '') . '-eq';
+	  $vars['classes_array'][] = 'eq';
   }
 $blockicons = theme_get_setting('blockicons');
   if ($blockicons == '1'){ 
@@ -243,10 +242,6 @@ function zeropoint_file($element) {
 }
 
 
-/*************************/
-/* Other theme functions */
-/*************************/
-
 $preload = theme_get_setting('cssPreload'); // print the js file if css image preload enabled
   if ($preload == '1'){
     drupal_add_js(drupal_get_path('theme','zeropoint').'/js/preloadCssImages.jQuery_v5.js');
@@ -270,16 +265,17 @@ function menupos() {
 }
 
 function zeropoint_login(){
-  global $user; 
-  if ($user->uid != 0) { 
-    print '<ul class="links inline"><li class="first"><a href="' .url('user/'.$user->uid). '">' .$user->name. '</a></li><li><a href="' .url('user/logout'). '">' .t('Logout'). '</a></li></ul>'; 
-  } 
-  else { 
-    print '<ul class="links inline"><li class="first"><a href="' .url('user'). '">' .t('Login'). '</a></li><li><a href="' .url('user/register'). '">' .t('Register'). '</a></li></ul>'; 
+  global $user;
+  $loginlinks = theme_get_setting('loginlinks');
+  if ($loginlinks == '1'){ 
+    if ($user->uid != 0) { 
+      print '<ul class="links inline"><li class="first"><a href="' .url('user/'.$user->uid). '">' .$user->name. '</a></li><li><a href="' .url('user/logout'). '">' .t('Logout'). '</a></li></ul>'; 
+    } 
+    else { 
+      print '<ul class="links inline"><li class="first"><a href="' .url('user'). '">' .t('Login'). '</a></li><li><a href="' .url('user/register'). '">' .t('Register'). '</a></li></ul>'; 
+    }
   }
 }
-
-
 
 
 
