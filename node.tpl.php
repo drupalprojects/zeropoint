@@ -1,8 +1,8 @@
 <!-- node --> 
 <div id="node-<?php print $node->nid; ?>" class="node <?php print $node_classes; ?>">
-	<?php if ($submitted): ?>
-	  <?php print $picture ?>
-	<?php endif;?>
+  <?php if ($submitted): ?>
+    <?php print $picture ?>
+  <?php endif;?>
 
   <?php if ($page == 0): ?>
   <h2 class="title"><a href="<?php print $node_url ?>" title="<?php print $title ?>"><?php print $title ?></a></h2>
@@ -20,9 +20,9 @@
   </div>
   <?php endif;?>
 
-  <?php if ($content_middle):?>
-  <div id="content-middle">
-    <?php print $content_middle; ?>
+  <?php if ($node_middle && !$teaser): ?>
+  <div id="node-middle">
+    <?php print $node_middle; ?>
   </div>
   <?php endif; ?>
 

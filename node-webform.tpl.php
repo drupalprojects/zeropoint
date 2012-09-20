@@ -6,12 +6,6 @@
   <h2 class="title"><a href="<?php print $node_url ?>" title="<?php print $title ?>"><?php print $title ?></a></h2>
   <?php endif; ?>
 
-  <div class="meta">
-    <?php if ($submitted): ?>
-    <div class="submitted"><?php print $submitted ?></div>
-    <?php endif; ?>
-  </div>
-
   <?php if ($terms): ?>
   <div class="terms">
     <?php print $terms; ?>
