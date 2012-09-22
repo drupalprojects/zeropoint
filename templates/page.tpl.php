@@ -10,11 +10,6 @@
 <div id="above" class="clearfix">
   <?php if ($page['above']): ?><?php print render ($page['above']); ?><?php endif; ?>
 </div>
-
-    <?php if (function_exists('maciuci')): ?>
-      <?php print maciuci() ?>
-    <?php endif; ?>
-
 <div id="header" class="clearfix">
   <div id="top-elements">
   	<?php if ($page['search']): ?>

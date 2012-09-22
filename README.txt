@@ -17,7 +17,7 @@ Layout features
 	disply width) based on "The Jello Mold Piefecta Layout" 
 	(http://www.positioniseverything.net/articles/jello.html); 
 - 17+1 collapsible block regions; 
-- 8 colour styles; 
+- 9 colour styles; 
 - built-in IE transparent PNG fix; 
 - jQuery CSS image preload (optional) 
 	(http://www.filamentgroup.com/lab/update_automatically_preload_images_from_css_with_jquery/); 
@@ -37,8 +37,8 @@ Layout features
 Advanced theme settings features
 ===============================
 Layout settings
-- Style - Choose a colour palette from 7 options: 0 Point (Grey default), 
-	Sky, Nature, Ivy, Ink, Sangue, Lime and Themer. More colour options to come.
+- Style - Choose a colour palette from 9 options: 0 Point (Grey), Sky, Nature, 
+  Ivy, Ink, Orange, Sangue, Lime and Themer. More colour options to come.
 - Layout width - adaptive, fluid and fixed width.
 - Sidebars layout - Fixed width sidebars or variable width sidebars.
 - Themed blocks 
@@ -118,9 +118,9 @@ INSTALLATION INSTRUCTIONS
 
 1) Place the zeropoint directory into your themes directory (sites/all/themes/zeropoint).
 
-2) Enable the 0 Point theme (/admin/build/themes).
+2) Enable the 0 Point theme (/admin/appearance).
 
-3) You can configure settings for the 0 Point theme at /admin/build/themes/settings/zeropoint. 
+3) You can configure settings for the 0 Point theme at /admin/appearance/settings/zeropoint. 
 
 If you place the theme in a location other than /sites/all/themes/zeropoint you should 
 modify the path in /zeropoint/css/iepngfix.htc and /zeropoint/css/ie.6, accordingly.
@@ -130,26 +130,35 @@ modify the path in /zeropoint/css/iepngfix.htc and /zeropoint/css/ie.6, accordin
 UPGRADING to a new version of 0 Point
 -------------------------------------------------------------------------+
 
-1) If possible, log on as the user with user ID 1. 
+1) If possible, log on as administrator user. 
 
 2) Put the site in "Off-line" mode.
 
-3) Go to admin/build/themes/settings/zeropoint and change the theme development
-   settings to "rebuild theme registry on every page". 
-
-4) Place the zeropoint directory into your themes directory (sites/all/themes/zeropoint).
+3) Place the zeropoint directory into your themes directory (sites/all/themes/zeropoint).
    In case you have done customization to 0 Point theme, remember to overwrite theme
    custom-style.css with your custom-style.css file.
 
-5) Configure the new settings for the 0 Point theme at /admin/build/themes/settings/zeropoint. 
+4) Clear the Drupal cache option and put the site in "On-line" mode. It is always a good 
+   idea to refresh the browser's cache (CTRL+F5).
 
-6) Clear the Drupal cache and deactivate the "rebuild theme registry on every page"
-   option and put the site in "On-line" mode. It is always a good idea to refresh 
-   the browser's cache (CTRL+F5).
+5) Check the settings for the 0 Point theme at /admin/appearance/settings/zeropoint. 
 
-NOTE: In rare cases, if after upgrading the theme can not be configured you should delete 
-all the zeropoint records in the data base.
+NOTE: In some very rare cases, if after upgrading the theme can not be configured you should 
+delete all the zeropoint records in the data base.
 
+
+
+SITES USING "ZERO POINT" THEME
+-------------------------------------------------------------------------+
+Various implementations of Zero Point theme can be found here:
+http://www.radut.net/
+http://www.eucopyright.com/
+http://www.301.ro/
+http://www.mlnar.ro/
+http://www.parmena.com/
+
+If you look for a dark version of "Zero Point", then "Black Hole". Check the theme's
+project at http://drupal.org/project/black_hole.
 
 
 CONTACT
@@ -159,8 +168,3 @@ at florian@radut.net (http://www.radut.net).
 
 I can also be contacted for paid customizations of 0 Point theme as well as
 Drupal consulting, installation and customizations.
-
-The theme is installed at: 
-http://www.eucopyright.com/
-http://www.301.ro/
-http://www.mlnar.ro/

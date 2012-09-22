@@ -20,6 +20,7 @@
       'nature' => t('Nature'),
       'ivy' => t('Ivy'),
       'ink' => t('Ink'),
+      'orange' => t('Orange'),
       'sangue' => t('Sangue'),
       'lime' => t('Lime'),
       'themer' => t('- Themer -'),
