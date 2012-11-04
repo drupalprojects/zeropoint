@@ -33,7 +33,7 @@ function zeropoint_preprocess_html(&$vars) {
 
 // Add unique classes for each page and website section
   if (!$vars['is_front']) {
-    $path = drupal_get_path_alias($_GET['q']);
+    $path = drupal_get_path_alias(check_plain($_GET['q']));
     list($section, ) = explode('/', $path, 2);
     $vars['classes_array'][] = ('section-' . $section);
     $vars['classes_array'][] = ('page-' . $path);
@@ -94,7 +94,7 @@ $siteid = theme_get_setting('siteid');
 
 
 // Add a unique page id
-  $vars['body_id'] = 'pid-' . strtolower(preg_replace('/[^a-zA-Z0-9-]+/', '-', drupal_get_path_alias($_GET['q'])));
+  $vars['body_id'] = 'pid-' . strtolower(preg_replace('/[^a-zA-Z0-9-]+/', '-', drupal_get_path_alias(check_plain($_GET['q']))));
 
 
 // Set IE6 & IE7 stylesheets
