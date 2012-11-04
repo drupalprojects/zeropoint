@@ -155,7 +155,7 @@ function zeropoint_preprocess_page(&$vars) {
 
 // Add unique classes for each page and website section
   if (!$vars['is_front']) {
-    $path = drupal_get_path_alias($_GET['q']);
+    $path = drupal_get_path_alias(check_plain($_GET['q']));
     list($section, ) = explode('/', $path, 2);
     $body_classes[] = id_safe('section-' . $section);
     $body_classes[] = id_safe('page-' . $path);
@@ -347,9 +347,6 @@ $siteid = theme_get_setting('siteid');
   $vars['momo'] = implode(' ', $momo);
   $vars['closure'] .= '<div class="by"><a href="http://www.radut.net">Dr. Radut'.$vars['momo'].'</a></div>';
 }
-
-
- 
 
 
 function zeropoint_preprocess_block(&$vars) {
