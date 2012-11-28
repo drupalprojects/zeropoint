@@ -5,13 +5,13 @@
  */
 if (is_null(theme_get_setting('user_notverified_display')) || theme_get_setting('rebuild_registry')) {
 
-  // Auto-rebuild the theme registry during theme development.
+// Auto-rebuild the theme registry during theme development.
   if(theme_get_setting('rebuild_registry')) {
     drupal_set_message(t('The theme registry has been rebuilt. <a href="!link">Turn off</a> this feature on production websites.', array('!link' => url('admin/build/themes/settings/' . $GLOBALS['theme']))), 'warning');
   }
 
   global $theme_key;
-  // Get node types
+// Get node types
   $node_types = node_get_types('names');
 
 /**
@@ -58,11 +58,11 @@ if (is_null(theme_get_setting('user_notverified_display')) || theme_get_setting(
     'rebuild_registry'                 => 0,
   );
 
-  // Make the default content-type settings the same as the default theme settings,
-  // so we can tell if content-type-specific settings have been altered.
+// Make the default content-type settings the same as the default theme settings,
+// so we can tell if content-type-specific settings have been altered.
   $defaults = array_merge($defaults, theme_get_settings());
 
-  // Set the default values for content-type-specific settings
+// Set the default values for content-type-specific settings
   foreach ($node_types as $type => $name) {
     $defaults["taxonomy_display_{$type}"]    = $defaults['taxonomy_display_default'];
     $defaults["taxonomy_format_{$type}"]     = $defaults['taxonomy_format_default'];
@@ -70,22 +70,23 @@ if (is_null(theme_get_setting('user_notverified_display')) || theme_get_setting(
     $defaults["submitted_by_date_{$type}"]   = $defaults['submitted_by_date_default'];
   }
 
-  // Get default theme settings.
+// Get default theme settings.
   $settings = theme_get_settings($theme_key);
 
-
-  // Don't save the toggle_node_info_ variables
+// Don't save the toggle_node_info_ variables
   if (module_exists('node')) {
     foreach (node_get_types() as $type => $name) {
       unset($settings['toggle_node_info_'. $type]);
     }
   }
-  // Save default theme settings
+
+// Save default theme settings
   variable_set(
     str_replace('/', '_', 'theme_'. $theme_key .'_settings'),
     array_merge($defaults, $settings)
   );
-  // Force refresh of Drupal internals
+
+// Force refresh of Drupal internals
   theme_get_setting('', TRUE);
 }
 
@@ -112,6 +113,25 @@ function zeropoint_preprocess(&$vars) {
   global $user;                                           // Get the current user
   $vars['is_admin'] = in_array('ADMIN', $user->roles);    // Check for Admin, logged in
   $vars['logged_in'] = ($user->uid > 0) ? TRUE : FALSE;
+
+// Construct page title, name and slogan.
+  if (drupal_get_title()) {
+    $head_title = array(
+      'title' => strip_tags(drupal_get_title()), 
+      'name' => filter_xss_admin(variable_get('site_name', 'Drupal')),
+    );
+  }
+  else {
+    $head_title = array('name' => filter_xss_admin(variable_get('site_name', 'Drupal')));
+    if (variable_get('site_slogan', '')) {
+      $head_title['slogan'] = filter_xss_admin(variable_get('site_slogan', ''));
+    }
+  }
+  $vars['head_title_array'] = $head_title;
+  $vars['head_title'] = implode(' | ', $head_title);
+
+  $vars['site_name'] = (theme_get_setting('toggle_name') ? filter_xss_admin(variable_get('site_name', 'Drupal')) : '');
+  $vars['site_slogan'] = (theme_get_setting('toggle_name') ? filter_xss_admin(variable_get('site_slogan', '')) : '');
 }
 
 
@@ -222,7 +242,7 @@ $headerimg = theme_get_setting('headerimg');
   $body_classes[] = (module_exists('panels_page') && (panels_page_get_current())) ? 'panels' : '';  // Page is Panels page
   $body_classes[] = ($vars['language']->language) ? 'lg-'. $vars['language']->language : '';        // Page has lang-x
 
-$siteid = theme_get_setting('siteid');
+$siteid = check_plain(theme_get_setting('siteid'));
   $body_classes[] = $siteid;
 
   $body_classes = array_filter($body_classes);                                                      // Remove empty elements
@@ -258,39 +278,39 @@ $siteid = theme_get_setting('siteid');
     if (drupal_is_front_page()) {                                                // Front page title settings
       switch (theme_get_setting('front_page_title_display')) {
         case 'title_slogan':
-          $vars['head_title'] = drupal_set_title($title . $title_separator . $slogan);
+          $vars['head_title'] = drupal_set_title(check_plain($title . $title_separator . $slogan));
           break;
         case 'slogan_title':
-          $vars['head_title'] = drupal_set_title($slogan . $title_separator . $title);
+          $vars['head_title'] = drupal_set_title(check_plain($slogan . $title_separator . $title));
           break;
         case 'title_mission':
-          $vars['head_title'] = drupal_set_title($title . $title_separator . $mission);
+          $vars['head_title'] = drupal_set_title(check_plain($title . $title_separator . $mission));
           break;
         case 'custom':
           if (theme_get_setting('page_title_display_custom') !== '') {
-            $vars['head_title'] = drupal_set_title(t(theme_get_setting('page_title_display_custom')));
+            $vars['head_title'] = drupal_set_title(check_plain(t(theme_get_setting('page_title_display_custom'))));
           }
       }
     }
     else {                                                                       // Non-front page title settings
       switch (theme_get_setting('other_page_title_display')) {
         case 'ptitle_slogan':
-          $vars['head_title'] = drupal_set_title($page_title . $title_separator . $slogan);
+          $vars['head_title'] = drupal_set_title(check_plain($page_title . $title_separator . $slogan));
           break;
         case 'ptitle_stitle':
-          $vars['head_title'] = drupal_set_title($page_title . $title_separator . $title);
+          $vars['head_title'] = drupal_set_title(check_plain($page_title . $title_separator . $title));
           break;
         case 'ptitle_smission':
-          $vars['head_title'] = drupal_set_title($page_title . $title_separator . $mission);
+          $vars['head_title'] = drupal_set_title(check_plain($page_title . $title_separator . $mission));
           break;
         case 'ptitle_custom':
           if (theme_get_setting('other_page_title_display_custom') !== '') {
-            $vars['head_title'] = drupal_set_title($page_title . $title_separator . t(theme_get_setting('other_page_title_display_custom')));
+            $vars['head_title'] = drupal_set_title(check_plain($page_title . $title_separator . t(theme_get_setting('other_page_title_display_custom'))));
           }
           break;
         case 'custom':
           if (theme_get_setting('other_page_title_display_custom') !== '') {
-            $vars['head_title'] = drupal_set_title(t(theme_get_setting('other_page_title_display_custom')));
+            $vars['head_title'] = drupal_set_title(check_plain(t(theme_get_setting('other_page_title_display_custom'))));
           }
       }
     }
@@ -300,11 +320,11 @@ $siteid = theme_get_setting('siteid');
 // Set meta keywords and description (unless using Meta tags module)
   if (!module_exists('nodewords')) {
     if (theme_get_setting('meta_keywords') !== '') {
-      $keywords = '<meta name="keywords" content="'. theme_get_setting('meta_keywords') .'" />';
+      $keywords = '<meta name="keywords" content="'. check_plain(theme_get_setting('meta_keywords')) .'" />';
       $vars['head'] .= $keywords ."\n";
     } 
     if (theme_get_setting('meta_description') !== '') {
-      $keywords = '<meta name="description" content="'. theme_get_setting('meta_description') .'" />';
+      $keywords = '<meta name="description" content="'. check_plain(theme_get_setting('meta_description')) .'" />';
       $vars['head'] .= $keywords ."\n";
     } 
   }
@@ -444,7 +464,7 @@ if (module_exists('uc_product') && uc_product_is_product($vars) && $vars['templa
             $term_items .= '<li class="vocab-term">'. $term_link . $term_delimiter .'</li>';
           }
           if ($taxonomy_format == 'vocab') {                 // Add vocabulary labels if separate
-            $output .= '<li class="vocab vocab-'. $vocabulary->vid .'"><span class="vocab-name">'. $vocabulary->name .':</span> <ul class="vocab-list">';
+            $output .= '<li class="vocab vocab-'. $vocabulary->vid .'"><span class="vocab-name">'. check_plain($vocabulary->name) .':</span> <ul class="vocab-list">';
           //$output .= '<li class="vocab vocab-'. $vocabulary->vid .'"> <ul class="vocab-list">';
             $output .= substr_replace($term_items, '</li>', -(strlen($term_delimiter) + 5)) .'</ul></li>';
           }
@@ -468,7 +488,7 @@ if (module_exists('uc_product') && uc_product_is_product($vars) && $vars['templa
 
 function zeropoint_preprocess_comment(&$vars) {
   global $user;
-  // Build array of handy comment classes
+// Build array of handy comment classes
   $comment_classes = array();
   static $comment_odd = TRUE;                                                                             // Comment is odd or even
   $comment_classes[] = $comment_odd ? 'odd' : 'even';
@@ -515,14 +535,14 @@ function zeropoint_preprocess_views_view(&$vars) {
  */
 function zeropoint_preprocess_search_result(&$variables) {
   static $search_zebra = 'even';
+
   $search_zebra = ($search_zebra == 'even') ? 'odd' : 'even';
   $variables['search_zebra'] = $search_zebra;
-  
   $result = $variables['result'];
   $variables['url'] = check_url($result['link']);
   $variables['title'] = check_plain($result['title']);
 
-  // Check for existence. User search does not include snippets.
+// Check for existence. User search does not include snippets.
   $variables['snippet'] = '';
   if (isset($result['snippet']) && theme_get_setting('search_snippet')) {
     $variables['snippet'] = $result['snippet'];
@@ -548,11 +568,11 @@ function zeropoint_preprocess_search_result(&$variables) {
     }
   }
 
-  // Provide separated and grouped meta information.
+// Provide separated and grouped meta information.
   $variables['info_split'] = $info;
   $variables['info'] = implode(' - ', $info);
 
-  // Provide alternate search result template.
+// Provide alternate search result template.
   $variables['template_files'][] = 'search-result-'. $variables['type'];
 }
 
@@ -739,8 +759,7 @@ function zeropoint_submit($element) {
 /**
  * Use this to return links or whatever
  */
+
 //function toplinks() {
 //  return '';
 //}
-
-

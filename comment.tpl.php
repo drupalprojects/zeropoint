@@ -2,7 +2,7 @@
 <div class="comment <?php print $comment_classes;?> clear-block">
   <?php print $picture ?>
   <?php if ($comment->new): ?>
-  <span class="new"><?php print $new ?></span>
+  <span class="new"><?php print drupal_ucfirst($new) ?></span>
   <?php endif; ?>
   <h3 class="title"><?php print $title ?></h3>
   <div class="submitted">

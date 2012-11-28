@@ -3,8 +3,8 @@
 
 <head>
 <title><?php print $head_title ?></title>
-<meta name="ver" content="6.x-1.x-dev"/>
-<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<meta name="ver" content="zp6-H2"/>
+<meta http-equiv="X-UA-Compatible" content="edge" />
 <?php print $head ?>
 <!--[if lte IE 6]>
 <?php print $ie6_style; ?>

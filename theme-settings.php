@@ -44,11 +44,10 @@ function zeropoint_default_theme_settings() {
     'rebuild_registry'                 => 0,
   );
 
-  // Add site-wide theme settings
+// Add site-wide theme settings
   $defaults = array_merge($defaults, theme_get_settings());
 
-  // Set initial content-type-specific settings to defaults
-  
+// Set initial content-type-specific settings to defaults
   $node_types = node_get_types('names');
   foreach ($node_types as $type => $name) {
     $defaults["taxonomy_display_{$type}"]    = $defaults['taxonomy_display_default'];
@@ -68,30 +67,30 @@ function zeropoint_default_theme_settings() {
 function zeropoint_initialize_theme_settings($theme_name) {
   $theme_settings = theme_get_settings($theme_name);
   if (is_null($theme_settings['fix_css_limit']) || $theme_settings['rebuild_registry'] == 1) {
-    // Rebuild theme registry & notify user
+// Rebuild theme registry & notify user
     if($theme_settings['rebuild_registry'] == 1) {
       drupal_rebuild_theme_registry();
       drupal_set_message(t('Theme registry rebuild completed. <a href="!link">Turn off</a> this feature for production websites.', array('!link' => url('admin/build/themes/settings/' . $GLOBALS['theme']))), 'warning');
     }
   
-    // Retrieve saved or site-wide theme settings
+// Retrieve saved or site-wide theme settings
     $theme_setting_name = str_replace('/', '_', 'theme_'. $theme_name .'_settings');
     $settings = (variable_get($theme_setting_name, FALSE)) ? theme_get_settings($theme_name) : theme_get_settings();
   
-    // Skip toggle_node_info_ settings
+// Skip toggle_node_info_ settings
     if (module_exists('node')) {
       foreach (node_get_types() as $type => $name) {
         unset($settings['toggle_node_info_'. $type]);
       }
     }
   
-    // Retrieve default theme settings
+// Retrieve default theme settings
     $defaults = zeropoint_default_theme_settings();
   
-    // Set combined default & saved theme settings
+// Set combined default & saved theme settings
     variable_set($theme_setting_name, array_merge($defaults, $settings));
   
-    // Force theme settings refresh
+// Force theme settings refresh
     theme_get_setting('', TRUE);
   }
 }
@@ -108,14 +107,14 @@ function zeropoint_initialize_theme_settings($theme_name) {
 function zeropoint_settings($saved_settings) {
   global $base_url;
 
-  // Retrieve & combine default and saved theme settings
+// Retrieve & combine default and saved theme settings
   $defaults = zeropoint_default_theme_settings();
   $settings = array_merge($defaults, $saved_settings);
 
 
-  // Create theme settings form widgets using Forms API
+// Create theme settings form widgets using Forms API
 
-  // TNT Fieldset
+// TNT Fieldset
   $form['tnt_container'] = array(
     '#type' => 'fieldset',
     '#title' => t('Zero Point settings'),
@@ -124,7 +123,7 @@ function zeropoint_settings($saved_settings) {
     '#collapsed' => FALSE,
   );
 
-  // Layout Settings
+// Layout Settings
   $form['tnt_container']['layout_settings'] = array(
     '#type' => 'fieldset',
     '#title' => t('Layout settings'),
@@ -253,7 +252,7 @@ function zeropoint_settings($saved_settings) {
     '#default_value' => $settings['loginlinks'],
   );
 
-  // General Settings
+// General Settings
   $form['tnt_container']['general_settings'] = array(
     '#type' => 'fieldset',
     '#title' => t('General settings'),
@@ -262,7 +261,7 @@ function zeropoint_settings($saved_settings) {
     '#attributes' => array('class' => 'general_settings'),
   );
 
-  // Mission Statement
+// Mission Statement
   $form['tnt_container']['general_settings']['mission_statement'] = array(
     '#type' => 'fieldset',
     '#title' => t('Mission statement'),
@@ -279,7 +278,7 @@ function zeropoint_settings($saved_settings) {
     ),
   );
 
-  // Breadcrumb
+// Breadcrumb
   $form['tnt_container']['general_settings']['breadcrumb'] = array(
     '#type' => 'fieldset',
     '#title' => t('Breadcrumb'),
@@ -292,7 +291,7 @@ function zeropoint_settings($saved_settings) {
     '#default_value' => $settings['breadcrumb_display'],
   );
 
-  // Username
+// Username
   $form['tnt_container']['general_settings']['username'] = array(
     '#type' => 'fieldset',
     '#title' => t('Username'),
@@ -305,7 +304,7 @@ function zeropoint_settings($saved_settings) {
     '#default_value' => $settings['user_notverified_display'],
   );
 
-  // Search Settings
+// Search Settings
   if (module_exists('search')) {
     $form['tnt_container']['general_settings']['search_container'] = array(
       '#type' => 'fieldset',
@@ -346,7 +345,7 @@ function zeropoint_settings($saved_settings) {
     );
   }
 
-  // Node Settings
+// Node Settings
   $form['tnt_container']['node_type_specific'] = array(
     '#type' => 'fieldset',
     '#title' => t('Node settings'),
@@ -356,14 +355,15 @@ function zeropoint_settings($saved_settings) {
     '#attributes' => array('class' => 'node_settings'),
   );
   
-  // Author & Date Settings
+// Author & Date Settings
   $form['tnt_container']['node_type_specific']['submitted_by_container'] = array(
     '#type' => 'fieldset',
     '#title' => t('Author & date'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-  // Default & content-type specific settings
+
+// Default & content-type specific settings
   if (module_exists('submitted_by') == FALSE) {
     foreach ((array('default' => 'Default') + node_get_types('names')) as $type => $name) {
       $form['tnt_container']['node_type_specific']['submitted_by_container']['submitted_by'][$type] = array(
@@ -382,7 +382,7 @@ function zeropoint_settings($saved_settings) {
         '#title' => t('Display date posted (you can customize this format on your Date and Time settings page)'),
         '#default_value' => $settings["submitted_by_date_{$type}"],
       );
-      // Options for default settings
+// Options for default settings
       if ($type == 'default') {
         $form['tnt_container']['node_type_specific']['submitted_by_container']['submitted_by']['default']['#title'] = t('Default');
         $form['tnt_container']['node_type_specific']['submitted_by_container']['submitted_by']['default']['#collapsed'] = $settings['submitted_by_enable_content_type'] ? TRUE : FALSE;
@@ -392,7 +392,7 @@ function zeropoint_settings($saved_settings) {
           '#default_value' => $settings['submitted_by_enable_content_type'],
         );
       }
-      // Collapse content-type specific settings if default settings are being used
+// Collapse content-type specific settings if default settings are being used
       else if ($settings['submitted_by_enable_content_type'] == 0) {
         $form['submitted_by'][$type]['#collapsed'] = TRUE;
       }
@@ -401,7 +401,7 @@ function zeropoint_settings($saved_settings) {
       $form['tnt_container']['node_type_specific']['submitted_by_container']['#description'] = 'NOTICE: You currently have the "Submitted By" module installed and enabled, so the Author & Date theme settings have been disabled to prevent conflicts.  If you wish to re-enable the Author & Date theme settings, you must first disable the "Submitted By" module.';
   }
 
-  // Taxonomy Settings
+// Taxonomy Settings
   if (module_exists('taxonomy')) {
     $form['tnt_container']['node_type_specific']['display_taxonomy_container'] = array(
       '#type' => 'fieldset',
@@ -409,16 +409,16 @@ function zeropoint_settings($saved_settings) {
       '#collapsible' => TRUE,
       '#collapsed' => TRUE,
     );
-    // Default & content-type specific settings
+// Default & content-type specific settings
     foreach ((array('default' => 'Default') + node_get_types('names')) as $type => $name) {
-      // taxonomy display per node
+// taxonomy display per node
       $form['tnt_container']['node_type_specific']['display_taxonomy_container']['display_taxonomy'][$type] = array(
         '#type' => 'fieldset',
         '#title' => t('!name', array('!name' => t($name))),
         '#collapsible' => TRUE,
         '#collapsed' => TRUE,
       );
-      // display
+// display
       $form['tnt_container']['node_type_specific']['display_taxonomy_container']['display_taxonomy'][$type]["taxonomy_display_{$type}"] = array(
         '#type' => 'select',
         '#title' => t('When should taxonomy terms be displayed?'),
@@ -430,7 +430,7 @@ function zeropoint_settings($saved_settings) {
           'only' => t('Only display taxonomy terms on full node pages'),
         ),
       );
-      // format
+// format
       $form['tnt_container']['node_type_specific']['display_taxonomy_container']['display_taxonomy'][$type]["taxonomy_format_{$type}"] = array(
         '#type' => 'radios',
         '#title' => t('Taxonomy display format'),
@@ -440,21 +440,21 @@ function zeropoint_settings($saved_settings) {
           'list' => t('Display all taxonomy terms together in single list'),
         ),
       );
-      // Get taxonomy vocabularies by node type
+// Get taxonomy vocabularies by node type
       $vocabs = array();
       $vocabs_by_type = ($type == 'default') ? taxonomy_get_vocabularies() : taxonomy_get_vocabularies($type);
       foreach ($vocabs_by_type as $key => $value) {
         $vocabs[$value->vid] = $value->name;
       }
-      // Display taxonomy checkboxes
+// Display taxonomy checkboxes
       foreach ($vocabs as $key => $vocab_name) {
         $form['tnt_container']['node_type_specific']['display_taxonomy_container']['display_taxonomy'][$type]["taxonomy_vocab_hide_{$type}_{$key}"] = array(
           '#type' => 'checkbox',
-          '#title' => t('Hide vocabulary: '. $vocab_name),
+          '#title' => t('Hide vocabulary: @vocabulary', array('@vocabulary' => $vocab_name)),
           '#default_value' => $settings["taxonomy_vocab_hide_{$type}_{$key}"], 
         );
       }
-      // Options for default settings
+// Options for default settings
       if ($type == 'default') {
         $form['tnt_container']['node_type_specific']['display_taxonomy_container']['display_taxonomy']['default']['#title'] = t('Default');
         $form['tnt_container']['node_type_specific']['display_taxonomy_container']['display_taxonomy']['default']['#collapsed'] = $settings['taxonomy_enable_content_type'] ? TRUE : FALSE;
@@ -464,21 +464,21 @@ function zeropoint_settings($saved_settings) {
           '#default_value' => $settings['taxonomy_enable_content_type'],
         );
       }
-      // Collapse content-type specific settings if default settings are being used
+// Collapse content-type specific settings if default settings are being used
       else if ($settings['taxonomy_enable_content_type'] == 0) {
         $form['display_taxonomy'][$type]['#collapsed'] = TRUE;
       }
     }
   }
 
-  // SEO settings
+// SEO settings
   $form['tnt_container']['seo'] = array(
     '#type' => 'fieldset',
     '#title' => t('Search engine optimization (SEO) settings'),
     '#collapsible' => TRUE,
     '#collapsed' => FALSE,
   );
-  // Page titles
+// Page titles
   $form['tnt_container']['seo']['page_format_titles'] = array(
     '#type' => 'fieldset',
     '#title' => t('Page titles'),
@@ -487,7 +487,7 @@ function zeropoint_settings($saved_settings) {
     '#collapsed' => TRUE,
   );
   if (module_exists('page_title') == FALSE) {
-    // front page title
+// front page title
     $form['tnt_container']['seo']['page_format_titles']['front_page_format_titles'] = array(
       '#type' => 'fieldset',
       '#title' => t('Front page title'),
@@ -515,7 +515,7 @@ function zeropoint_settings($saved_settings) {
       '#default_value' => $settings['page_title_display_custom'],
       '#description' => t('Enter a custom page title for your front page'),
     );
-    // other pages title
+// other pages title
     $form['tnt_container']['seo']['page_format_titles']['other_page_format_titles'] = array(
       '#type' => 'fieldset',
       '#title' => t('Other page titles'),
@@ -543,7 +543,7 @@ function zeropoint_settings($saved_settings) {
       '#default_value' => $settings['other_page_title_display_custom'],
       '#description' => t('Enter a custom page title for all other pages'),
     );
-    // SEO configurable separator
+// SEO configurable separator
     $form['tnt_container']['seo']['page_format_titles']['configurable_separator'] = array(
       '#type' => 'textfield',
       '#title' => t('Title separator'),
@@ -555,7 +555,7 @@ function zeropoint_settings($saved_settings) {
       $form['tnt_container']['seo']['page_format_titles']['#description'] = 'NOTICE: You currently have the "Page Title" module installed and enabled, so the Page titles theme settings have been disabled to prevent conflicts.  If you wish to re-enable the Page titles theme settings, you must first disable the "Page Title" module.';
       $form['tnt_container']['seo']['page_format_titles']['configurable_separator']['#disabled'] = 'disabled';
   }
-  // Metadata
+// Metadata
   $form['tnt_container']['seo']['meta'] = array(
     '#type' => 'fieldset',
     '#title' => t('Meta tags'),
@@ -583,7 +583,7 @@ function zeropoint_settings($saved_settings) {
       $form['tnt_container']['seo']['meta']['meta_keywords']['#disabled'] = 'disabled';
       $form['tnt_container']['seo']['meta']['meta_description']['#disabled'] = 'disabled';
   }
-  // Development settings
+// Development settings
   $form['tnt_container']['themedev'] = array(
     '#type' => 'fieldset',
     '#title' => t('Theme development settings'),
@@ -610,7 +610,7 @@ function zeropoint_settings($saved_settings) {
     '#description' => t('During theme development, it can be very useful to continuously rebuild the theme registry. WARNING: this is a huge performance penalty and must be turned off on production websites.', array('!link' => 'http://drupal.org/node/173880#theme-registry')),
   );
 
-  // Return theme settings form
+// Return theme settings form
   return $form;
 }  
 

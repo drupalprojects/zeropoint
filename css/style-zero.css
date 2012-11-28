@@ -379,6 +379,10 @@ h1.title, h2.title {
 	float: right; /* LTR */
 	padding: 0 0 .5em .5em; /* LTR */
 }
+.node-unpublished,
+.comment-unpublished {
+	background-color: #fdd !important;
+}
 .signature p {
 	font-size: 85%;
 	margin: 7px 0;
