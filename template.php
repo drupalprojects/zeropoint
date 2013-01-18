@@ -18,6 +18,7 @@ function zeropoint_preprocess_html(&$vars) {
   global $theme_key, $user;
 
 // Construct page title.
+/*
   if (drupal_get_title()) {
     $head_title = array(
       'title' => strip_tags(drupal_get_title()), 
@@ -32,6 +33,7 @@ function zeropoint_preprocess_html(&$vars) {
   }
   $vars['head_title_array'] = $head_title;
   $vars['head_title'] = implode(' | ', $head_title);
+*/
 
 // Add to array of helpful body classes
   $vars['classes_array'][] = ($vars['is_admin']) ? 'admin' : 'not-admin';                                     // Page user is admin
@@ -146,14 +148,17 @@ function zeropoint_preprocess_page(&$vars) {
     $vars['breadcrumb'] = '';
   }
 // Construct site name and slogan.
+/*
   $vars['site_name'] = (theme_get_setting('toggle_name') ? filter_xss_admin(variable_get('site_name', 'Drupal')) : '');
   $vars['site_slogan'] = (theme_get_setting('toggle_name') ? filter_xss_admin(variable_get('site_slogan', '')) : '');
+*/
 }
 
 
 /**
  * Breadcrumb override
  */
+
 function zeropoint_breadcrumb($variables) {
   $breadcrumb = $variables['breadcrumb'];
   if (!empty($breadcrumb)) {
@@ -286,19 +291,19 @@ function zeropoint_preprocess_search_result(&$vars) {
 function zeropoint_field__taxonomy_term_reference($variables) {
   $output = '';
 
-// Render the label, if it's not hidden.
+  // Render the label, if it's not hidden.
   if (!$variables['label_hidden']) {
     $output .= '<div class="field-label">' . $variables['label'] . ': </div>';
   }
 
-// Render the items.
+  // Render the items.
   $output .= ($variables['element']['#label_display'] == 'inline') ? '<ul class="links inline">' : '<ul class="links">';
   foreach ($variables['items'] as $delta => $item) {
     $output .= '<li class="taxonomy-term-reference-' . $delta . '"' . $variables['item_attributes'][$delta] . '>' . drupal_render($item) . '</li>';
   }
   $output .= '</ul>';
 
-// Render the top-level DIV.
+  // Render the top-level DIV.
   $output = '<div class="' . $variables['classes'] . (!in_array('clearfix', $variables['classes_array']) ? ' clearfix' : '') . '">' . $output . '</div>';
 
   return $output;

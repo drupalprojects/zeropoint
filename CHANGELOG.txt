@@ -1,21 +1,22 @@
 CHANGELOG - 0 Point for Drupal 7
 
+0 Point (Jan 18, 2013)
+----------------------
+  Bug fixes:
+    o #1853910: Construct page title
+
 0 Point (Nov 28, 2012)
 ----------------------
-
   Security update:
     o #1830812: Cross site scripting through URLS in Zero Point theme
 
 0 Point (Sep 22, 2012)
 ----------------------
-
   Bug fixes:
     Some images not showing right in RTL languages.
 
-
 0 Point (Jul 29, 2012)
 ----------------------
-
   Bug fixes:
     o #1126168: Using <li> for breadcrumbs.
     o #1051786: The numbers in ordered lists render outside of basic page.
