@@ -31,18 +31,15 @@
   <?php endif; ?>
   </div> <!-- /logo -->
   <div id="name-and-slogan">
-<?php if ($site_name) : ?>
-  <?php if ($is_front): ?>
-    <h1 id="site-name"><a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a></h1>   
-  <?php endif; ?> 
-  <?php if (!$is_front): ?>
-    <p id="site-name"><a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a></p>
+  <?php if ($site_name): ?>
+    <?php if ($title): ?>
+      <p id="site-name"><a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a></p>
+    <?php else: ?>
+      <h1 id="site-name"><a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a></h1>
+    <?php endif; ?>
   <?php endif; ?>
-<?php endif; ?>
   <?php if ($site_slogan): ?>
-    <div id="site-slogan">
-      <?php print $site_slogan; ?>
-    </div>
+    <div id="site-slogan"><?php print $site_slogan; ?></div>
   <?php endif; ?>
   </div> <!-- /name-and-slogan -->
 

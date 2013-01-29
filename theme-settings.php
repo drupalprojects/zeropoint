@@ -84,7 +84,7 @@
     '#type' => 'select',
     '#title' => t('Menu style and position'),
     '#default_value' => theme_get_setting('navpos'),
-    '#description' => t('If "Main menu" is selected in theme settings 0 Point will display a static menu. To activate the drop-down menu put the <a href="?q=/admin/structure/block/manage/system/main-menu/configure">Main menu block</a> in the "Drop Down menu" region and set the correct levels to "expanded" (the parent item). <br /> NOTE: Only the static menu can be properly centered. <br /> NOTE for RTL sites: IE6 will accept only left positioned Drop-Down menu.'),
+    '#description' => t('"Out of the box" 0 Point will display a static menu. To activate the drop-down menu put the <a href="?q=/admin/structure/block/manage/system/main-menu/configure">Main menu block</a> in the "Drop Down menu" region and set the correct levels to "expanded" (the parent item). <br /> NOTE: Only the static menu can be properly centered. <br /> NOTE for RTL sites: IE6 will accept only left positioned Drop-Down menu.'),
     '#options' => array(
       0 => 'Left',
       1 => 'Center',
