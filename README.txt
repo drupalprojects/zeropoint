@@ -5,11 +5,10 @@ Thank you for downloading this theme!
 
 ABOUT THE 0 POINT THEME:
 -------------------------------------------------------------------------+
-0 Point is an advanced theme. It contains the same kinds of features 
-you'll find in our other Drupal themes, plus many more.
+0 Point is an advanced theme, with layout and style configuration options built 
+in that you can control through Drupal's UI, to be ideal for a wide range of sites. 
 
-The theme validates XHTML 1.0 Strict / CSS 2, and it is cross-browser compatible; 
-works perfect in Firefox, IE 6, IE 7, IE8, Safari, Opera and Google Chrome.
+The theme validates XHTML Strict, CSS 2/CSS 3, and it is cross-browser compatible.
 
 Layout features
 ===============
@@ -18,6 +17,7 @@ Layout features
 	(http://www.positioniseverything.net/articles/jello.html); 
 - 16+1 collapsible block regions; 
 - 9 colour styles; 
+- Advanced SEO optimization; 
 - built-in IE transparent PNG fix; 
 - jQuery CSS image preload (optional) 
 	(http://www.filamentgroup.com/lab/update_automatically_preload_images_from_css_with_jquery/); 
@@ -29,9 +29,10 @@ Layout features
 - Primary links menu position (center, left, right); 
 - Helpful body classes (unique classes for each page, term, website section, 
 	browser, etc.). Everything can be controlled via CSS, including each menu
-	item (for statis menu), how colours and other items will be displayed in
+	item (for static menu), how colours and other items will be displayed in
 	different browsers, or by terms, sections, etc.; 
 - Full breadcrumb; 
+- Bi-directional right to left (RTL) theming; 
 - Works perfect in Multilanguage installations. 
 
 Advanced theme settings features
@@ -39,17 +40,17 @@ Advanced theme settings features
 Layout settings
 - Style - Choose a colour palette from 9 options: 0 Point (Grey), Sky, Nature, 
   Ivy, Ink, Orange, Sangue, Lime and Themer. More colour options to come.
-- Layout width - adaptive, fluid and fixed width.
-- Sidebars layout - Fixed width sidebars or variable width sidebars.
-- Themed blocks 
-- Block icons - Choose between none, 32x32 pixel icons and 48x48 pixels icons.
-- Page icons - Choose a layout with or without page icons.
-- Menu style - Two-level Static or SuckerFish drop-down menu.
-- Menu position - Left, center or right.
-- Rounded corners - Option to have rounded corners in all browsers but IE.
-- Header image rotator 
-- jQuery CSS image preload - Choose a colour.
-- 0 Point login/register links.
+- Layout width - adaptive, fluid and fixed width;
+- Sidebars layout - Fixed width sidebars or variable width sidebars;
+- Themed blocks;
+- Block icons - Choose between none, 32x32 pixel icons and 48x48 pixels icons;
+- Page icons - Choose a layout with or without page icons;
+- Menu type - Two-level Static or SuckerFish drop-down menu;
+- Menu position - Left, center or right;
+- Rounded corners - Option to have rounded corners in all browsers but IE;
+- Header image rotator;
+- jQuery CSS image preload;
+- No-followed login/register links.
 
 General settings
 - Mission statement - Display mission statement only on front page or on all pages; 
@@ -66,9 +67,9 @@ Search engine optimization (SEO) settings
 - Meta tags. 
 
 Theme development settings
-- Site ID bodyclass - usefull in a multisite environment.
+- Site ID bodyclass - usefull in a multisite environment;
 - Fix IE stylesheet limit - useful when you cannot use aggregation (e.g., when 
-  developing or using private file downloads), especially for RTL sites.
+  developing or using private file downloads), especially for RTL sites;
 - Rebuild theme registry on every page.
 
 
@@ -107,9 +108,6 @@ It has been heavily tested with:
   
 THEME MODIFICATION
 -------------------------------------------------------------------------+
-0 Point theme alow many sub-themes as plugins. More sub-themes will 
-be available at http://www.radut.net/drupal/
-
 If you feel like giving the theme a look of your own, I recommend to play
 with /_custom/custom-style.css; please read the comments in this file.
 

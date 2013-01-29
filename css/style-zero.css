@@ -481,6 +481,8 @@ div.admin-panel h3 {
 	padding: 0 0.4em;
 }
 #mission {
+  padding: 1em 1em 0.75em 2em;
+	margin: 10px 0 20px;
 	font-weight: normal;
 	font-size: 85%;
 }
@@ -494,10 +496,6 @@ div.admin-panel h3 {
 }
 #banner {
 	margin: 7px 0;
-}
-#mission {
-	padding: 1em 1em 0.75em 2em;
-	margin: 10px 0 20px;
 }
 #breadcrumb {
 	padding-left: 20px; /* LTR */

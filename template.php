@@ -115,6 +115,7 @@ function zeropoint_preprocess(&$vars) {
   $vars['logged_in'] = ($user->uid > 0) ? TRUE : FALSE;
 
 // Construct page title, name and slogan.
+/*
   if (drupal_get_title()) {
     $head_title = array(
       'title' => strip_tags(drupal_get_title()), 
@@ -132,6 +133,7 @@ function zeropoint_preprocess(&$vars) {
 
   $vars['site_name'] = (theme_get_setting('toggle_name') ? filter_xss_admin(variable_get('site_name', 'Drupal')) : '');
   $vars['site_slogan'] = (theme_get_setting('toggle_name') ? filter_xss_admin(variable_get('site_slogan', '')) : '');
+*/
 }
 
 
