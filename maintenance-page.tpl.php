@@ -105,7 +105,7 @@
 <div id="footer" class="clearfix">
   <?php if ($below) { ?><div id="below"><?php print $below; ?></div><?php } ?>
   <div class="legal">
-    Copyright &copy; <?php print date('Y') ?> <a href="/"><?php print filter_xss_admin($site_name) ?></a>. <?php print $footer_message ?>
+    Copyright &copy; <?php print date('Y') ?> <a href="/"><?php print filter_xss_admin($site_name) ?></a>.
     <div id="brand"></div>
   </div>
 </div>

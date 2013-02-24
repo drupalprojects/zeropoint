@@ -442,10 +442,11 @@ div.admin-panel h3 {
 	margin: 0;
 	padding: 0;
 }
-#site-name a, #site-name a:hover {
+p#site-name a, p#site-name a:hover,
+h1#site-name a, h1#site-name a:hover {
 	font-weight: bold;
 	text-decoration: none;
-	font-size: 36px;
+	font-size: 32px;
 	line-height: normal;
 }
 #site-slogan {

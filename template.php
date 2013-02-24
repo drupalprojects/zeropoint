@@ -35,7 +35,7 @@ if (is_null(theme_get_setting('user_notverified_display')) || theme_get_setting(
     'breadcrumb_display'               => 1,
     'search_snippet'                   => 1,
     'search_info_type'                 => 0,
-    'search_info_user'                 => 1,
+    'search_info_user'                 => 0,
     'search_info_date'                 => 1,
     'search_info_comment'              => 1,
     'search_info_upload'               => 1,
@@ -96,9 +96,9 @@ function get_zeropoint_style() {
   $style = theme_get_setting('style');
   return $style;
 }
-drupal_add_css(drupal_get_path('theme','zeropoint').'/css/style-zero.css');
-drupal_add_css(drupal_get_path('theme','zeropoint') . '/css/' . get_zeropoint_style() . '.css');
-drupal_add_css(drupal_get_path('theme','zeropoint').'/_custom/custom-style.css');
+drupal_add_css(drupal_get_path('theme','zeropoint').'/css/style-zero.css', 'theme');
+drupal_add_css(drupal_get_path('theme','zeropoint') . '/css/' . get_zeropoint_style() . '.css', 'theme');
+drupal_add_css(drupal_get_path('theme','zeropoint').'/_custom/custom-style.css', 'theme');
 
 $roundcorners = theme_get_setting('roundcorners');
   if ($roundcorners == '1'){ 
@@ -364,10 +364,11 @@ $siteid = check_plain(theme_get_setting('siteid'));
   }
 
   $momo = array();
-    $momo[] = ($vars['node']->type) ? ' | '.$vars['node']->type : '';
+  $momo[] = ($vars['node']->type) ? ' | '.$vars['node']->type : '';
   $momo = array_filter($momo);
   $vars['momo'] = implode(' ', $momo);
-  $vars['closure'] .= '<div class="by"><a href="http://www.radut.net">Dr. Radut'.$vars['momo'].'</a></div>';
+  $vars['closure'] .= ($vars['is_front']) ? '<div class="by"><a href="http://www.radut.net">by Dr. Radut</a></div>' : '<div class="by"><a href="http://www.radut.net/en/how-to-seo-and-sem">about seo'.$vars['momo'].'</a></div>';
+
 }
 
 

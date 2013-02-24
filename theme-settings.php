@@ -228,7 +228,7 @@ function zeropoint_settings($saved_settings) {
   $form['tnt_container']['layout_settings']['roundcorners'] = array(
     '#type' => 'checkbox',
     '#title' => t('Rounded corners'),
-    '#description' => t('Some page elements (mission, comments, search, blocks) and primary menu will have rounded corners in all browsers but IE. <br /> NOTE: With this option enabled 0 Point will not validate CSS2.'),
+    '#description' => t('Some page elements (mission, comments, search, blocks) and primary menu will have rounded corners in all browsers but IE6,7. <br /> NOTE: With this option enabled 0 Point will not validate CSS2/CSS3.'),
     '#default_value' => $settings['roundcorners'],
   );
 
