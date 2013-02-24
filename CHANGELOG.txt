@@ -1,5 +1,10 @@
 CHANGELOG - 0 Point for Drupal 7
 
+0 Point (Feb 21, 2013)
+-------------------------
+  Bug fixes:
+    - Page title of internal pages has wrong dimmensions
+
 0 Point (Jan 18, 2013)
 ----------------------
   Bug fixes:

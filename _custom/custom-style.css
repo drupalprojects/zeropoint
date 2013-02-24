@@ -149,3 +149,13 @@ body.sidebar-second.eq .colright {
 	background: transparent url(../images/contact_48.png) no-repeat;
 }
 */
+
+
+/*************************/
+/* REMOVE DEVELOPER LINK */
+/*************************/
+
+.by {
+	display: none;
+}
+
