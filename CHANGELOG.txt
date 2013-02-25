@@ -1,5 +1,9 @@
 CHANGELOG - 0 Point for Drupal 6
 
+0 Point (Feb 24, 2013)
+-------------------------
+  Added a proper RTL header
+
 0 Point (Feb 21, 2013)
 -------------------------
   Bug fixes:

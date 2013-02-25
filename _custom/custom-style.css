@@ -32,13 +32,6 @@ node-webform.tpl.php, views-view.tpl.php.
 	height: 50px;
 }
 
-/************************/
-/* HEADER IMAGE ROTATOR */
-/************************/
-.himg #headimg {
-	background: #fff url(headerimg/rotate.php) no-repeat 100% 100%; /* rotates images in the headerimg folder */
-	border-bottom: 1px solid #eee;
-}
 
 /********************/
 /* DROP DOWN SHADOW */

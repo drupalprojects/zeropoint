@@ -1082,6 +1082,12 @@ div.toboggan-login-link-container {
 	padding-left: 20px; /* LTR */
 }
 
+/* HEADER IMAGE ROTATOR */
+.himg #headimg {
+	background: #fff url(../_custom/headerimg/rotate.php) no-repeat 100% 100%; /* rotates images in the headerimg folder */
+	border-bottom: 1px solid #eee;
+}
+
 /* MODULE SPECIFIC STYLES */
 
 .book-navigation {

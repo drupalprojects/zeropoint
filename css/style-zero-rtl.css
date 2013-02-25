@@ -42,7 +42,7 @@ td.section.divider {
 }
 #forum td.container .name a {
 	padding-right: 30px;
-	background: transparent url(../images/all/forum-link.png) right center no-repeat !important;
+	background: transparent url(../images/all/forum-link_rtl.png) right center no-repeat !important;
 }
 #continue-shopping-button {
 	margin-left: 50% !important;
@@ -53,10 +53,6 @@ div.toboggan-login-link-container {
 li.collapsed {
 	list-style-image: url(../images/all/menu-collapsed_rtl.png) !important;
 }
-ul.links li {
-	border: none;
-}
-
 
 /* BLOCK ICONS */
 
@@ -75,7 +71,6 @@ ul.links li {
 	padding-right: 10px;
 	padding-left: 0;
 }
-
 
 /* PAGE ICONS */
 
@@ -152,6 +147,10 @@ ul.links li {
 	padding-right: 20px;
 }
 
+/* HEADER IMAGE ROTATOR */
+.himg #headimg {
+	background: #fff url(../_custom/headerimg-rtl/rotate.php) no-repeat 0% 100%; /* rotates images in the headerimg folder */
+}
 
 /* DROP DOWN */
 

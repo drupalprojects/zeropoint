@@ -3,7 +3,7 @@
 
 <head>
 <title><?php print $head_title ?></title>
-<meta name="ver" content="zp6-1.21"/>
+<meta name="ver" content="zp6-1.22"/>
 <meta http-equiv="X-UA-Compatible" content="edge" />
 <?php print $head ?>
 <!--[if lte IE 6]>
