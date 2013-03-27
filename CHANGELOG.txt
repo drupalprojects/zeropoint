@@ -1,5 +1,11 @@
 CHANGELOG - 0 Point for Drupal 7
 
+0 Point (Mar 26, 2013)
+----------------------
+  Security update and bug fixes:
+    o #1513176: Notice: Undefined variable: themed_regions in zeropoint_preprocess_block()
+    o hoverIntent r6 update
+
 0 Point (Feb 24, 2013)
 -------------------------
   Added a proper RTL header

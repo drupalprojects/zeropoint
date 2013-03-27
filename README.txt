@@ -61,6 +61,9 @@ Search results
 Theme development settings
 - Site ID bodyclass.
 
+To know more, read Zero Point handbook (http://drupal.org/node/507792).
+
+
 
 MODULE SUPPORT
 -------------------------------------------------------------------------+

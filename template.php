@@ -17,23 +17,6 @@ function zeropoint_preprocess_maintenance_page(&$vars) {
 function zeropoint_preprocess_html(&$vars) {
   global $theme_key, $user;
 
-// Construct page title.
-/*
-  if (drupal_get_title()) {
-    $head_title = array(
-      'title' => strip_tags(drupal_get_title()), 
-      'name' => filter_xss_admin(variable_get('site_name', 'Drupal')),
-    );
-  }
-  else {
-    $head_title = array('name' => filter_xss_admin(variable_get('site_name', 'Drupal')));
-    if (variable_get('site_slogan', '')) {
-      $head_title['slogan'] = filter_xss_admin(variable_get('site_slogan', ''));
-    }
-  }
-  $vars['head_title_array'] = $head_title;
-  $vars['head_title'] = implode(' | ', $head_title);
-*/
 
 // Add to array of helpful body classes
   $vars['classes_array'][] = ($vars['is_admin']) ? 'admin' : 'not-admin';                                     // Page user is admin
@@ -54,7 +37,7 @@ function zeropoint_preprocess_html(&$vars) {
     $path = drupal_get_path_alias(check_plain($_GET['q']));
     list($section, ) = explode('/', $path, 2);
     $vars['classes_array'][] = ('section-' . $section);
-    $vars['classes_array'][] = ('page-' . $path);
+    $vars['classes_array'][] = ('page-' . check_plain($path));
   }
 
 
@@ -147,11 +130,6 @@ function zeropoint_preprocess_page(&$vars) {
   if (theme_get_setting('breadcrumb_display') == 0) {
     $vars['breadcrumb'] = '';
   }
-// Construct site name and slogan.
-/*
-  $vars['site_name'] = (theme_get_setting('toggle_name') ? filter_xss_admin(variable_get('site_name', 'Drupal')) : '');
-  $vars['site_slogan'] = (theme_get_setting('toggle_name') ? filter_xss_admin(variable_get('site_slogan', '')) : '');
-*/
 }
 
 
@@ -197,7 +175,7 @@ $themedblocks = theme_get_setting('themedblocks');
   if ($themedblocks == '1'){ 
     $themed_regions = array('sidebar_first','sidebar_second','user1','user2','user3','user4','user5','user6','user7','user8');
   }
-  if (is_array($themed_regions))
+  if (isset($themed_regions) && is_array($themed_regions))
     $vars['themed_block'] = (in_array($vars['block']->region, $themed_regions)) ? TRUE : FALSE;
   else $vars['themed_block'] = FALSE;
 }
