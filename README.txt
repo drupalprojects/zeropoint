@@ -72,7 +72,9 @@ Theme development settings
   developing or using private file downloads), especially for RTL sites;
 - Rebuild theme registry on every page.
 
+To know more, read Zero Point handbook (http://drupal.org/node/507792).
 
+ 
 
 MODULE SUPPORT
 -------------------------------------------------------------------------+

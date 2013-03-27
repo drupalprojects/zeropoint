@@ -1,5 +1,11 @@
 CHANGELOG - 0 Point for Drupal 6
 
+0 Point (Mar 26, 2013)
+-------------------------
+  Bug fixes:
+    o #776330: Taxonomy terms translation
+    o hoverIntent r6 update
+
 0 Point (Feb 24, 2013)
 -------------------------
   Added a proper RTL header

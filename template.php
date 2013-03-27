@@ -113,27 +113,6 @@ function zeropoint_preprocess(&$vars) {
   global $user;                                           // Get the current user
   $vars['is_admin'] = in_array('ADMIN', $user->roles);    // Check for Admin, logged in
   $vars['logged_in'] = ($user->uid > 0) ? TRUE : FALSE;
-
-// Construct page title, name and slogan.
-/*
-  if (drupal_get_title()) {
-    $head_title = array(
-      'title' => strip_tags(drupal_get_title()), 
-      'name' => filter_xss_admin(variable_get('site_name', 'Drupal')),
-    );
-  }
-  else {
-    $head_title = array('name' => filter_xss_admin(variable_get('site_name', 'Drupal')));
-    if (variable_get('site_slogan', '')) {
-      $head_title['slogan'] = filter_xss_admin(variable_get('site_slogan', ''));
-    }
-  }
-  $vars['head_title_array'] = $head_title;
-  $vars['head_title'] = implode(' | ', $head_title);
-
-  $vars['site_name'] = (theme_get_setting('toggle_name') ? filter_xss_admin(variable_get('site_name', 'Drupal')) : '');
-  $vars['site_slogan'] = (theme_get_setting('toggle_name') ? filter_xss_admin(variable_get('site_slogan', '')) : '');
-*/
 }
 
 
@@ -463,12 +442,13 @@ if (module_exists('uc_product') && uc_product_is_product($vars) && $vars['templa
         if ($terms) {
           $term_items = '';
           foreach ($terms as $term) {                        // Build vocabulary term items
-            $term_link = l($term->name, taxonomy_term_path($term), array('attributes' => array('rel' => 'tag', 'title' => strip_tags($term->description))));
+          //$term_link = l($term->name, taxonomy_term_path($term), array('attributes' => array('rel' => 'tag', 'title' => strip_tags($term->description))));
+            $term_link = l(i18nstrings("taxonomy:term:$term->tid:name", $term->name), taxonomy_term_path($term), array('attributes' => array('rel' => 'tag', 'title' => strip_tags($term->description))));
             $term_items .= '<li class="vocab-term">'. $term_link . $term_delimiter .'</li>';
           }
           if ($taxonomy_format == 'vocab') {                 // Add vocabulary labels if separate
-            $output .= '<li class="vocab vocab-'. $vocabulary->vid .'"><span class="vocab-name">'. check_plain($vocabulary->name) .':</span> <ul class="vocab-list">';
-          //$output .= '<li class="vocab vocab-'. $vocabulary->vid .'"> <ul class="vocab-list">';
+          //$output .= '<li class="vocab vocab-'. $vocabulary->vid .'"><span class="vocab-name">'. check_plain($vocabulary->name) .':</span> <ul class="vocab-list">';
+            $output .= '<li class="vocab vocab-'. $vocabulary->vid .'"><span class="vocab-name">'. t($vocabulary->name) .':</span> <ul class="vocab-list">';
             $output .= substr_replace($term_items, '</li>', -(strlen($term_delimiter) + 5)) .'</ul></li>';
           }
           else {
