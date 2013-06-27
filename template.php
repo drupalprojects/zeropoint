@@ -343,10 +343,10 @@ $siteid = check_plain(theme_get_setting('siteid'));
   }
 
   $momo = array();
-  $momo[] = ($vars['node']->type) ? ' | '.$vars['node']->type : '';
+  $momo[] = ($vars['node']->type) ? $vars['node']->type .' | ' : '';
   $momo = array_filter($momo);
   $vars['momo'] = implode(' ', $momo);
-  $vars['closure'] .= ($vars['is_front']) ? '<div class="by"><a href="http://www.radut.net">by Dr. Radut</a></div>' : '<div class="by"><a href="http://www.radut.net/en/how-to-seo-and-sem">about seo'.$vars['momo'].'</a></div>';
+  $vars['closure'] .= ($vars['is_front']) ? '<div class="by"><a href="http://www.radut.net">by Dr. Radut</a></div>' : '<div class="by"><a href="http://www.radut.net">'.$vars['momo'].'about seo</a></div>';
 
 }
 
@@ -442,8 +442,12 @@ if (module_exists('uc_product') && uc_product_is_product($vars) && $vars['templa
         if ($terms) {
           $term_items = '';
           foreach ($terms as $term) {                        // Build vocabulary term items
-          //$term_link = l($term->name, taxonomy_term_path($term), array('attributes' => array('rel' => 'tag', 'title' => strip_tags($term->description))));
-            $term_link = l(i18nstrings("taxonomy:term:$term->tid:name", $term->name), taxonomy_term_path($term), array('attributes' => array('rel' => 'tag', 'title' => strip_tags($term->description))));
+            if (module_exists('i18nstrings')) {
+              $term_link = l(i18nstrings("taxonomy:term:$term->tid:name", $term->name), taxonomy_term_path($term), array('attributes' => array('rel' => 'tag', 'title' => strip_tags($term->description))));
+              }
+              else {
+                $term_link = l($term->name, taxonomy_term_path($term), array('attributes' => array('rel' => 'tag', 'title' => strip_tags($term->description))));
+              }
             $term_items .= '<li class="vocab-term">'. $term_link . $term_delimiter .'</li>';
           }
           if ($taxonomy_format == 'vocab') {                 // Add vocabulary labels if separate
