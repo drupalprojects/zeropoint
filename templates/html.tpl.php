@@ -4,7 +4,7 @@
 
 <head profile="<?php print $grddl_profile ?>">
 <title><?php print $head_title ?></title>
-<meta name="ver" content="zp7-1.11"/>
+<meta name="ver" content="zp7-1.12"/>
 <meta http-equiv="X-UA-Compatible" content="edge" />
 <?php print $head ?>
 <?php print $styles ?>
