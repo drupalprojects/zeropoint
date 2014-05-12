@@ -3,8 +3,7 @@
 
 <head>
 <title><?php print $head_title ?></title>
-<meta name="ver" content="zp6-1.24"/>
-<meta http-equiv="X-UA-Compatible" content="edge" />
+<meta name="note" content="zp6-1.25"/>
 <?php print $head ?>
 <!--[if lte IE 6]>
 <?php print $ie6_style; ?>
@@ -183,7 +182,7 @@
   <div id="footer">
     <?php if ($below) { ?><div id="below"><?php print $below; ?></div><?php } ?>
     <div class="legal">
-      Copyright &copy; <?php print date('Y') ?> <a href="/"><?php print $site_name ?></a>. <?php print $footer_message ?>
+        Copyright &copy; 2003-<?php date_default_timezone_set('UTC'); echo date("Y"); ?> <a href="/"><?php print $site_name ?></a>. <?php print $footer_message ?>
       <div id="brand"></div>
     </div>
   </div>

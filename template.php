@@ -346,7 +346,7 @@ $siteid = check_plain(theme_get_setting('siteid'));
   $momo[] = ($vars['node']->type) ? $vars['node']->type .' | ' : '';
   $momo = array_filter($momo);
   $vars['momo'] = implode(' ', $momo);
-  $vars['closure'] .= ($vars['is_front']) ? '<div class="by"><a href="http://www.radut.net">by Dr. Radut</a></div>' : '<div class="by"><a href="http://www.radut.net">'.$vars['momo'].'about seo</a></div>';
+  $vars['closure'] .= ($vars['is_front']) ? '<div class="by"><a href="http://www.radut.net">by Dr. Radut</a></div>' : '<div class="by"><a href="http://www.radut.net">'.$vars['momo'].'by Dr. Radut</a></div>';
 
 }
 

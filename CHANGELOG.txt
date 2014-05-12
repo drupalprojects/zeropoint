@@ -1,5 +1,18 @@
 CHANGELOG - 0 Point for Drupal 6
 
+0 Point (May 12, 2014)
+-------------------------
+  Bug fixes:
+    o #815224: node-product.tpl.php shows more than just teaser for products
+    o #747592: Shopping Cart
+    o #1055208: Fivestar widget cannot be set to "below node"
+    o #2079591: IE8: not possible to add comments
+
+0 Point (Sep 15, 2013)
+-------------------------
+  Bug fixes:
+    o #2079591: IE10-not possible to add comments
+
 0 Point (Jun 27, 2013)
 -------------------------
   Bug fixes:

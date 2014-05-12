@@ -3,7 +3,6 @@
 
 <head>
 <title><?php print $head_title ?></title>
-<meta http-equiv="X-UA-Compatible" content="edge" />
 <?php print $head ?>
 <!--[if lte IE 6]>
 <?php print $ie6_style; ?>
