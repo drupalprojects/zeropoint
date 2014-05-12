@@ -5,7 +5,6 @@
 <head profile="<?php print $grddl_profile ?>">
 <title><?php print $head_title ?></title>
 <meta name="note" content="zp7-1.13"/>
-<meta http-equiv="X-UA-Compatible" content="edge" />
 <?php print $head ?>
 <?php print $styles ?>
 <?php print $scripts ?>
