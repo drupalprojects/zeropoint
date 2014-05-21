@@ -22,8 +22,37 @@ function zeropoint_preprocess_maintenance_page(&$vars) {
 /**
  * HTML preprocessing
  */
-function zeropoint_preprocess_html(&$vars) {
+function zeropoint_preprocess_html(&$vars, $hook) {
   global $theme_key, $user;
+
+// Attributes for html element.
+  $vars['html_attributes_array'] = array(
+    'lang' => $vars['language']->language,
+    'dir' => $vars['language']->dir,
+  );
+
+// Send X-UA-Compatible HTTP header to force IE to use the most recent
+// rendering engine or use Chrome's frame rendering engine if available.
+// This also prevents the IE compatibility mode button to appear when using
+// conditional classes on the html tag.
+  if (is_null(drupal_get_http_header('X-UA-Compatible'))) {
+    drupal_add_http_header('X-UA-Compatible', 'IE=edge,chrome=1');
+  }
+
+// Return early, so the maintenance page does not call any of the code below.
+  if ($hook != 'html') {
+    return;
+  }
+
+// Serialize RDF Namespaces into an RDFa 1.1 prefix attribute.
+  if ($vars['rdf_namespaces']) {
+    $prefixes = array();
+    foreach (explode("\n  ", ltrim($vars['rdf_namespaces'])) as $namespace) {
+      // Remove xlmns: and ending quote and fix prefix formatting.
+      $prefixes[] = str_replace('="', ': ', substr($namespace, 6, -1));
+    }
+    $vars['rdf_namespaces'] = ' prefix="' . implode(' ', $prefixes) . '"';
+  }
 
 // Add to array of helpful body classes
   $vars['classes_array'][] = ($vars['is_admin']) ? 'admin' : 'not-admin';                                     // Page user is admin
@@ -120,6 +149,12 @@ $roundcorners = theme_get_setting('roundcorners');
     $nt='';
   }
   $vars['page_b'] = '<div class="by"><a href="http://www.radut.net">'.$nt.'by Dr. Radut</a></div>';
+}
+
+
+function zeropoint_process_html(&$vars, $hook) {
+// Flatten out html_attributes.
+  $vars['html_attributes'] = drupal_attributes($vars['html_attributes_array']);
 }
 
 // Get css styles 
@@ -304,18 +339,22 @@ function zeropoint_field__taxonomy_term_reference($vars) {
 
 
 /**
- * Other theme settings 
+ * Implements RDFa_preprocess_hook().
  */
-
-$preload = theme_get_setting('cssPreload'); // print the js file if css image preload enabled
-  if ($preload == '1'){
-    drupal_add_js(drupal_get_path('theme','zeropoint').'/js/preloadCssImages.jQuery_v5.js');
-    drupal_add_js('jQuery(document).ready(function(){
-    jQuery.preloadCssImages();
-  });
-  ','inline');
+function zeropoint_preprocess_username(&$vars) {
+  // xml:lang alone is invalid in HTML5. Use the lang attribute instead.
+  if (empty($vars['attributes_array']['lang'])) {
+    $vars['attributes_array']['lang'] = '';
+  }
+  unset($vars['attributes_array']['xml:lang']);
+  unset($vars['attributes_array']['property']);
+  unset($vars['attributes_array']['rel']);
 }
 
+
+/**
+ * Other theme settings 
+ */
 function menupos() {
   $navpos = theme_get_setting('navpos'); // Primary & secondary links position 
     if ($navpos == '0'){ 
@@ -355,7 +394,7 @@ function zeropoint_login(){
 //function toplinks() {
 //  return '
 //<ul class="links">
-//<li class="first"> LINK1 </li>
-//<li> LINK2 </li>
+//  <li class="first"> LINK1 </li>
+//  <li> LINK2 </li>
 //</ul>
 //'; }

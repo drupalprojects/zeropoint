@@ -1,5 +1,10 @@
 CHANGELOG - 0 Point for Drupal 7
 
+0 Point (May 21, 2014)
+-------------------------
+    o Zero Point validates HTML5 with no errors
+    o jQuery CSS image preload excluded
+
 0 Point (May 12, 2014)
 -------------------------
   Bug fixes:

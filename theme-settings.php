@@ -119,13 +119,6 @@ function zeropoint_form_system_theme_settings_alter(&$form, &$form_state) {
     '#default_value' => theme_get_setting('headerimg'),
   );
 
-  $form['tnt_container']['layout_settings']['cssPreload'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('jQuery CSS image preload'),
-    '#description' => t('Automatically Preload images from CSS.'),
-    '#default_value' => theme_get_setting('cssPreload'),
-  );
-
   $form['tnt_container']['layout_settings']['loginlinks'] = array(
     '#type' => 'checkbox',
     '#title' => t('Login/register links'),
