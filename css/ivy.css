@@ -2,6 +2,10 @@
 /* GENERAL CSS  */
 /****************/
 
+/* Font size */
+.fs0 { font-size: 83%; }
+.fs1 { font-size: 95%; }
+
 #body_bg {
 	border-bottom: 1px solid #ddd;
 }
@@ -15,8 +19,9 @@
 ul.links li {
 	border-left: 1px solid #d3d3d3; /* LTR */
 }
-td.section.divider {
+.divider {
 	border-left: 1px dashed #ddd; /* LTR */
+	margin-right: -1px;
 }
 .node.teaser {
 	border-bottom: 1px dashed #ddd;

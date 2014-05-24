@@ -73,6 +73,8 @@ function zeropoint_form_system_theme_settings_alter(&$form, &$form_state) {
     '#options' => array(
       0 => t('Sidebars only'),
       1 => t('Sidebars + User regions'),
+      2 => t('User regions only'),
+      3 => t('None'),
     )
   );
 
@@ -97,7 +99,7 @@ function zeropoint_form_system_theme_settings_alter(&$form, &$form_state) {
     '#type' => 'select',
     '#title' => t('Menu style and position'),
     '#default_value' => theme_get_setting('navpos'),
-    '#description' => t('"Out of the box" Zero Point will display a static menu. To activate the drop-down menu put the <a href="?q=/admin/structure/block/manage/system/main-menu/configure">Main menu block</a> in the "Drop Down menu" region and set the correct levels to "expanded" (the parent item). <br /> NOTE: Only the static menu can be properly centered. IE6 will accept only left positioned Main Menu.'),
+    '#description' => t('"Out of the box" Zero Point will display a static menu. To activate the drop-down menu put the <a href="?q=/admin/structure/block/manage/system/main-menu/configure">Main menu block</a> in the "Drop Down menu" region and set the correct levels to "expanded" (the parent item). <br /> <b>NOTE</b>: Only the static menu can be properly centered.'),
     '#options' => array(
       0 => t('Left'),
       1 => t('Center'),
@@ -105,10 +107,20 @@ function zeropoint_form_system_theme_settings_alter(&$form, &$form_state) {
     )
   );
 
+  $form['tnt_container']['layout_settings']['fntsize'] = array(
+    '#type' => 'select',
+    '#title' => t('Font size'),
+    '#default_value' => theme_get_setting('fntsize'),
+    '#options' => array(
+      0 => t('Normal'),
+      1 => t('Large'),
+    )
+  );
+
   $form['tnt_container']['layout_settings']['roundcorners'] = array(
     '#type' => 'checkbox',
     '#title' => t('Rounded corners'),
-    '#description' => t('Some page elements (comments, search, blocks) and main menu will have rounded corners. <br /> NOTE: With this option enabled Zero Point will not CSS2/CSS3.'),
+    '#description' => t('Some page elements (comments, search, blocks) and main menu will have rounded corners.'),
     '#default_value' => theme_get_setting('roundcorners'),
   );
 
@@ -126,13 +138,13 @@ function zeropoint_form_system_theme_settings_alter(&$form, &$form_state) {
   );
 
 // Breadcrumb
-  $form['tnt_container']['general_settings']['breadcrumb'] = array(
+  $form['tnt_container']['breadcrumb'] = array(
     '#type' => 'fieldset',
     '#title' => t('Breadcrumb'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-  $form['tnt_container']['general_settings']['breadcrumb']['breadcrumb_display'] = array(
+  $form['tnt_container']['breadcrumb']['breadcrumb_display'] = array(
     '#type' => 'checkbox',
     '#title' => t('Display breadcrumb'),
     '#default_value' => theme_get_setting('breadcrumb_display'),
@@ -157,46 +169,167 @@ function zeropoint_form_system_theme_settings_alter(&$form, &$form_state) {
     )
   );
 
-// Search Settings
-  if (module_exists('search')) {
-    $form['tnt_container']['general_settings']['search_container'] = array(
-      '#type' => 'fieldset',
-      '#title' => t('Search results'),
-      '#description' => t('What additional information should be displayed on your search results page?'),
-      '#collapsible' => TRUE,
-      '#collapsed' => TRUE,
-    );
-    $form['tnt_container']['general_settings']['search_container']['search_results']['search_snippet'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Display text snippet'),
-      '#default_value' => theme_get_setting('search_snippet'),
-    );
-    $form['tnt_container']['general_settings']['search_container']['search_results']['search_info_type'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Display content type'),
-      '#default_value' => theme_get_setting('search_info_type'),
-    );
-    $form['tnt_container']['general_settings']['search_container']['search_results']['search_info_user'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Display author name'),
-      '#default_value' => theme_get_setting('search_info_user'),
-    );
-    $form['tnt_container']['general_settings']['search_container']['search_results']['search_info_date'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Display posted date'),
-      '#default_value' => theme_get_setting('search_info_date'),
-    );
-    $form['tnt_container']['general_settings']['search_container']['search_results']['search_info_comment'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Display comment count'),
-      '#default_value' => theme_get_setting('search_info_comment'),
-    );
-    $form['tnt_container']['general_settings']['search_container']['search_results']['search_info_upload'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Display attachment count'),
-      '#default_value' => theme_get_setting('search_info_upload'),
-    );
-  }
+// Social links
+  $form['tnt_container']['social_links'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Social links'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  $form['tnt_container']['social_links']['social_links_display'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Display social links at the top of the page'),
+    '#default_value' => theme_get_setting('social_links_display'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Display these social links'),
+    '#collapsible' => TRUE,
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_facebook'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Facebook'),
+    '#default_value' => theme_get_setting('social_links_display_links_facebook'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_facebook_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link to Facebook page'),
+    '#description' => t('Enter the link to your Facebook page.'),
+    '#size' => 60,
+    '#default_value' => theme_get_setting('social_links_display_links_facebook_link'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_googleplus'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Google Plus'),
+    '#default_value' => theme_get_setting('social_links_display_links_googleplus'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_googleplus_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link to Google Plus page'),
+    '#description' => t('Enter the link to your Google Plus account.'),
+    '#size' => 60,
+    '#default_value' => theme_get_setting('social_links_display_links_googleplus_link'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_twitter'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Twitter'),
+    '#default_value' => theme_get_setting('social_links_display_links_twitter'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_twitter_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link to Twitter page'),
+    '#description' => t('Enter the link to your Twitter account.'),
+    '#size' => 60,
+    '#default_value' => theme_get_setting('social_links_display_links_twitter_link'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_instagram'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Instagram'),
+    '#default_value' => theme_get_setting('social_links_display_links_instagram'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_instagram_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link to Instagram page'),
+    '#description' => t('Enter the link to your Instagram account.'),
+    '#size' => 60,
+    '#default_value' => theme_get_setting('social_links_display_links_instagram_link'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_pinterest'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Pinterest'),
+    '#default_value' => theme_get_setting('social_links_display_links_pinterest'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_pinterest_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link to Pinterest page'),
+    '#description' => t('Enter the link to your Pinterest account.'),
+    '#size' => 60,
+    '#default_value' => theme_get_setting('social_links_display_links_pinterest_link'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_linkedin'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('LinkedIn'),
+    '#default_value' => theme_get_setting('social_links_display_links_linkedin'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_linkedin_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link to LinkedIn page'),
+    '#description' => t('Enter the link to your LinkedIn account.'),
+    '#size' => 60,
+    '#default_value' => theme_get_setting('social_links_display_links_linkedin_link'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_youtube'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Youtube'),
+    '#default_value' => theme_get_setting('social_links_display_links_youtube'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_youtube_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link to Youtube page'),
+    '#description' => t('Enter the link to your Youtube account.'),
+    '#size' => 60,
+    '#default_value' => theme_get_setting('social_links_display_links_youtube_link'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_vimeo'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Vimeo'),
+    '#default_value' => theme_get_setting('social_links_display_links_vimeo'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_vimeo_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link to Vimeo page'),
+    '#description' => t('Enter the link to your Vimeo account.'),
+    '#size' => 60,
+    '#default_value' => theme_get_setting('social_links_display_links_vimeo_link'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_flickr'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Flickr'),
+    '#default_value' => theme_get_setting('social_links_display_links_flickr'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_flickr_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link to Flickr page'),
+    '#description' => t('Enter the link to your Flickr account.'),
+    '#size' => 60,
+    '#default_value' => theme_get_setting('social_links_display_links_flickr_link'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_tumblr'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Tumblr'),
+    '#default_value' => theme_get_setting('social_links_display_links_tumblr'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_tumblr_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link to Tumblr page'),
+    '#description' => t('Enter the link to your Tumblr account.'),
+    '#size' => 60,
+    '#default_value' => theme_get_setting('social_links_display_links_tumblr_link'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_skype'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Skype'),
+    '#default_value' => theme_get_setting('social_links_display_links_skype'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_skype_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link to Skype page'),
+    '#description' => t('Enter the contact link to your Skype account (<b>skype:username?call</b>).'),
+    '#size' => 60,
+    '#default_value' => theme_get_setting('social_links_display_links_skype_link'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_myother'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Other Social Network'),
+    '#default_value' => theme_get_setting('social_links_display_links_myother'),
+  );
+  $form['tnt_container']['social_links']['social_links_display_links']['social_links_display_links_myother_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link to other social network page (custom)'),
+    '#description' => t('Enter the link to other social network page.'),
+    '#size' => 60,
+    '#default_value' => theme_get_setting('social_links_display_links_myother_link'),
+  );
 
 // Development settings
   $form['tnt_container']['themedev'] = array(

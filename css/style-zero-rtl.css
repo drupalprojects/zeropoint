@@ -30,9 +30,13 @@ th {
 	padding: 10px 19px 12px 0;
 	background: transparent url(../images/all/icon-comment_rtl.png) right center no-repeat !important;
 }
-td.section.divider {
-	border-left: none;
+.section {
+	float: right;
+}
+.divider {
+	border-left: none !important;
 	border-right: 1px dashed #ddd;
+	margin-left: -1px;
 }
 #breadcrumb {
 	padding-right: 20px;

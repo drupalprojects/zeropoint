@@ -22,7 +22,7 @@ function zeropoint_preprocess_maintenance_page(&$vars) {
 /**
  * HTML preprocessing
  */
-function zeropoint_preprocess_html(&$vars, $hook) {
+function zeropoint_preprocess_html(&$vars) {
   global $theme_key, $user;
 
 // Attributes for html element.
@@ -31,17 +31,9 @@ function zeropoint_preprocess_html(&$vars, $hook) {
     'dir' => $vars['language']->dir,
   );
 
-// Send X-UA-Compatible HTTP header to force IE to use the most recent
-// rendering engine or use Chrome's frame rendering engine if available.
-// This also prevents the IE compatibility mode button to appear when using
-// conditional classes on the html tag.
+// Send X-UA-Compatible HTTP header to force IE to use the most recent rendering engine or use Chrome's frame rendering engine if available.
   if (is_null(drupal_get_http_header('X-UA-Compatible'))) {
     drupal_add_http_header('X-UA-Compatible', 'IE=edge,chrome=1');
-  }
-
-// Return early, so the maintenance page does not call any of the code below.
-  if ($hook != 'html') {
-    return;
   }
 
 // Serialize RDF Namespaces into an RDFa 1.1 prefix attribute.
@@ -117,6 +109,13 @@ $headerimg = theme_get_setting('headerimg');
   if ($headerimg == '1'){ 
     $vars['classes_array'][] = 'himg';
   }
+$fntsize = theme_get_setting('fntsize');
+  if ($fntsize == '0'){ 
+	  $vars['classes_array'][] = 'fs0';
+  }
+  if ($fntsize == '1'){ 
+	  $vars['classes_array'][] = 'fs1';
+  }
 
 // Add language and site ID classes
   $vars['classes_array'][] = ($vars['language']->language) ? 'lg-'. $vars['language']->language : '';        // Page has lang-x
@@ -152,10 +151,14 @@ $roundcorners = theme_get_setting('roundcorners');
 }
 
 
+/**
+ * HTML processing
+ */
 function zeropoint_process_html(&$vars, $hook) {
 // Flatten out html_attributes.
   $vars['html_attributes'] = drupal_attributes($vars['html_attributes_array']);
 }
+
 
 // Get css styles 
 function get_zeropoint_style() {
@@ -207,13 +210,16 @@ function zeropoint_breadcrumb($vars) {
  */
 function zeropoint_preprocess_block(&$vars) {
   global $theme_info, $user;
-// Add regions with themed blocks (e.g., left, right) to $themed_regions array and retrieve custom theme settings
+// Add regions with themed blocks to $themed_regions array and retrieve custom theme settings
 $themedblocks = theme_get_setting('themedblocks');
   if ($themedblocks == '0'){ 
     $themed_regions = array('sidebar_first','sidebar_second');
   }
   if ($themedblocks == '1'){ 
     $themed_regions = array('sidebar_first','sidebar_second','user1','user2','user3','user4','user5','user6','user7','user8');
+  }
+  if ($themedblocks == '2'){ 
+    $themed_regions = array('user1','user2','user3','user4','user5','user6','user7','user8');
   }
   if (isset($themed_regions) && is_array($themed_regions))
     $vars['themed_block'] = (in_array($vars['block']->region, $themed_regions)) ? TRUE : FALSE;
@@ -267,71 +273,24 @@ function zeropoint_preprocess_views_view(&$vars) {
 
 
 /**
- * Search result preprocessing
- */
-function zeropoint_preprocess_search_result(&$vars) {
-  static $search_zebra = 'even';
-
-  $search_zebra = ($search_zebra == 'even') ? 'odd' : 'even';
-  $vars['search_zebra'] = $search_zebra;
-  $result = $vars['result'];
-  $vars['url'] = check_url($result['link']);
-  $vars['title'] = check_plain($result['title']);
-
-// Check for snippet existence. User search does not include snippets.
-  $vars['snippet'] = '';
-  if (isset($result['snippet']) && theme_get_setting('search_snippet')) {
-    $vars['snippet'] = $result['snippet'];
-  }
-
-  $info = array();
-  if (!empty($result['type']) && theme_get_setting('search_info_type')) {
-    $info['type'] = check_plain($result['type']);
-  }
-  if (!empty($result['user']) && theme_get_setting('search_info_user')) {
-    $info['user'] = $result['user'];
-  }
-  if (!empty($result['date']) && theme_get_setting('search_info_date')) {
-    $info['date'] = format_date($result['date'], 'small');
-  }
-  if (isset($result['extra']) && is_array($result['extra'])) {
-    // $info = array_merge($info, $result['extra']);  Drupal bug?  [extra] array not keyed with 'comment' & 'upload'
-    if (!empty($result['extra'][0]) && theme_get_setting('search_info_comment')) {
-      $info['comment'] = $result['extra'][0];
-    }
-    if (!empty($result['extra'][1]) && theme_get_setting('search_info_upload')) {
-      $info['upload'] = $result['extra'][1];
-    }
-  }
-
-// Provide separated and grouped meta information.
-  $vars['info_split'] = $info;
-  $vars['info'] = implode(' - ', $info);
-
-// Provide alternate search result template.
-//  $vars['template_files'][] = 'search-result-'. $vars['type'];
-}
-
-
-/**
  * Implements theme_field__field_type().
  */
 function zeropoint_field__taxonomy_term_reference($vars) {
   $output = '';
 
-  // Render the label, if it's not hidden.
+// Render the label, if it's not hidden.
   if (!$vars['label_hidden']) {
     $output .= '<div class="field-label">' . $vars['label'] . ': </div>';
   }
 
-  // Render the items.
+// Render the items.
   $output .= ($vars['element']['#label_display'] == 'inline') ? '<ul class="links inline">' : '<ul class="links">';
   foreach ($vars['items'] as $delta => $item) {
     $output .= '<li class="taxonomy-term-reference-' . $delta . '"' . $vars['item_attributes'][$delta] . '>' . drupal_render($item) . '</li>';
   }
   $output .= '</ul>';
 
-  // Render the top-level DIV.
+// Render the top-level DIV.
   $output = '<div class="' . $vars['classes'] . (!in_array('clearfix', $vars['classes_array']) ? ' clearfix' : '') . '">' . $output . '</div>';
 
   return $output;
@@ -342,7 +301,7 @@ function zeropoint_field__taxonomy_term_reference($vars) {
  * Implements RDFa_preprocess_hook().
  */
 function zeropoint_preprocess_username(&$vars) {
-  // xml:lang alone is invalid in HTML5. Use the lang attribute instead.
+// xml:lang alone is invalid in HTML5. Use the lang attribute instead.
   if (empty($vars['attributes_array']['lang'])) {
     $vars['attributes_array']['lang'] = '';
   }
@@ -353,8 +312,43 @@ function zeropoint_preprocess_username(&$vars) {
 
 
 /**
+ * Social links
+ */
+function zeropoint_social_links() {
+  $social = '';
+  if (theme_get_setting('social_links_display')) {
+    $displays_possible = array(
+      'facebook' => 'social_links_display_links_facebook',
+      'googleplus' => 'social_links_display_links_googleplus',
+      'twitter' => 'social_links_display_links_twitter',
+      'instagram' => 'social_links_display_links_instagram',
+      'pinterest' => 'social_links_display_links_pinterest',
+      'linkedin' => 'social_links_display_links_linkedin',
+      'youtube' => 'social_links_display_links_youtube',
+      'vimeo' => 'social_links_display_links_vimeo',
+      'flickr' => 'social_links_display_links_flickr',
+      'tumblr' => 'social_links_display_links_tumblr',
+      'skype' => 'social_links_display_links_skype',
+      'myother' => 'social_links_display_links_myother',
+    );
+    foreach ($displays_possible as $key => $display_possible) {
+      $link_possible = $display_possible . '_link';
+      if (theme_get_setting($display_possible) && $link = theme_get_setting($link_possible)) {
+        $url = check_url($link);
+        $nofollow = 'nofollow';
+        $classes = 'sociallinks ' . $key;
+        $social .= l('', $url, array('attributes' => array('rel' => $nofollow, 'class' => $classes)));
+      }
+    }
+  }
+  return $social;
+}
+
+
+/**
  * Other theme settings 
  */
+
 function menupos() {
   $navpos = theme_get_setting('navpos'); // Primary & secondary links position 
     if ($navpos == '0'){ 
@@ -378,6 +372,13 @@ function zeropoint_login(){
     else { 
       print '<ul class="links inline"><li class="first"><a href="' .url('user'). '" rel="nofollow">' .t('Login'). '</a></li><li><a href="' .url('user/register'). '" rel="nofollow">' .t('Register'). '</a></li></ul>'; 
     }
+  }
+}
+
+function divider() {
+  $divider = theme_get_setting('themedblocks');
+    if ($divider == '0' || $divider == '4') { 
+      return 'divider';
   }
 }
 

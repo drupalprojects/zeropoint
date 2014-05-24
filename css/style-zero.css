@@ -1,4 +1,4 @@
-/* style.css, v4.3 20114/05/10
+/* style.css, v4.31 2014/05/24
  *
  * ZERO POINT theme for Drupal 7
  * Dr. Florian Radut, florian@radut.net
@@ -8,7 +8,6 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: sans-serif, Arial, Verdana, Helvetica;
-	font-size: 83%;
 	line-height: 125%;
 	color: #535353;
 }
@@ -267,14 +266,17 @@ tbody {
 tr.odd td, tr.even td {
 	padding: 0.3em;
 }
-table.sections {
-	width: 100%;
-	padding: 0;
+.sections {
+	padding: 0 11px;
 }
-td.section {
-	padding: 0 20px;
+.section {
+	float: left;
 	vertical-align: top;
 }
+.col2 .section { width: 50%; }
+.col3 .section { width: 33.33%; }
+.col4 .section { width: 25%; }
+
 #help {
 	font-size: 0.9em;
 	margin-bottom: 1em;
@@ -290,8 +292,10 @@ td.section {
 	margin-bottom: .5em;
 }
 .section .block {
-	padding: 0;
-	margin-bottom: 15px;
+	margin: 15px 20px;
+}
+.sections .themed-block {
+	margin: 15px 10px 0;
 }
 .block .title {
 	padding: 0;
@@ -493,8 +497,11 @@ h1#site-name a, h1#site-name a:hover {
 	text-decoration: underline;
 }
 #toplinks, #user_links {
-	font-size: 13px;
-	line-height: 22px;
+	padding: 10px 0;
+	display: inline;
+}
+#user_links {
+	margin: 0 0 0 30px; /* RTL */
 }
 #banner {
 	margin: 7px 0;
@@ -514,10 +521,13 @@ h1#site-name a, h1#site-name a:hover {
 	font-weight: normal;
 }
 #section1 {
-	padding-top: 5px;
+	padding-top: 7px;
 }
-#section1 .block {
-	margin: 15px 0 0 0;
+#section1 .section .block {
+	margin-bottom: 0;
+}
+#section2 {
+	padding-bottom: 10px;
 }
 #middlecontainer {
 	padding: 1px 0 0 0;
@@ -540,8 +550,8 @@ h1#site-name a, h1#site-name a:hover {
 	text-align: center;
 	padding: 5px 44px;
 }
-#footer, #footer a {
-	font-size: 75%;
+#footer {
+	font-size: 85%;
 	font-weight: normal;
 }
 #footer ul.links li.first, ul.links li.first, ul.links li.taxonomy-term-reference-0 {
@@ -720,7 +730,7 @@ h1#site-name a, h1#site-name a:hover {
 /* li containing sublevels */
 #navlinks ul li {
 	position: relative;
-	/*z-index: 1;*/
+	z-index: 9;
 }
 
 /* set li width & color */
@@ -1160,3 +1170,25 @@ li.topic_reply {
 .pane-content h2.title a {
 	font-size: 140%;
 }
+
+
+/* Social links */
+#toplinks .sociallinks {
+	display: inline-block;
+	height: 32px;
+	margin: 0;
+	padding: 0;
+	width: 32px;
+}
+#toplinks .facebook { background: transparent url(../images/social/facebook_32.png) no-repeat scroll center center; }
+#toplinks .twitter { background: transparent url(../images/social/twitter_32.png) no-repeat scroll center center; }
+#toplinks .instagram { background: transparent url(../images/social/instagram_32.png) no-repeat scroll center center; }
+#toplinks .pinterest { background: transparent url(../images/social/pinterest_32.png) no-repeat scroll center center; }
+#toplinks .vimeo { background: transparent url(../images/social/vimeo_32.png) no-repeat scroll center center; }
+#toplinks .googleplus { background: transparent url(../images/social/googleplus_32.png) no-repeat scroll center center; }
+#toplinks .linkedin { background: transparent url(../images/social/linkedin_32.png) no-repeat scroll center center; }
+#toplinks .youtube { background: transparent url(../images/social/youtube_32.png) no-repeat scroll center center; }
+#toplinks .flickr { background: transparent url(../images/social/flickr_32.png) no-repeat scroll center center; }
+#toplinks .tumblr { background: transparent url(../images/social/tumblr_32.png) no-repeat scroll center center; }
+#toplinks .skype { background: transparent url(../images/social/skype_32.png) no-repeat scroll center center; }
+

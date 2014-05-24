@@ -10,6 +10,7 @@
 <div id="above" class="clearfix">
   <?php if ($page['above']): ?><?php print render ($page['above']); ?><?php endif; ?>
 </div>
+
 <div id="header" class="clearfix">
   <div id="top-elements">
   	<?php if ($page['search']): ?>
@@ -18,9 +19,14 @@
     <?php if (function_exists('toplinks')): ?>
       <div id="toplinks"><?php print toplinks() ?></div>
     <?php endif; ?>
+  	<?php if (theme_get_setting('social_links_display')): ?>
+      <div id="toplinks"><?php print zeropoint_social_links(); ?></div>
+    <?php endif; ?>
+    <?php if (theme_get_setting('loginlinks')): ?>
       <div id="user_links"><?php print zeropoint_login() ?></div>
+    <?php endif; ?>
   	<?php if ($page['banner']): ?>
-  		<div id="banner"><?php print render ($page['banner']); ?></div>
+  		<div id="banner" class="clearfix"><?php print render ($page['banner']); ?></div>
   	<?php endif; ?>
   </div><!-- /top-elements -->
   <div id="logo">
@@ -102,17 +108,13 @@
   <?php print $breadcrumb; ?>
 </div>
 
-<?php if (($page['user1']) or ($page['user2']) or ($page['user3']) or ($page['user4'])): ?>
-  <div id="section1">
-  <table class="sections" cellspacing="0" cellpadding="0">
-    <tr>
-    <?php if ($page['user1']): ?><td class="section u1"><?php print render ($page['user1']); ?></td><?php endif; ?>
-    <?php if ($page['user2']): ?><td class="section u2 <?php if ($page['user1']): ?>divider<?php endif; ?>"><?php print render ($page['user2']); ?></td><?php endif; ?>
-    <?php if ($page['user3']): ?><td class="section u3 <?php if (($page['user1']) or ($page['user2'])): ?>divider<?php endif; ?>"><?php print render ($page['user3']); ?></td><?php endif; ?>
-    <?php if ($page['user4']): ?><td class="section u4 <?php if (($page['user1']) or ($page['user2']) or ($page['user3'])): ?>divider<?php endif; ?>"><?php print render ($page['user4']); ?></td><?php endif; ?>
-    </tr>
-  </table>
-  </div>  <!-- /section1 -->
+<?php if($page['user1'] || $page['user2'] || $page['user3'] || $page['user4']) : ?>
+<div id="section1" class="sections col<?php print (bool) $page['user1'] + (bool) $page['user2'] + (bool) $page['user3'] + (bool) $page['user4']; ?> clearfix">
+  <?php if($page['user1']) : ?><div class="section u1"><?php print render ($page['user1']); ?></div><?php endif; ?> 
+  <?php if($page['user2']) : ?><div class="section u2 <?php print divider() ?>"><?php print render ($page['user2']); ?></div><?php endif; ?> 
+  <?php if($page['user3']) : ?><div class="section u3 <?php print divider() ?>"><?php print render ($page['user3']); ?></div><?php endif; ?> 
+  <?php if($page['user4']) : ?><div class="section u4 <?php print divider() ?>"><?php print render ($page['user4']); ?></div><?php endif; ?> 
+</div>  <!-- /section1 -->
 <?php endif; ?>
 
 <div id="middlecontainer">
@@ -152,17 +154,13 @@
 
 <div id="bar"></div>
 
-<?php if (($page['user5']) or ($page['user6']) or ($page['user7']) or ($page['user8'])): ?>
-  <div id="section2">
-  <table class="sections" cellspacing="0" cellpadding="0">
-    <tr> 
-    <?php if ($page['user5']): ?><td class="section u1"><?php print render ($page['user5']); ?></td><?php endif; ?>
-    <?php if ($page['user6']): ?><td class="section u2 <?php if ($page['user5']): ?>divider<?php endif; ?>"><?php print render ($page['user6']); ?></td><?php endif; ?>
-    <?php if ($page['user7']): ?><td class="section u3 <?php if (($page['user5']) or ($page['user6'])): ?>divider<?php endif; ?>"><?php print render ($page['user7']); ?></td><?php endif; ?>
-    <?php if ($page['user8']): ?><td class="section u4 <?php if (($page['user5']) or ($page['user6']) or ($page['user7'])): ?>divider<?php endif; ?>"><?php print render ($page['user8']); ?></td><?php endif; ?>
-    </tr>
-  </table>
-  </div>  <!-- /section2 -->
+<?php if($page['user5'] || $page['user6'] || $page['user7'] || $page['user8']) : ?>
+<div id="section2" class="sections col<?php print (bool) $page['user5'] + (bool) $page['user6'] + (bool) $page['user7'] + (bool) $page['user8']; ?> clearfix">
+  <?php if($page['user5']) : ?><div class="section u5"><?php print render ($page['user5']); ?></div><?php endif; ?> 
+  <?php if($page['user6']) : ?><div class="section u6 <?php print divider() ?>"><?php print render ($page['user6']); ?></div><?php endif; ?> 
+  <?php if($page['user7']) : ?><div class="section u7 <?php print divider() ?>"><?php print render ($page['user7']); ?></div><?php endif; ?> 
+  <?php if($page['user8']) : ?><div class="section u8 <?php print divider() ?>"><?php print render ($page['user8']); ?></div><?php endif; ?> 
+</div>  <!-- /section2 -->
 <?php endif; ?>
 
 <?php if ($main_menu): ?>
