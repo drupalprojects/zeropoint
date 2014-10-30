@@ -6,7 +6,7 @@
 <!--[if (gte IE 9)|(gt IEMobile 7)]><!--><html<?php print $html_attributes . $rdf_namespaces; ?>><!--<![endif]-->
 
 <title><?php print $head_title ?></title>
-<meta property="ver" content="zp7-3.2"/>
+<meta property="ver" content="zp7-3.3"/>
 <?php print $head ?>
 <?php print $styles ?>
 <?php print $scripts ?>
