@@ -17,6 +17,7 @@ function zeropoint_default_theme_settings() {
     'headerimg'       => 1,
     'cssPreload'      => 0,
     'loginlinks'      => 1,
+    'devlink'         => 0,
     'user_notverified_display'         => 1,
     'breadcrumb_display'               => 1,
     'search_snippet'                   => 1,
@@ -250,6 +251,12 @@ function zeropoint_settings($saved_settings) {
     '#type' => 'checkbox',
     '#title' => t('0 Point login/register links'),
     '#default_value' => $settings['loginlinks'],
+  );
+
+  $form['tnt_container']['layout_settings']['devlink'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Developer link'),
+    '#default_value' => $settings['devlink'],
   );
 
 // General Settings

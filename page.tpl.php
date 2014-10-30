@@ -3,7 +3,7 @@
 
 <head>
 <title><?php print $head_title ?></title>
-<meta name="note" content="zp6-1.25"/>
+<meta name="note" content="zp6-1.26"/>
 <?php print $head ?>
 <!--[if lte IE 6]>
 <?php print $ie6_style; ?>

@@ -179,13 +179,3 @@ and set "width" to 50% for two blocks, 33% for three blocks nas 25% for four blo
   width: 33%;
 }
 */
-
-
-/*************************/
-/* REMOVE DEVELOPER LINK */
-/*************************/
-
-.by {
-	display: none;
-}
-

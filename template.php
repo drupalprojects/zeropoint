@@ -31,6 +31,7 @@ if (is_null(theme_get_setting('user_notverified_display')) || theme_get_setting(
     'headerimg'       => 1,
     'cssPreload'      => 0,
     'loginlinks'      => 1,
+    'devlink'         => 0,
     'user_notverified_display'         => 1,
     'breadcrumb_display'               => 1,
     'search_snippet'                   => 1,
@@ -342,12 +343,18 @@ $siteid = check_plain(theme_get_setting('siteid'));
     }
   }
 
+$devlink = theme_get_setting('devlink');
+  if ($devlink == '0'){ 
+	  $dvlk = 'byy';
+  }
+  if ($devlink == '1'){ 
+	  $dvlk = 'by';
+  }
   $momo = array();
   $momo[] = ($vars['node']->type) ? $vars['node']->type .' | ' : '';
   $momo = array_filter($momo);
   $vars['momo'] = implode(' ', $momo);
-  $vars['closure'] .= ($vars['is_front']) ? '<div class="by"><a href="http://www.radut.net">by Dr. Radut</a></div>' : '<div class="by"><a href="http://www.radut.net">'.$vars['momo'].'by Dr. Radut</a></div>';
-
+  $vars['closure'] .= ($vars['is_front']) ? '<div class="'.$dvlk.'"><a href="http://www.radut.net">by Dr. Radut</a></div>' : '<div class="'.$dvlk.'"><a href="http://www.radut.net">'.$vars['momo'].'by Dr. Radut</a></div>';
 }
 
 
