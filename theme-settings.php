@@ -15,14 +15,82 @@ function zeropoint_form_system_theme_settings_alter(&$form, &$form_state) {
 
 // Create theme settings form widgets using Forms API
 
+// Pure Grid settings
+  $form['tnt_container']['puregrid'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Pure Grid settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  $form['tnt_container']['puregrid']['css_zone'] = array(
+    '#type'          => 'checkbox',
+    '#title'         => t('<b>Use Yahoo CDN</b> to serve the responsive CSS files. Enabling this setting will prevent the theme from attempting to load any responsive CSS files locally.'),
+    '#description'   => t(''),
+    '#default_value' => theme_get_setting('css_zone')
+  );
+  $form['tnt_container']['puregrid']['wrapper'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Layout width'),
+   	'#description' => t('Set the width of the layout in <b>em</b> (preferably), px or percent. Leave empty or 100% for fluid layout.'),
+    '#default_value' => theme_get_setting('wrapper'),
+    '#size' => 10,
+	);
+  $form['tnt_container']['puregrid']['first_width'] = array(
+    '#type' => 'select',
+    '#title' => t('First (left) sidebar width'),
+   	'#description' => t('Set the width of the first (left) sidebar.'),
+    '#default_value' => theme_get_setting('first_width'),
+    '#options' => array(
+      4 => t('narrow'),
+      5 => t('NORMAL'),
+      6 => t('wide'),
+      7 => t('wider'),
+    ),
+	);
+  $form['tnt_container']['puregrid']['second_width'] = array(
+    '#type' => 'select',
+    '#title' => t('Second (right) sidebar width'),
+   	'#description' => t('Set the width of the second (right) sidebar.'),
+    '#default_value' => theme_get_setting('second_width'),
+    '#options' => array(
+      4 => t('narrow'),
+      5 => t('NORMAL'),
+      6 => t('wide'),
+      7 => t('wider'),
+    ),
+	);
+  $form['tnt_container']['puregrid']['grid_responsive'] = array(
+    '#type'          => 'select',
+    '#title'         => t('Non-Responsive/Responsive Grid'),
+    '#description'   => t(''),
+    '#default_value' => theme_get_setting('grid_responsive'),
+    '#options' => array(
+      0 => t('Non-Responsive'),
+      1 => t('Responsive'),
+    ),
+  );
+  $form['tnt_container']['puregrid']['mobile_blocks'] = array(
+    '#type' => 'select',
+    '#title' => t('Hide blocks on mobile devices'),
+   	'#description' => t('If the theme is responsive and there are many blocks you may want to hide some of them when on mobile devices.'),
+    '#default_value' => theme_get_setting('mobile_blocks'),
+    '#options' => array(
+      0 => t('Show all blocks'),
+      1 => t('Hide blocks on user regions 1-4'),
+      2 => t('Hide blocks on user regions 1-4 and left sidebar'),
+      3 => t('Hide blocks on all user regions'),
+      4 => t('Hide blocks on all user regions and left sidebar'),
+      5 => t('Hide blocks on all user regions and both sidebars'),
+    ),
+	);
+
 // Layout Settings
   $form['tnt_container']['layout_settings'] = array(
     '#type' => 'fieldset',
     '#title' => t('Layout settings'),
     '#collapsible' => TRUE,
-    '#collapsed' => FALSE,
+    '#collapsed' => TRUE,
   );
-
   $form['tnt_container']['layout_settings']['style'] = array(
     '#type' => 'select',
     '#title' => t('Style'),
@@ -39,33 +107,6 @@ function zeropoint_form_system_theme_settings_alter(&$form, &$form_state) {
       'themer' => t('- Themer -'),
     ),
   );
-
-  $form['tnt_container']['layout_settings']['layout-width'] = array(
-    '#type' => 'select',
-    '#title' => t('Layout width'),
-    '#default_value' => theme_get_setting('layout-width'),
-    '#description' => t('<em>Fluid width</em> and <em>Fixed width</em> can be customized in _custom/custom-style.css.'),
-    '#options' => array(
-      0 => t('Adaptive width'),
-      1 => t('Fluid width (custom)'),
-      2 => t('Fixed width (custom)'),
-    ),
-  );
-
-  $form['tnt_container']['layout_settings']['sidebarslayout'] = array(
-    '#type' => 'select',
-    '#title' => t('Sidebars layout'),
-    '#default_value' => theme_get_setting('sidebarslayout'),
-    '#description' => t('<b>Variable width sidebars (wide)</b>: If only one sidebar is enabled, content width is 250px for the left sidebar and 300px for the right sidebar. If both sidebars are enabled, content width is 160px for the left sidebar and 234px for the right sidebar. <br /> <b>Fixed width sidebars (wide)</b>: Content width is 160px for the left sidebar and 234px for the right sidebar. <br /> <em>Equal width sidebars</em> ca be customized in _custom/custom-style.css. For other details, please refer to README.txt.'),
-    '#options' => array(
-      0 => t('Variable asyimmetrical sidebars (wide)'),
-      1 => t('Fixed asyimmetrical sidebars (wide)'),
-      2 => t('Variable asyimmetrical sidebars (narrow)'),
-      3 => t('Fixed asyimmetrical sidebars (narrow)'),
-      4 => t('Equal width sidebars (custom)'),
-    )
-  );
-
   $form['tnt_container']['layout_settings']['themedblocks'] = array(
     '#type' => 'select',
     '#title' => t('Themed blocks'),
@@ -77,7 +118,6 @@ function zeropoint_form_system_theme_settings_alter(&$form, &$form_state) {
       3 => t('None'),
     )
   );
-
   $form['tnt_container']['layout_settings']['blockicons'] = array(
     '#type' => 'select',
     '#title' => t('Block icons'),
@@ -88,25 +128,26 @@ function zeropoint_form_system_theme_settings_alter(&$form, &$form_state) {
       2 => t('Yes (48x48 pixels)'),
     )
   );
-
   $form['tnt_container']['layout_settings']['pageicons'] = array(
     '#type' => 'checkbox',
     '#title' => t('Page icons'),
     '#default_value' => theme_get_setting('pageicons'),
   );
-
   $form['tnt_container']['layout_settings']['navpos'] = array(
     '#type' => 'select',
-    '#title' => t('Menu style and position'),
+    '#title' => t('Drop-down menu position'),
     '#default_value' => theme_get_setting('navpos'),
-    '#description' => t('"Out of the box" Zero Point will display a static menu. To activate the drop-down menu put the <a href="?q=/admin/structure/block/manage/system/main-menu/configure">Main menu block</a> in the "Drop Down menu" region and set the correct levels to "expanded" (the parent item). <br /> <b>NOTE</b>: Only the static menu can be properly centered.'),
     '#options' => array(
       0 => t('Left'),
       1 => t('Center'),
       2 => t('Right'),
     )
   );
-
+  $form['tnt_container']['layout_settings']['menu2'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Duplicate the Main Menu at the bottom of the page.'),
+    '#default_value' => theme_get_setting('menu2'),
+  );
   $form['tnt_container']['layout_settings']['fntsize'] = array(
     '#type' => 'select',
     '#title' => t('Font size'),
@@ -116,27 +157,23 @@ function zeropoint_form_system_theme_settings_alter(&$form, &$form_state) {
       1 => t('Large'),
     )
   );
-
   $form['tnt_container']['layout_settings']['roundcorners'] = array(
     '#type' => 'checkbox',
     '#title' => t('Rounded corners'),
     '#description' => t('Some page elements (comments, search, blocks) and main menu will have rounded corners.'),
     '#default_value' => theme_get_setting('roundcorners'),
   );
-
   $form['tnt_container']['layout_settings']['headerimg'] = array(
     '#type' => 'checkbox',
     '#title' => t('Header image rotator'),
     '#description' => t('Rotates images in the _custom/headerimg folder.'),
     '#default_value' => theme_get_setting('headerimg'),
   );
-
   $form['tnt_container']['layout_settings']['loginlinks'] = array(
     '#type' => 'checkbox',
     '#title' => t('Login/register links'),
     '#default_value' => theme_get_setting('loginlinks'),
   );
-
   $form['tnt_container']['layout_settings']['devlink'] = array(
     '#type' => 'checkbox',
     '#title' => t('Developer link'),
@@ -184,7 +221,7 @@ function zeropoint_form_system_theme_settings_alter(&$form, &$form_state) {
   );
   $form['tnt_container']['social_links']['social_links_display'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Display social links at the top of the page'),
+    '#title' => t('Display social links at the bottom of the page'),
     '#default_value' => theme_get_setting('social_links_display'),
   );
   $form['tnt_container']['social_links']['social_links_display_links'] = array(
@@ -348,7 +385,7 @@ function zeropoint_form_system_theme_settings_alter(&$form, &$form_state) {
     '#type'          => 'checkbox',
     '#title'         => t('Rebuild theme registry on every page.'),
     '#default_value' => theme_get_setting('rebuild_registry'),
-    '#description'   => t('During theme development, it can be very useful to continuously rebuild the theme registry</a>. <br /> WARNING: this is a huge performance penalty and must be turned off on production websites.'),
+    '#description'   => t('During theme development, it can be very useful to continuously <a href="https://drupal.org/node/173880#theme-registry">rebuild the theme registry</a>. <br /> <div class="alert alert-warning messages warning"><b>WARNING</b>: this is a huge performance penalty and must be turned off on production websites.</div>'),
   );
   $form['tnt_container']['themedev']['siteid'] = array(
     '#type' => 'textfield',
@@ -361,8 +398,7 @@ function zeropoint_form_system_theme_settings_alter(&$form, &$form_state) {
 // Info
   $form['tnt_container']['info'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Info'),
-    '#description'   => t('All Zero Point settings are <b>multilingual variables</b>. You can have different settings for each language.'),
+    '#description'   => t('<div class="messages">All Zero Point settings are <b>multilingual variables</b>. You may have different settings for each language.</div>'),
     '#collapsible' => FALSE,
     '#collapsed' => FALSE,
   );
