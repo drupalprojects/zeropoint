@@ -188,7 +188,7 @@ a.pure-button-selected {
 /* Dropdown */
 
 .menu-toggle {
-	background-color: #ddd !important;
+	background-color: #ddd;
 }
 .menu-toggle .bars {
 	background-color: #777;
