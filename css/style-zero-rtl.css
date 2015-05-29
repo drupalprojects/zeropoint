@@ -155,6 +155,12 @@ ul.links li {
 
 
 @media screen and (max-width: 48em) {
+	.ml #submenu,	.mc #submenu {
+		text-align: right;
+	}
+	.pure-menu-allow-hover:hover > .pure-menu-children {
+		right: 0;
+	}
 	.logomob {
 		float: right;
 		margin: -0.4em 0 0 .5em;

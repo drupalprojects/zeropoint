@@ -51,7 +51,7 @@ fieldset {
 	border: 1px solid #ccc;
 }
 pre {
-	background-color: #eee;
+	background: #eee;
 	padding: 0.75em 1.5em;
 	border: 1px solid #ddd;
 }
@@ -188,7 +188,7 @@ h2.title.comments-header, h2.title.comment-form {
 }
 .node-unpublished,
 .comment-unpublished {
-	background-color: #fdd !important;
+	background: #fdd !important;
 }
 .signature p {
 	font-size: .85em;
@@ -422,14 +422,14 @@ li.topic_reply {
 
 /* MENU & link STYLES */
 
-.ml .pure-menu-list, .ml #submenu {
-	float: left;
+.ml .pure-menu-horizontal, .ml #submenu {
+	text-align: left;
 }
 .mc .pure-menu-horizontal, .mc #submenu, #menu2 {
 	text-align: center;
 }
-.mr .pure-menu-list, .mr #submenu {
-	float: right;
+.mr .pure-menu-horizontal, .mr #submenu {
+	text-align: right;
 }
 
 #submenu {
@@ -589,7 +589,7 @@ div.messages,
 	-moz-border-radius: 0;
 	border-radius: 0;
 }
-.rnd .tabs a {
+.rnd .tabs a, .rnd .menu-toggle {
 	border-radius: 5px 5px 0 0;
 }
 .rnd .pure-paginator .first .pure-button {
@@ -816,20 +816,30 @@ div.messages,
 	#top_right, #body_right {
 		padding: 0;
 	}
-	#top_left, #top_right, #body_left, #body_right, #middlecontainer, .himg #headimg {
+	#top_left, #top_right, #top_bg, #body_left, #body_right, #middlecontainer, .himg #headimg {
 		background: none !important;
 		border: none;
 	}
 	.divider {
 		border: none !important;
 	}
-	.ml .pure-menu-list, .mr .pure-menu-list {
-		float: none;
+	.mc #submenu,	.mr #submenu {
+		text-align: left; /* LTR */
 	}
-	.logoimg, .by, #name-and-slogan,
 	.nb1 #section1, .nb2 #section2, .nbl #sidebar-left, .nbr #sidebar-right, 
-	.pure-menu-horizontal, .pure-menu-link:after, .pure-menu-allow-hover:hover > .pure-menu-children {
+	.pure-menu-horizontal, .logoimg, .by, #name-and-slogan {
 		display: none;
+	}
+	.pure-menu-allow-hover:hover > .pure-menu-children {
+		display: block;
+		position: relative;
+		left: 0; /* LTR */
+	}
+	.pure-menu-has-children > .pure-menu-link:after, .pure-menu-has-children .pure-menu-has-children > .pure-menu-link:after {
+		content: "\25BE" !important;
+	}
+	.pure-menu-children {
+		box-shadow: none !important;
 	}
 	.pure-menu-heading, .menu-toggle {
 		display: block;
