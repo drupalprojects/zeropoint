@@ -1,17 +1,14 @@
 name = 0 Point
-description = 0 Point theme is ideal for a wide range of sites. It has been optimized for e-commerce with <a href="http://www.ubercart.org">Ubercart</a>. <br /> <em>By <a href="http://www.radut.net">Dr. Radut</a>.<em>
+description = Responsive 0 Point theme is ideal for a wide range of sites. It uses <a href="http://purecss.io/">Yahoo Pure.css</a>, a powerful responsive CSS framework. <br /> <em>Developed by <a href="http://www.radut.net">Dr. Radut</a>.</em>
 
 core = 6.x
 engine = phptemplate
 screenshot = screenshot.png
 php = DRUPAL_MINIMUM_PHP
 
-stylesheets[print][] = css/print.css
-
 regions[left] = Left sidebar
 regions[right] = Right sidebar
-regions[above] = Above
-regions[banner] = Banner
+regions[topreg] = Top region
 regions[header] = Header
 regions[user1] = User 1
 regions[user2] = User 2
@@ -37,3 +34,6 @@ features[] = search
 features[] = favicon
 features[] = primary_links
 features[] = secondary_links
+
+stylesheets[print][] = css/print.css
+

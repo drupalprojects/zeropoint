@@ -1,4 +1,3 @@
-<!-- node --> 
 <div id="node-<?php print $node->nid; ?>" class="node <?php print $node_classes; ?>">
   <?php if ($submitted): ?>
     <?php print $picture ?>
@@ -42,4 +41,3 @@
   </div>
   <?php endif; ?>
 </div>
-<!-- /node-<?php print $node->nid; ?> --> 
