@@ -1,11 +1,14 @@
 <?php
 
+/**
+ * Thanks to Marinelli's rotate.php
+ */
+
 $file_types = array( 
   'gif'  => 'image/gif',
   'jpg'  => 'image/jpeg',
   'jpeg' => 'image/jpeg',
-  'png'  => 'image/png',
-  'swf' => 'application/x-shockwave-flash'
+  'png'  => 'image/png'
 ) ;
 
 $regex = '/\.(' . implode('|',array_keys($file_types)) . ')$/i' ;

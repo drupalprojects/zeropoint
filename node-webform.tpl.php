@@ -1,3 +1,4 @@
+<!-- node-webform --> 
 <div id="node-<?php print $node->nid; ?>" class="node <?php print $node_classes; ?>">
   <?php print $picture ?>
 
@@ -28,3 +29,4 @@
   </div>
   <?php endif; ?>
 </div>
+<!-- /node-webform-<?php print $node->nid; ?> --> 

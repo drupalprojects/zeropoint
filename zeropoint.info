@@ -1,14 +1,17 @@
 name = 0 Point
-description = Responsive 0 Point theme is ideal for a wide range of sites. It uses <a href="http://purecss.io/">Yahoo Pure.css</a>, a powerful responsive CSS framework. <br /> <em>Developed by <a href="http://www.radut.net">Dr. Radut</a>.</em>
+description = 0 Point theme is ideal for a wide range of sites. <br /> <em>Developed by <a href="http://www.radut.net">Dr. Radut</a>.</em>
 
 core = 6.x
 engine = phptemplate
 screenshot = screenshot.png
 php = DRUPAL_MINIMUM_PHP
 
+stylesheets[print][] = css/print.css
+
 regions[left] = Left sidebar
 regions[right] = Right sidebar
-regions[topreg] = Top region
+regions[above] = Above
+regions[banner] = Banner
 regions[header] = Header
 regions[user1] = User 1
 regions[user2] = User 2
@@ -35,5 +38,10 @@ features[] = favicon
 features[] = primary_links
 features[] = secondary_links
 
-stylesheets[print][] = css/print.css
+
+; Information added by Drupal.org packaging script on 2014-10-30
+version = "6.x-1.26"
+core = "6.x"
+project = "zeropoint"
+datestamp = "1414707846"
 

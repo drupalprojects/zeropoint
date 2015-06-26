@@ -1,3 +1,4 @@
+<!-- node --> 
 <div id="node-<?php print $node->nid; ?>" class="node <?php print $node_classes; ?>">
 
   <?php if ($page == 0): ?>
@@ -32,3 +33,4 @@
   </div>
   <?php endif; ?>
 </div>
+<!-- /node-<?php print $node->nid; ?> --> 
