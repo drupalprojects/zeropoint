@@ -13,7 +13,8 @@ ridiculously tiny. The entire set of modules clocks in at 4.0KB minified and gzi
 The theme validates HTML5, it is cross-browser compatible (including IE6), it passes WAVE 
 (http://wave.webaim.org/) and FAE (http://fae.cita.uiuc.edu/), and it is almost 100% mobile 
 optimized according with W3C mobileOK Checker (https://validator.w3.org/mobile/).
-7.x-4.x is a complete redesign made with mobile in mind: compatible, light and fast.
+
+Zero Point 6.x-4.x is a complete redesign made with mobile in mind: compatible, light and fast.
 
 |==================|
 | Theme's features |
