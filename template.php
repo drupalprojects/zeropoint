@@ -19,28 +19,43 @@ if (is_null(theme_get_setting('user_notverified_display')) || theme_get_setting(
  * matches the $defaults in the theme-settings.php file.
  */
   $defaults = array(
-    'style' => 'ink',
-    'layout-width'    => 0,
-    'sidebarslayout'  => 0,
+// Pure Grid
+    'css_zone'        => 0,
+    'wrapper'         => '85em',
+    'first_width'     => 5,
+    'second_width'    => 5,
+    'grid_responsive' => 1,
+    'mobile_blocks'   => 1,
+// Layout
+    'style'           => 'ink',
     'themedblocks'    => 0,
-    'blockicons'      => 1,
+    'blockicons'      => 2,
     'pageicons'       => 1,
-    'menutype'        => 0,
-    'navpos'          => 0,
+    'navpos'          => 1,
+    'menu2'           => 1,
+    'fntsize'         => 0,
     'roundcorners'    => 1,
     'headerimg'       => 1,
-    'cssPreload'      => 0,
     'loginlinks'      => 1,
     'devlink'         => 0,
-    'user_notverified_display'         => 1,
+// General
+    'mission_statement_pages'          => 'home',
     'breadcrumb_display'               => 1,
+    'user_notverified_display'         => 1,
     'search_snippet'                   => 1,
     'search_info_type'                 => 0,
-    'search_info_user'                 => 0,
+    'search_info_user'                 => 1,
     'search_info_date'                 => 1,
     'search_info_comment'              => 1,
     'search_info_upload'               => 1,
-    'mission_statement_pages'          => 'home',
+// Node
+    'submitted_by_author_default'      => 1,
+    'submitted_by_date_default'        => 1,
+    'submitted_by_enable_content_type' => 0,
+    'taxonomy_display_default'         => 'only',
+    'taxonomy_format_default'          => 'list',
+    'taxonomy_enable_content_type'     => 0,
+// SEO
     'front_page_title_display'         => 'title_slogan',
     'page_title_display_custom'        => '',
     'other_page_title_display'         => 'ptitle_stitle',
@@ -48,15 +63,10 @@ if (is_null(theme_get_setting('user_notverified_display')) || theme_get_setting(
     'configurable_separator'           => ' | ',
     'meta_keywords'                    => '',
     'meta_description'                 => '',
-    'taxonomy_display_default'         => 'only',
-    'taxonomy_format_default'          => 'list',
-    'taxonomy_enable_content_type'     => 0,
-    'submitted_by_author_default'      => 1,
-    'submitted_by_date_default'        => 1,
-    'submitted_by_enable_content_type' => 0,
+// Theme dev.
+    'rebuild_registry'                 => 0,
     'siteid'                           => '',
     'fix_css_limit'                    => 0,
-    'rebuild_registry'                 => 0,
   );
 
 // Make the default content-type settings the same as the default theme settings,
@@ -97,14 +107,10 @@ function get_zeropoint_style() {
   $style = theme_get_setting('style');
   return $style;
 }
-drupal_add_css(drupal_get_path('theme','zeropoint').'/css/style-zero.css', 'theme');
-drupal_add_css(drupal_get_path('theme','zeropoint') . '/css/' . get_zeropoint_style() . '.css', 'theme');
-drupal_add_css(drupal_get_path('theme','zeropoint').'/_custom/custom-style.css', 'theme');
 
-$roundcorners = theme_get_setting('roundcorners');
-  if ($roundcorners == '1'){ 
-  drupal_add_css(drupal_get_path('theme','zeropoint').'/css/round.css', 'theme');
-}
+  drupal_add_css(drupal_get_path('theme','zeropoint').'/css/style-zero.css', 'theme');
+  drupal_add_css(drupal_get_path('theme','zeropoint').'/css/'.get_zeropoint_style().'.css', 'theme');
+  drupal_add_css(drupal_get_path('theme','zeropoint').'/_custom/custom-style.css', 'theme');
 
 
 /**
@@ -129,8 +135,6 @@ function zeropoint_preprocess_page(&$vars) {
 
 // Build array of helpful body classes
   $body_classes = array();
-//$body_classes[] = ($vars['site_name']) ? $vars['site_name'] : '';         // Site name
-  $body_classes[] = 'layout-'. (($vars['left']) ? 'left-main' : 'main') . (($vars['right']) ? '-right' : '');  // Page sidebars are active (Jello Mold)
   $body_classes[] = ($vars['is_admin']) ? 'admin' : 'not-admin';                                    // Page user is admin
   $body_classes[] = ($vars['logged_in']) ? 'logged-in' : 'not-logged-in';                           // Page user is logged in
   $body_classes[] = ($vars['is_front']) ? 'front' : 'not-front';                                    // Page is front page
@@ -178,47 +182,57 @@ function zeropoint_preprocess_page(&$vars) {
   }
 
 // Build array of additional body classes and retrieve custom theme settings
-$layoutwidth = theme_get_setting('layout-width');
-  if ($layoutwidth == '0'){ 
-    $body_classes[] = 'layout-jello';
-  }
-  if ($layoutwidth == '1'){ 
-    $body_classes[] = 'layout-fluid';
-  }
-  if ($layoutwidth == '2'){ 
-    $body_classes[] = 'layout-fixed';
-  }
-$sidebarslayout = theme_get_setting('sidebarslayout');
-  if ($sidebarslayout == '0'){ 
-	  $body_classes[] = (($vars['left']) ? 'l-m' : 'm') . (($vars['right']) ? '-r' : '') . '-var';
-  }
-  if ($sidebarslayout == '1'){ 
-	  $body_classes[] = (($vars['left']) ? 'l-m' : 'm') . (($vars['right']) ? '-r' : '') . '-fix';
-  }
-  if ($sidebarslayout == '2'){ 
-	  $body_classes[] = (($vars['left']) ? 'l-m' : 'm') . (($vars['right']) ? '-r' : '') . '-var1';
-  }
-  if ($sidebarslayout == '3'){ 
-	  $body_classes[] = (($vars['left']) ? 'l-m' : 'm') . (($vars['right']) ? '-r' : '') . '-fix1';
-  }
-  if ($sidebarslayout == '4'){ 
-	  $body_classes[] = (($vars['left']) ? 'l-m' : 'm') . (($vars['right']) ? '-r' : '') . '-eq';
-  }
 $blockicons = theme_get_setting('blockicons');
-  if ($blockicons == '1'){ 
-    $body_classes[] = 'bicons32';
+  if ($blockicons == '1'){
+    $body_classes[] = 'bi32';
   }
-  if ($blockicons == '2'){ 
-    $body_classes[] = 'bicons48';
+  if ($blockicons == '2'){
+    $body_classes[] = 'bi48';
   }
-$pageicons = theme_get_setting('pageicons');
-  if ($pageicons == '1'){ 
-    $body_classes[] = 'picons';
+$navpos = theme_get_setting('navpos');
+  if ($navpos == '0'){
+    $body_classes[] = 'ml';
   }
-$headerimg = theme_get_setting('headerimg');
-  if ($headerimg == '1'){ 
-    $body_classes[] = 'himg';
+  if ($navpos == '1'){
+    $body_classes[] = 'mc';
   }
+  if ($navpos == '2'){
+    $body_classes[] = 'mr';
+  }
+$fntsize = theme_get_setting('fntsize');
+  if ($fntsize == '0'){
+	  $body_classes[] = 'fs0';
+  }
+  if ($fntsize == '1'){
+	  $body_classes[] = 'fs1';
+  }
+if (theme_get_setting('grid_responsive') == 1 ){
+$mob = theme_get_setting('mobile_blocks');
+  if ($mob == '1'){
+	  $body_classes[] = 'nb1';
+  }
+  if ($mob == '2'){
+	  $body_classes[] = 'nb1 nbl';
+  }
+  if ($mob == '3'){
+	  $body_classes[] = 'nb1 nb2';
+  }
+  if ($mob == '4'){
+	  $body_classes[] = 'nb1 nb2 nbl';
+  }
+  if ($mob == '5'){
+	  $body_classes[] = 'nb1 nb2 nbl nbr';
+  }
+}
+if(theme_get_setting('roundcorners')) {
+  $body_classes[] = 'rnd';
+}
+if(theme_get_setting('pageicons')) {
+  $body_classes[] = 'pi';
+}
+if(theme_get_setting('headerimg')) {
+  $body_classes[] = 'himg';
+}
 
 // Add Panels classes and lang
   $body_classes[] = (module_exists('panels_page') && (panels_page_get_current())) ? 'panels' : '';  // Page is Panels page
@@ -242,12 +256,12 @@ $siteid = check_plain(theme_get_setting('siteid'));
 // TNT THEME SETTINGS SECTION
 // Display mission statement on all pages
   if (theme_get_setting('mission_statement_pages') == 'all') {
-    $vars['mission'] = theme_get_setting('mission', false);  
+    $vars['mission'] = theme_get_setting('mission', false);
   }
 
 // Hide breadcrumb on all pages
   if (theme_get_setting('breadcrumb_display') == 0) {
-    $vars['breadcrumb'] = '';  
+    $vars['breadcrumb'] = '';
   }
 
 // Set site title, slogan, mission, page title & separator (unless using Page Title module)
@@ -304,17 +318,12 @@ $siteid = check_plain(theme_get_setting('siteid'));
     if (theme_get_setting('meta_keywords') !== '') {
       $keywords = '<meta name="keywords" content="'. check_plain(theme_get_setting('meta_keywords')) .'" />';
       $vars['head'] .= $keywords ."\n";
-    } 
+    }
     if (theme_get_setting('meta_description') !== '') {
       $keywords = '<meta name="description" content="'. check_plain(theme_get_setting('meta_description')) .'" />';
       $vars['head'] .= $keywords ."\n";
-    } 
+    }
   }
-
-// Set IE6 & IE7 stylesheets
-  $theme_path = base_path() . drupal_get_path('theme','zeropoint');
-  $vars['ie6_style'] = '<link type="text/css" rel="stylesheet" media="all" href="' . $theme_path . '/css/ie6.css" />' . "\n";
-  $vars['ie7_style'] = '<link type="text/css" rel="stylesheet" media="all" href="' . $theme_path . '/css/ie7.css" />' . "\n";
 
 // Use grouped import technique for more than 30 un-aggregated stylesheets (css limit fix for IE)
   $css = drupal_add_css();
@@ -344,10 +353,10 @@ $siteid = check_plain(theme_get_setting('siteid'));
   }
 
 $devlink = theme_get_setting('devlink');
-  if ($devlink == '0'){ 
+  if ($devlink == '0'){
 	  $dvlk = 'byy';
   }
-  if ($devlink == '1'){ 
+  if ($devlink == '1'){
 	  $dvlk = 'by';
   }
   $momo = array();
@@ -361,10 +370,10 @@ $devlink = theme_get_setting('devlink');
 function zeropoint_preprocess_block(&$vars) {
 // Add regions with themed blocks (e.g., left, right) to $themed_regions array and retrieve custom theme settings
 $themedblocks = theme_get_setting('themedblocks');
-  if ($themedblocks == '0'){ 
+  if ($themedblocks == '0'){
   $themed_regions = array('left','right');
 }
-  if ($themedblocks == '1'){ 
+  if ($themedblocks == '1'){
   $themed_regions = array('left','right','user1','user2','user3','user4','user5','user6','user7','user8');
 }
   if (is_array($themed_regions))
@@ -458,7 +467,6 @@ if (module_exists('uc_product') && uc_product_is_product($vars) && $vars['templa
             $term_items .= '<li class="vocab-term">'. $term_link . $term_delimiter .'</li>';
           }
           if ($taxonomy_format == 'vocab') {                 // Add vocabulary labels if separate
-          //$output .= '<li class="vocab vocab-'. $vocabulary->vid .'"><span class="vocab-name">'. check_plain($vocabulary->name) .':</span> <ul class="vocab-list">';
             $output .= '<li class="vocab vocab-'. $vocabulary->vid .'"><span class="vocab-name">'. t($vocabulary->name) .':</span> <ul class="vocab-list">';
             $output .= substr_replace($term_items, '</li>', -(strlen($term_delimiter) + 5)) .'</ul></li>';
           }
@@ -515,7 +523,7 @@ function zeropoint_preprocess_comment_wrapper(&$vars) {
 
 
 /**
- * Adds a class for the style of view  
+ * Adds a class for the style of view
  * (e.g., node, teaser, list, table, etc.)
  * (Requires views-view.tpl.php file in theme directory)
  */
@@ -541,7 +549,7 @@ function zeropoint_preprocess_search_result(&$variables) {
   if (isset($result['snippet']) && theme_get_setting('search_snippet')) {
     $variables['snippet'] = $result['snippet'];
   }
-  
+
   $info = array();
   if (!empty($result['type']) && theme_get_setting('search_info_type')) {
     $info['type'] = check_plain($result['type']);
@@ -587,32 +595,7 @@ function zeropoint_username($object) {
 
 
 /**
- * User links
- */
-function zeropoint_login(){
-$loginlinks = theme_get_setting('loginlinks');
-  if ($loginlinks == '1'){ 
-    global $user;
-    $login = url(drupal_get_path_alias('user'));
-    $register = url(drupal_get_path_alias('user/register'));
-    $usr_path = 'user/'.$user->uid;
-    $myAccount = drupal_get_path_alias($usr_path);
-    $logOut = drupal_get_path_alias('logout');
-    if(!$user->uid) {
-      $output = "<a href=\"$login\" rel=\"nofollow\">" . t('Log in') . '</a>' . " | <a href=\"$register\" rel=\"nofollow\">" . t('Register') . "</a>";
-    }
-    if($user->uid) {
-      $output = theme('item_list', array(
-      l(t('My account'), $myAccount, array('title' => t('My account'))), ' | ',
-      l(t('Log out'), $logOut)));
-    }
-    return $output;
-  }
-}
-
-
-/**
- * Set default form file input size 
+ * Set default form file input size
  */
 function zeropoint_file($element) {
   $element['#size'] = ($element['#size'] > 40) ? 40 : $element['#size'];
@@ -676,7 +659,7 @@ function zeropoint_themesettings_link($prefix, $suffix, $text, $path, $options) 
  */
 function zeropoint_breadcrumb($breadcrumb) {
   if (!empty($breadcrumb)) {
-    $breadcrumb[] = drupal_get_title();  // full breadcrumb ( � = › , � = &#187; &raquo;)
+    $breadcrumb[] = drupal_get_title();  // full breadcrumb ( › = â€º , » = &#187; &raquo;)
     return '<div class="breadcrumb">'. implode(' &raquo; ', $breadcrumb) .'</div>';
   }
 }
@@ -708,36 +691,6 @@ function id_safe($string) {
 }
 
 
-// retrieve additional custom theme settings
-$preload = theme_get_setting('cssPreload'); // print the js file if css image preload enabled
-  if ($preload == '1'){
-    drupal_add_js(drupal_get_path('theme','zeropoint').'/js/preloadCssImages.jQuery_v5.js'); // load the javascript
-    drupal_add_js('jQuery(document).ready(function(){
-    jQuery.preloadCssImages();
-  });
-  ','inline');
-}
-
-$dropdownjs = theme_get_setting('menutype'); // if we choose dropdown
-if($dropdownjs == '1'){ 
-  drupal_add_js(drupal_get_path('theme','zeropoint').'/js/jquery.hoverIntent.minified.js'); // load the javascript
-	drupal_add_js(drupal_get_path('theme','zeropoint').'/js/dropdown.js'); // load the javascript	
-}
-
-function menupos() {
-  $navpos = theme_get_setting('navpos'); // Primary links position 
-    if ($navpos == '0'){ 
-      return 'navleft';
-  }
-    if ($navpos == '1'){ 
-      return 'navcenter';
-  }
-    if ($navpos == '2'){ 
-      return 'navright';
-  }
-}
-
-
 // Quick fix for the validation error: 'ID "edit-submit" already defined'
 $elementCountForHack = 0;
 function zeropoint_submit($element) {
@@ -747,13 +700,314 @@ function zeropoint_submit($element) {
 
 
 /**
- * CUSTOM
+ * Pure Grid settings
  */
+function wrapper_width() {
+  $wrapper = check_plain(theme_get_setting('wrapper'));
+    return ' style="max-width:' . $wrapper . ';"';
+}
+
+function section_class($variables, $onefour=true){
+  if($onefour) {
+    $cols = (bool) $variables['user1'] + (bool) $variables['user2'] + (bool) $variables['user3'] + (bool) $variables['user4'];
+  } else {
+    $cols = (bool) $variables['user5'] + (bool) $variables['user6'] + (bool) $variables['user7'] + (bool) $variables['user8'];
+  }
+  if((theme_get_setting('grid_responsive') == '1') && ((preg_match('/(?i)msie [2-7]/',$_SERVER['HTTP_USER_AGENT']))) == FALSE) {
+    if ($cols == '1') {
+      return 'pure-u-1';
+    }
+    if ($cols == '2') {
+      return 'pure-u-1 pure-u-sm-1-2';
+    }
+    if ($cols == '3') {
+      return 'pure-u-1 pure-u-md-1-3';
+    }
+    if ($cols == '4') {
+      return 'pure-u-1 pure-u-sm-1-2 pure-u-md-1-4';
+    }
+  } else {
+      return 'pure-u-1-'.$cols;
+    }
+}
+
+function first_class(){
+  $w1 = (theme_get_setting('first_width'));
+  if((theme_get_setting('grid_responsive') == '1') && ((preg_match('/(?i)msie [2-7]/',$_SERVER['HTTP_USER_AGENT']))) == FALSE) {
+    return 'pure-u-1 pure-u-md-'.$w1.'-24';
+  } else {
+    return 'pure-u-'.$w1.'-24';
+  }
+}
+
+function second_class(){
+  $w2 = (theme_get_setting('second_width'));
+  if((theme_get_setting('grid_responsive') == '1') && ((preg_match('/(?i)msie [2-7]/',$_SERVER['HTTP_USER_AGENT']))) == FALSE) {
+    return 'pure-u-1 pure-u-md-'.$w2.'-24';
+  } else {
+    return 'pure-u-'.$w2.'-24';
+  }
+}
+
+function cont_class($variables){
+  $w1 = (theme_get_setting('first_width'));
+  $w2 = (theme_get_setting('second_width'));
+  $cont1 = 24 - $w1;
+  $cont2 = 24 - $w2;
+  $cont0 = 24 - ($w1+$w2);
+  if (($variables['left']) && (!$variables['right'])) {
+    if((theme_get_setting('grid_responsive') == '1') && ((preg_match('/(?i)msie [2-7]/',$_SERVER['HTTP_USER_AGENT']))) == FALSE) {
+      return 'pure-u-1 pure-u-md-'.$cont1.'-24';
+    } else {
+      return 'pure-u-'.$cont1.'-24';
+    }
+  }
+  if ((!$variables['left']) && ($variables['right'])) {
+    if((theme_get_setting('grid_responsive') == '1') && ((preg_match('/(?i)msie [2-7]/',$_SERVER['HTTP_USER_AGENT']))) == FALSE) {
+      return 'pure-u-1 pure-u-md-'.$cont2.'-24';
+    } else {
+      return 'pure-u-'.$cont2.'-24';
+    }
+  }
+  if (($variables['left']) && ($variables['right'])) {
+    if((theme_get_setting('grid_responsive') == '1') && ((preg_match('/(?i)msie [2-7]/',$_SERVER['HTTP_USER_AGENT']))) == FALSE) {
+      return 'pure-u-1 pure-u-md-'.$cont0.'-24';
+    } else {
+      return 'pure-u-'.$cont0.'-24';
+    }
+  } else {
+    if((theme_get_setting('grid_responsive') == '1') && ((preg_match('/(?i)msie [2-7]/',$_SERVER['HTTP_USER_AGENT']))) == FALSE) {
+      return 'pure-u-1 pure-u-md-24-24';
+    } else {
+      return 'pure-u-24-24';
+    }
+  }
+}
+
+function resp_class(){
+  if(theme_get_setting('grid_responsive') == '1') {
+    return 'pure-u-1 pure-u-md-';
+  } else {
+    return 'pure-u-';
+  }
+}
+
 
 /**
- * Use this to return links or whatever
+ * Add pure-img class to images to make them fit within their fluid parent wrapper while maintaining aspect ratio.
  */
+function zeropoint_image($path, $alt = '', $title = '', $attributes = NULL, $getsize = TRUE) {
+  if (!$getsize || (is_file($path) && (list($width, $height, $type, $image_attributes) = @getimagesize($path)))) {
+    $attributes['class']='pure-img '.(isset($attributes['class'])?$attributes['class']:'');
+    $attributes = drupal_attributes($attributes);
+    $url = (url($path) == $path) ? $path : (base_path() . $path);
+    return '<img src="' . check_url($url) . '" alt="' . check_plain($alt) . '" title="' . check_plain($title) . '" ' . (isset($image_attributes) ? $image_attributes : '') . $attributes . ' />';
+  }
+}
 
-//function toplinks() {
-//  return '';
-//}
+
+/**
+ * Returns HTML for a form element and buttons.
+ */
+function zeropoint_form($element) {
+  // Anonymous div to satisfy XHTML compliance.
+  $action = $element['#action'] ? 'action="' . check_url($element['#action']) . '" ' : '';
+  $element['#attributes']['class']='pure-form '.(isset($element['#attributes']['class'])?$element['#attributes']['class']:'');
+  return '<form ' . $action . ' accept-charset="UTF-8" method="' . $element['#method'] . '" id="' . $element['#id'] . '"' . drupal_attributes($element['#attributes']) . ">\n<div>" . $element['#children'] . "\n</div></form>\n";
+}
+
+function zeropoint_button($element) {
+  // Make sure not to overwrite classes.
+  if (isset($element['#attributes']['class'])) {
+    $element['#attributes']['class'] = 'pure-button form-' . $element['#button_type'] . ' ' . $element['#attributes']['class'];
+  }
+  else {
+    $element['#attributes']['class'] = 'pure-button form-' . $element['#button_type'];
+  }
+
+  return '<input type="submit" ' . (empty($element['#name']) ? '' : 'name="' . $element['#name'] . '" ') . 'id="' . $element['#id'] . '" value="' . check_plain($element['#value']) . '" ' . drupal_attributes($element['#attributes']) . " />\n";
+}
+
+function zeropoint_image_button($element) {
+  // Make sure not to overwrite classes.
+  if (isset($element['#attributes']['class'])) {
+    $element['#attributes']['class'] = 'pure-button form-' . $element['#button_type'] . ' ' . $element['#attributes']['class'];
+  }
+  else {
+    $element['#attributes']['class'] = 'pure-button form-' . $element['#button_type'];
+  }
+
+  return '<input type="image" name="' . $element['#name'] . '" ' . (!empty($element['#value']) ? ('value="' . check_plain($element['#value']) . '" ') : '') . 'id="' . $element['#id'] . '" ' . drupal_attributes($element['#attributes']) . ' src="' . base_path() . $element['#src'] . '" ' . (!empty($element['#title']) ? 'alt="' . check_plain($element['#title']) . '" title="' . check_plain($element['#title']) . '" ' : '') . "/>\n";
+}
+
+
+/**
+ * Theme's pager
+ */
+function zeropoint_pager($tags = array(), $limit = 10, $element = 0, $parameters = array(), $quantity = 9) {
+  global $pager_page_array, $pager_total;
+
+  // Calculate various markers within this pager piece:
+  // Middle is used to "center" pages around the current page.
+  $pager_middle = ceil($quantity / 2);
+  // current is the page we are currently paged to
+  $pager_current = $pager_page_array[$element] + 1;
+  // first is the first page listed by this pager piece (re quantity)
+  $pager_first = $pager_current - $pager_middle + 1;
+  // last is the last page listed by this pager piece (re quantity)
+  $pager_last = $pager_current + $quantity - $pager_middle;
+  // max is the maximum page number
+  $pager_max = $pager_total[$element];
+  // End of marker calculations.
+
+  // Prepare for generation loop.
+  $i = $pager_first;
+  if ($pager_last > $pager_max) {
+    // Adjust "center" if at end of query.
+    $i = $i + ($pager_max - $pager_last);
+    $pager_last = $pager_max;
+  }
+  if ($i <= 0) {
+    // Adjust "center" if at start of query.
+    $pager_last = $pager_last + (1 - $i);
+    $i = 1;
+  }
+  // End of generation loop preparation.
+
+  $li_first = theme('pager_first', (isset($tags[0]) ? $tags[0] : t('« first')), $limit, $element, $parameters);
+  $li_previous = theme('pager_previous', (isset($tags[1]) ? $tags[1] : t('‹ previous')), $limit, $element, 1, $parameters);
+  $li_next = theme('pager_next', (isset($tags[3]) ? $tags[3] : t('next ›')), $limit, $element, 1, $parameters);
+  $li_last = theme('pager_last', (isset($tags[4]) ? $tags[4] : t('last »')), $limit, $element, $parameters);
+
+  if ($pager_total[$element] > 1) {
+    if ($li_first) {
+      $items[] = array(
+        'class' => 'pager-first pure-button',
+        'data' => $li_first,
+      );
+    }
+    if ($li_previous) {
+      $items[] = array(
+        'class' => 'pager-previous pure-button',
+        'data' => $li_previous,
+      );
+    }
+
+    // When there is more than one page, create the pager list.
+    if ($i != $pager_max) {
+      if ($i > 1) {
+        $items[] = array(
+          'class' => 'pager-ellipsis pure-button',
+          'data' => '…',
+        );
+      }
+      // Now generate the actual pager piece.
+      for (; $i <= $pager_last && $i <= $pager_max; $i++) {
+        if ($i < $pager_current) {
+          $items[] = array(
+            'class' => 'pager-item pure-button',
+            'data' => theme('pager_previous', $i, $limit, $element, ($pager_current - $i), $parameters),
+          );
+        }
+        if ($i == $pager_current) {
+          $items[] = array(
+            'class' => 'pager-current pure-button pure-button-selected',
+            'data' => $i,
+          );
+        }
+        if ($i > $pager_current) {
+          $items[] = array(
+            'class' => 'pager-item pure-button',
+            'data' => theme('pager_next', $i, $limit, $element, ($i - $pager_current), $parameters),
+          );
+        }
+      }
+      if ($i < $pager_max) {
+        $items[] = array(
+          'class' => 'pager-ellipsis pure-button',
+          'data' => '…',
+        );
+      }
+    }
+    // End generation.
+    if ($li_next) {
+      $items[] = array(
+        'class' => 'pager-next pure-button',
+        'data' => $li_next,
+      );
+    }
+    if ($li_last) {
+      $items[] = array(
+        'class' => 'pager-last pure-button',
+        'data' => $li_last,
+      );
+    }
+    return theme('item_list', $items, NULL, 'ul', array('class' => 'pager pure-paginator'));
+  }
+}
+
+/**
+ * Overrides theme_menu_tree().
+ */
+/*
+function zeropoint_menu_tree($tree) {
+  return '<ul class="pure-menu-list">' . $tree . '</ul>';
+}*/
+
+
+/*
+* Theme's main navigation menu
+*/
+function zeropoint_links__system_main_menu($vars, $is_child=false){
+  $html = '<ul class="'.($is_child ? 'pure-menu-children': 'pure-menu-list').'">';
+
+  foreach($vars as $link){
+    // Test for localization options and apply them if they exist.
+    if (isset($link['link']['localized_options']['attributes']) && is_array($link['link']['localized_options']['attributes'])) {
+      $link['link']['options']['attributes'] = array_merge_recursive($link['link']['options']['attributes'], $link['link']['localized_options']['attributes']);
+    }
+    // Output html for drop-down menu.
+    if(empty($link['link']['title']) || $link['link']['hidden']==1)
+      continue;
+    else{
+      $link['link']['options']['attributes']['class'] = 'pure-menu-link menu-' . $link['link']['mlid'];
+
+      if(!empty($link['below'])){
+        $html .= '<li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">';
+        $html .= l($link['link']['title'], $link['link']['href'], array('attributes' => $link['link']['options']['attributes']));
+        $html .= zeropoint_links__system_main_menu($link['below'], true);
+        $html .= '</li>';
+      }
+      else
+        $html .= '<li class="pure-menu-item">'.l($link['link']['title'], $link['link']['href'], array('attributes' => $link['link']['options']['attributes'])).'</li>';
+    }
+  }
+
+  $html .= "</ul>\r\n";
+  return $html;
+}
+
+
+/**
+ * Other theme settings
+ */
+function login_links(){
+  global $user;
+  $loginlinks = theme_get_setting('loginlinks');
+  if ($loginlinks == '1'){
+    if ($user->uid != 0) {
+      print '<h2 class="element-invisible">'.t('Login links').'</h2><ul class="links inline"><li class="uin first"><a href="' .url('user/'.$user->uid). '">' .$user->name. '</a></li><li class="uout"><a href="' .url('logout'). '">' .t('Logout'). '</a></li></ul>';
+    }
+    else {
+      print '<h2 class="element-invisible">'.t('Login links').'</h2><ul class="links inline"><li class="ulog first"><a href="' .url('user'). '" rel="nofollow">' .t('Login'). '</a></li><li class="ureg"><a href="' .url('user/register'). '" rel="nofollow">' .t('Register'). '</a></li></ul>';
+    }
+  }
+}
+
+function divider() {
+  $divider = theme_get_setting('themedblocks');
+    if ($divider == '0' || $divider == '3') {
+      return 'divider';
+  }
+}
+

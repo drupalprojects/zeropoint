@@ -1,57 +1,66 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="<?php print $language->language; ?>" xml:lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>">
+<!DOCTYPE html>
+<html lang="<?php print $language->language; ?>" xml:lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>">
 
-<head>
+<head><!-- zp6-4.x -->
 <title><?php print $head_title ?></title>
-<meta name="note" content="zp6-1.26"/>
+<?php if (theme_get_setting('grid_responsive') == '1'): ?>
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="MobileOptimized" content="width" />
+<?php endif ?>
 <?php print $head ?>
-<!--[if lte IE 6]>
-<?php print $ie6_style; ?>
+
+<?php if (theme_get_setting('css_zone')): ?>
+<link rel="stylesheet" media="all" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css" />
+<?php else: ?>
+<link rel="stylesheet" media="all" href="<?php print base_path() . drupal_get_path('theme', 'zeropoint') ?>/css/yui/pure-min.css" />
+<?php endif; ?>
+
+<?php if (theme_get_setting('grid_responsive') == '1'): ?>
+<?php if (theme_get_setting('css_zone')): ?>
+<!--[if IE 8]>
+<link rel="stylesheet" media="all" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
 <![endif]-->
-<!--[if IE 7]>
-<?php print $ie7_style; ?>
+<!--[if gt IE 8]><!-->
+<link rel="stylesheet" media="all" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+<!--<![endif]-->
+<?php else: ?>
+<!--[if IE 8]>
+<link rel="stylesheet" media="all" href="<?php print base_path() . drupal_get_path('theme', 'zeropoint') ?>/css/yui/grids-responsive-old-ie-min.css">
 <![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="stylesheet" media="all" href="<?php print base_path() . drupal_get_path('theme', 'zeropoint') ?>/css/yui/grids-responsive-min.css">
+<!--<![endif]-->
+<?php endif; ?>
+<?php endif; ?>
+
 <?php print $styles ?>
 <?php print $scripts ?>
 <script type="text/javascript"><?php /* Needed to avoid Flash of Unstyle Content in IE */ ?> </script>
 </head>
 
 <body class="<?php print $body_classes; ?>">
-<div id="skip-nav"><a href="#main">Skip to Content</a></div>
+<div id="skip-link">
+  <a href="#main" class="element-invisible element-focusable"><?php print t('Skip to main content') ?></a>
+  <a href="#search-block-form" class="element-invisible element-focusable"><?php print t('Skip to search') ?></a>
+</div>
 
-<div id="bg1"><div id="bg2">
-
-<div id="top_bg" class="page0">
-<div class="sizer0">
-<div id="topex" class="expander0">
+<div id="top_bg">
+<div class="sizer0 clearfix"<?php print wrapper_width() ?>>
 <div id="top_left">
 <div id="top_right">
 <div id="headimg">
 
-<div id="above" class="clearfix">
-  <?php if ($above): ?><?php print $above; ?><?php endif; ?>
-</div>
-
-<div id="header" class="clearfix">
+<div id="header">
+<div class="clearfix">
+<?php if (theme_get_setting('loginlinks') || $search_box || $topreg): ?>
   <div id="top-elements">
-    <?php if ($search_box): ?>
-      <div id="search-box"><?php print $search_box; ?></div>
-    <?php endif; ?>
-    <?php if (function_exists('toplinks')): ?>
-      <div id="toplinks"><?php print toplinks() ?></div>
-    <?php endif; ?>
-      <div id="user_links"><?php print zeropoint_login() ?></div>
-    <?php if ($banner): ?>
-      <div id="banner"><?php print $banner; ?></div>
-    <?php endif; ?>
-  </div><!-- /top-elements -->
-  <div id="logo">
-  <?php if ($logo): ?>
-    <a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>">
-      <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-    </a>
-  <?php endif; ?>
-  </div> <!-- /logo -->
+    <?php if (theme_get_setting('loginlinks')): ?><div id="user_links"><?php print login_links() ?></div><?php endif; ?>
+    <?php if ($search_box): ?><div id="search-box"><?php print $search_box; ?></div><?php endif; ?>
+    <?php if ($topreg): ?><div id="banner"><?php print $topreg; ?></div><?php endif; ?>
+  </div>
+<?php endif; ?>
+  <?php if ($logo): ?><a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" class="logoimg" /></a><?php endif; ?>
   <div id="name-and-slogan">
   <?php if ($site_name): ?>
     <?php if ($title): ?>
@@ -60,146 +69,118 @@
       <h1 id="site-name"><a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a></h1>
     <?php endif; ?>
   <?php endif; ?>
-  <?php if ($site_slogan): ?>
-    <div id="site-slogan"><?php print $site_slogan; ?></div>
-  <?php endif; ?>
-  </div> <!-- /name-and-slogan -->
-
-<div class="brclear"></div>
-
-<?php if ($header): ?>
-  <?php print $header; ?>
-<?php endif; ?>
-
-<?php if (isset($primary_links)) { ?>
-<?php if (theme_get_setting('menutype')== '0'): ?><div class="<?php print menupos() ?>"><?php print theme('links', $primary_links, array('class' =>'links', 'id' => 'navlist')); ?></div><?php endif; ?>
-<?php if (theme_get_setting('menutype')== '1'): ?><div id="navlinks" class="<?php print menupos() ?>"><?php print $primary_links_tree; ?></div><?php endif; ?>
-<?php } ?>
-
-</div> <!-- /header -->
-
+  <?php if ($site_slogan): ?><div id="site-slogan"><?php print $site_slogan; ?></div><?php endif; ?>
+  </div>
 </div>
-</div><!-- /top_right -->
-</div><!-- /top_left -->
-</div><!-- /expander0 -->
-</div><!-- /sizer0 -->
-</div><!-- /page0 -->
+<?php if ($header): ?><?php print $header; ?><?php endif; ?>
+<div class="menuband clearfix">
+  <div id="menu" class="menu-wrapper">
+  <?php if ($logo || $site_name): ?>
+    <a href="<?php print check_url($front_page); ?>" class="pure-menu-heading" title="<?php if ($site_slogan) print $site_slogan; ?>">
+      <?php if ($logo): ?><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" class="logomob" /><?php endif; ?>
+      <?php if ($site_name) print $site_name; ?>
+    </a>
+  <?php endif; ?>
+  <?php if(isset($primary_links)) { ?>
+    <a href="#" id="toggles" class="menu-toggle"><s class="bars"></s><s class="bars"></s></a>
+    <div class="pure-menu pure-menu-horizontal menu-transform">
+      <h2 class="element-invisible"><?php print t('Main menu'); ?></h2>
+      <?php print zeropoint_links__system_main_menu(menu_tree_page_data('primary-links')); ?>
+    </div>
+  <?php } ?>
+  </div>
+</div>
+</div>
 
-<div id="body_bg" class="page0">
-<div class="sizer0">
-<div class="expander0">
+</div></div></div></div></div>
+
+<div id="body_bg">
+<div class="sizer0 clearfix"<?php print wrapper_width() ?>>
 <div id="body_left">
 <div id="body_right">
 
 <?php if (isset($secondary_links)) { ?>
-  <div class="<?php print menupos() ?>"><?php print theme('links', $secondary_links, array('class' =>'links', 'id' => 'subnavlist')); ?></div>
+  <h2 class="element-invisible"><?php print t('Secondary menu'); ?></h2>
+  <?php print theme('links', $secondary_links, array('class' =>'links', 'id' => 'submenu')); ?>
 <?php } ?>
 
-<?php if ($breadcrumb): ?>
-  <div id="breadcrumb">
-    <?php print $breadcrumb; ?>
-  </div>
-<?php endif; ?>
+<div id="breadcrumb" class="clearfix"><?php print $breadcrumb; ?></div>
 
-<?php if ($user1 or $user2 or $user3 or $user4): ?>
-  <div id="section1">
-  <table class="sections" cellspacing="0" cellpadding="0">
-    <tr>
-    <?php if ($user1): ?><td class="section u1"><?php print $user1; ?></td><?php endif; ?>
-    <?php if ($user2): ?><td class="section u2 <?php if ($user1): ?>divider<?php endif; ?>"><?php print $user2; ?></td><?php endif; ?>
-    <?php if ($user3): ?><td class="section u3 <?php if ($user1 or $user2): ?>divider<?php endif; ?>"><?php print $user3; ?></td><?php endif; ?>
-    <?php if ($user4): ?><td class="section u4 <?php if ($user1 or $user2 or $user3): ?>divider<?php endif; ?>"><?php print $user4; ?></td><?php endif; ?>
-    </tr>
-  </table>
-  </div>  <!-- /section1 -->
-<?php endif; ?>
-
-<div id="middlecontainer">
-  <div id="wrapper">
-    <div class="outer">
-      <div class="float-wrap">
-        <div class="colmain">
-          <div id="main">
-            <?php if ($mission) { ?><div id="mission"><?php print $mission ?></div><?php } ?>
-            <?php if ($content_top):?><div id="content-top"><?php print $content_top; ?></div><?php endif; ?>
-            <?php if ($title): if ($is_front){ print '<h2 class="title">'. $title .'</h2>'; } else { print '<h1 class="title">'. $title .'</h1>'; } endif; ?>
-            <div class="tabs"><?php print $tabs ?></div>
-            <?php print $help ?>
-            <?php print $messages ?>
-            <?php print $content; ?>
-            <?php print $feed_icons; ?>
-            <?php if ($content_bottom): ?><div id="content-bottom"><?php print $content_bottom; ?></div><?php endif; ?>
-          </div>
-        </div> <!-- /colmain -->
-        <?php if ($left) { ?>
-          <div class="colleft">
-            <div id="sidebar-left"><?php print $left ?></div>
-          </div>
-        <?php } ?>
-        <br class="brclear" />
-      </div> <!-- /float-wrap -->
-      <?php if ($right) { ?>
-        <div class="colright">
-          <div id="sidebar-right"><?php print $right ?></div>
-        </div>
-      <?php } ?>
-      <br class="brclear" />
-    </div><!-- /outer -->
-  </div><!-- /wrapper -->
+<?php if($user1 || $user2 || $user3 || $user4) : ?>
+<div id="section1" class="sections pure-g">
+<?php if($user1) : ?><div class="<?php print section_class($variables); ?>"><div class="u1"><?php print $user1; ?></div></div><?php endif; ?>
+<?php if($user2) : ?><div class="<?php print section_class($variables); ?>"><div class="u2 <?php print divider() ?>"><?php print $user2; ?></div></div><?php endif; ?>
+<?php if($user3) : ?><div class="<?php print section_class($variables); ?>"><div class="u3 <?php print divider() ?>"><?php print $user3; ?></div></div><?php endif; ?>
+<?php if($user4) : ?><div class="<?php print section_class($variables); ?>"><div class="u4 <?php print divider() ?>"><?php print $user4; ?></div></div><?php endif; ?>
 </div>
-
-<div id="bar"></div>
-
-<?php if ($user5 or $user6 or $user7 or $user8): ?>
-  <div id="section2">
-  <table class="sections" cellspacing="0" cellpadding="0">
-    <tr>
-    <?php if ($user5): ?><td class="section u5"><?php print $user5; ?></td><?php endif; ?>
-    <?php if ($user6): ?><td class="section u6 <?php if ($user5): ?>divider<?php endif; ?>"><?php print $user6; ?></td><?php endif; ?>
-    <?php if ($user7): ?><td class="section u7 <?php if ($user5 or $user6): ?>divider<?php endif; ?>"><?php print $user7; ?></td><?php endif; ?>
-    <?php if ($user8): ?><td class="section u8 <?php if ($user5 or $user6 or $user7): ?>divider<?php endif; ?>"><?php print $user8; ?></td><?php endif; ?>
-    </tr>
-  </table>
-  </div>  <!-- /section2 -->
 <?php endif; ?>
 
-<?php if (isset($primary_links)) { ?><?php print theme('links', $primary_links, array('class' =>'links', 'id' => 'navlist2')) ?><?php } ?>
+<div class="clearfix">
+<div id="middlecontainer" class="pure-g">
+<?php if ($left) { ?>
+  <div class="<?php print first_class(); ?>">
+    <div id="sidebar-left"><?php print $left ?></div>
+  </div>
+<?php } ?>
+<div class="<?php print cont_class($variables); ?>">
+  <div id="main">
+    <?php if ($mission) { ?><div id="mission"><?php print $mission ?></div><?php } ?>
+    <?php if ($content_top):?><div id="content-top"><?php print $content_top; ?></div><?php endif; ?>
+    <?php if ($title): if ($is_front){ print '<h2 class="title">'. $title .'</h2>'; } else { print '<h1 class="title">'. $title .'</h1>'; } endif; ?>
+    <div class="tabs"><?php print $tabs ?></div>
+    <?php print $help ?>
+    <?php print $messages ?>
+    <?php print $content; ?>
+    <?php print $feed_icons; ?>
+    <?php if ($content_bottom): ?><div id="content-bottom"><?php print $content_bottom; ?></div><?php endif; ?>
+  </div>
+</div>
+<?php if ($right) { ?>
+  <div class="<?php print second_class(); ?>">
+    <div id="sidebar-right"><?php print $right ?></div>
+  </div>
+<?php } ?>
+</div></div>
 
-</div><!-- /body_right -->
-</div><!-- /body_left -->
-</div><!-- /expander0 -->
-</div><!-- /sizer0 -->
-</div><!-- /page0 -->
+<?php if($user5 || $user6 || $user7 || $user8) : ?>
+<div id="section2" class="sections pure-g">
+<?php if($user5) : ?><div class="<?php print section_class($variables, false); ?>"><div class="u1"><?php print $user5; ?></div></div><?php endif; ?>
+<?php if($user6) : ?><div class="<?php print section_class($variables, false); ?>"><div class="u2 <?php print divider() ?>"><?php print $user6; ?></div></div><?php endif; ?>
+<?php if($user7) : ?><div class="<?php print section_class($variables, false); ?>"><div class="u3 <?php print divider() ?>"><?php print $user7; ?></div></div><?php endif; ?>
+<?php if($user8) : ?><div class="<?php print section_class($variables, false); ?>"><div class="u4 <?php print divider() ?>"><?php print $user8; ?></div></div><?php endif; ?>
+</div>
+<?php endif; ?>
 
-<div class="eopage">
-<div id="bottom_bg" class="page0">
-<div class="sizer0">
-<div class="expander0">
+<?php if ((isset($primary_links)) && theme_get_setting('menu2')) { ?>
+  <h2 class="element-invisible"><?php print t('Main menu'); ?></h2>
+  <?php print theme('links', $primary_links, array('class' =>'links', 'id' => 'menu2')) ?>
+<?php } ?>
+
+</div></div></div></div>
+
+<div id="bottom_bg">
+<div class="sizer0 clearfix"<?php print wrapper_width() ?>>
 <div id="bottom_left">
 <div id="bottom_right">
 
-<div id="footer-wrapper" class="clearfix">
-  <div id="footer">
-    <?php if ($below) { ?><div id="below"><?php print $below; ?></div><?php } ?>
-    <div class="legal">
-        Copyright &copy; 2003-<?php date_default_timezone_set('UTC'); echo date("Y"); ?> <a href="/"><?php print $site_name ?></a>. <?php print $footer_message ?>
-      <div id="brand"></div>
-    </div>
-  </div>
-</div> <!-- /footer-wrapper -->
-
-<div id="belowme">
+<div id="footer" class="pure-g">
+<div class="<?php print resp_class(); ?>1-5"></div>
+<div class="<?php print resp_class(); ?>3-5"><?php print $footer_message ?></div>
+<div class="<?php print resp_class(); ?>1-5"></div>
 </div>
+<div id="brand"></div>
 
-</div><!-- /bottom_right -->
-</div><!-- /bottom_left -->
-</div><!-- /expander0 -->
-</div><!-- /sizer0 -->
-</div><!-- /page0 -->
-</div>
+<?php if ($below) { ?><div id="belowme"><?php print $below; ?></div><?php } ?>
 
-</div></div><!-- /bg# -->
+</div></div></div></div>
 
 <?php print $closure ?>
+
+<!--[if IE 9]>
+<script type="text/javascript" src="<?php print base_path() . drupal_get_path('theme', 'zeropoint') ?>/js/classList.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script type="text/javascript" src="<?php print base_path() . drupal_get_path('theme', 'zeropoint') ?>/js/toggles.js"></script>
+<!--<![endif]-->
 </body>
 </html>

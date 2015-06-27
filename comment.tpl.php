@@ -1,4 +1,3 @@
-<!-- comment --> 
 <div class="comment <?php print $comment_classes;?> clear-block">
   <?php print $picture ?>
   <?php if ($comment->new): ?>
@@ -22,4 +21,3 @@
   </div>
   <?php endif; ?>
 </div>
-<!-- /comment --> 
