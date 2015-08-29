@@ -26,7 +26,7 @@ settings[wrapper] = '85em'
 settings[first_width] = 5
 settings[second_width] = 5
 settings[grid_responsive] = 1
-settings[mobile_blocks] = 1
+settings[mobile_blocks] = 2
 
 settings[style] = ink
 settings[themedblocks] = 0
@@ -44,3 +44,4 @@ settings[postedby] = 0
 settings[social_links_display] = 0
 settings[rebuild_registry] = 0
 settings[siteid] = ''
+
