@@ -26,16 +26,20 @@ th { text-align: right; }
 	padding: 10px 40px 10px 0;
 	background: transparent url(../images/all/forum-link_rtl.png) right center no-repeat !important;
 }
-#continue-shopping-button { margin-left: 50% !important; }
 #node-middle {
 	margin-right: 10px;
 	margin-left: 10px;
 	float: right;
 }
-html.js fieldset.collapsible .collapse-processed a { padding-right: 22px; }
-
-/* HEADER IMAGE ROTATOR */
-.himg #headimg { background: #fff url(../_custom/headerimg-rtl/rotate.php) no-repeat 0% 100%; }
+.node .image-attach-teaser,
+.all-attached-images img {
+	float: right;
+	margin: 0 0 .6em .6em;
+}
+.page-admin-build-themes-settings-zeropoint .fieldset-wrapper,
+html.js fieldset.collapsible .collapse-processed a {
+	padding-right: 2em;
+}
 
 /* MENU & link STYLES */
 ul li.collapsed { list-style-image: url(../images/all/menu-collapsed_rtl.png) !important; }
@@ -43,8 +47,8 @@ ul.links li {
 	border-left: none !important;
 	border-right: 1px solid #d3d3d3;
 }
-.pure-menu-heading { float: right; }
-.menu-toggle { float: left; }
+.pure-menu-heading { float: right; margin: 0 18px 0 0; }
+.menu-toggle { float: left; margin: 0 0 0 18px; }
 .menu-toggle .bars { right: .5em; }
 .pure-menu-children .pure-menu-children {
 	left: auto;
@@ -158,6 +162,7 @@ ul.links li {
 	}
 	.pure-menu-allow-hover:hover > .pure-menu-children {
 		right: 0;
+		padding: 0 1em 0 0;
 	}
 	.logomob {
 		float: right;

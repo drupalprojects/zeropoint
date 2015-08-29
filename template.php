@@ -25,7 +25,7 @@ if (is_null(theme_get_setting('user_notverified_display')) || theme_get_setting(
     'first_width'     => 5,
     'second_width'    => 5,
     'grid_responsive' => 1,
-    'mobile_blocks'   => 1,
+    'mobile_blocks'   => 2,
 // Layout
     'style'           => 'ink',
     'themedblocks'    => 0,
@@ -246,7 +246,7 @@ $siteid = check_plain(theme_get_setting('siteid'));
 
 // Generate menu tree from source of primary links
   if (module_exists('i18nmenu')) {
-    $vars['primary_links_tree']=i18nmenu_translated_tree(variable_get('menu_primary_links_source', 'primary-links'));
+    $vars['primary_links_tree'] = i18nmenu_translated_tree(variable_get('menu_primary_links_source', 'primary-links'));
     }
     else {
       $vars['primary_links_tree'] = menu_tree(variable_get('menu_primary_links_source', 'primary-links'));
@@ -394,7 +394,7 @@ function zeropoint_preprocess_node(&$vars) {
 // Add any taxonomy terms for node teasers
   if ($vars['teaser'] && isset($vars['taxonomy'])) {
     foreach ($vars['taxonomy'] as $taxonomy_id_string => $term_info) {
-      $taxonomy_id = array_pop(explode('_', $taxonomy_id_string));
+//      $taxonomy_id = array_pop(explode('_', $taxonomy_id_string));
       $node_classes[] = 'tag-'. $taxonomy_id;                                    // Node teaser has terms (tag-x)
 //      $taxonomy_name = id_safe($term_info['title']);
 //      if ($taxonomy_name) {
@@ -946,6 +946,7 @@ function zeropoint_pager($tags = array(), $limit = 10, $element = 0, $parameters
   }
 }
 
+
 /**
  * Overrides theme_menu_tree().
  */
@@ -964,7 +965,7 @@ function zeropoint_links__system_main_menu($vars, $is_child=false){
   foreach($vars as $link){
     // Test for localization options and apply them if they exist.
     if (isset($link['link']['localized_options']['attributes']) && is_array($link['link']['localized_options']['attributes'])) {
-      $link['link']['options']['attributes'] = array_merge_recursive($link['link']['options']['attributes'], $link['link']['localized_options']['attributes']);
+      $link['link']['options']['attributes'] = array_merge($link['link']['localized_options']['attributes'], $link['link']['options']['attributes']);
     }
     // Output html for drop-down menu.
     if(empty($link['link']['title']) || $link['link']['hidden']==1)
@@ -985,6 +986,14 @@ function zeropoint_links__system_main_menu($vars, $is_child=false){
 
   $html .= "</ul>\r\n";
   return $html;
+}
+
+function zeropoint_main_menu(){
+  $menu = menu_tree_page_data(variable_get('menu_primary_links_source', 'primary-links'));
+  if(module_exists('i18nmenu')){
+    i18nmenu_localize_tree($menu);
+  }
+  return zeropoint_links__system_main_menu($menu);
 }
 
 

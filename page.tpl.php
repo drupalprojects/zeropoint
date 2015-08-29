@@ -3,7 +3,7 @@
 
 <head><!-- zp6-4.x -->
 <title><?php print $head_title ?></title>
-<?php if (theme_get_setting('grid_responsive') == '1'): ?>
+<?php if (theme_get_setting('grid_responsive')): ?>
 <meta name="HandheldFriendly" content="true" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="MobileOptimized" content="width" />
@@ -16,7 +16,7 @@
 <link rel="stylesheet" media="all" href="<?php print base_path() . drupal_get_path('theme', 'zeropoint') ?>/css/yui/pure-min.css" />
 <?php endif; ?>
 
-<?php if (theme_get_setting('grid_responsive') == '1'): ?>
+<?php if (theme_get_setting('grid_responsive')): ?>
 <?php if (theme_get_setting('css_zone')): ?>
 <!--[if IE 8]>
 <link rel="stylesheet" media="all" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
@@ -31,6 +31,14 @@
 <!--[if gt IE 8]><!-->
 <link rel="stylesheet" media="all" href="<?php print base_path() . drupal_get_path('theme', 'zeropoint') ?>/css/yui/grids-responsive-min.css">
 <!--<![endif]-->
+<?php endif; ?>
+<?php endif; ?>
+
+<?php if (theme_get_setting('headerimg')): ?>
+<?php if ($language->dir == 'rtl'): ?>
+<link rel="stylesheet" media="all" href="<?php print base_path() . drupal_get_path('theme', 'zeropoint') ?>/_custom/headerimg-rtl/rotate.php" />
+<?php else: ?>
+<link rel="stylesheet" media="all" href="<?php print base_path() . drupal_get_path('theme', 'zeropoint') ?>/_custom/headerimg/rotate.php" />
 <?php endif; ?>
 <?php endif; ?>
 
@@ -85,7 +93,7 @@
     <a href="#" id="toggles" class="menu-toggle"><s class="bars"></s><s class="bars"></s></a>
     <div class="pure-menu pure-menu-horizontal menu-transform">
       <h2 class="element-invisible"><?php print t('Main menu'); ?></h2>
-      <?php print zeropoint_links__system_main_menu(menu_tree_page_data('primary-links')); ?>
+      <?php print zeropoint_main_menu(); ?>
     </div>
   <?php } ?>
   </div>

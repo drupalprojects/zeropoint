@@ -11,7 +11,7 @@ function zeropoint_default_theme_settings() {
     'first_width'     => 5,
     'second_width'    => 5,
     'grid_responsive' => 1,
-    'mobile_blocks'   => 1,
+    'mobile_blocks'   => 2,
 // Layout
     'style'           => 'ink',
     'themedblocks'    => 0,
