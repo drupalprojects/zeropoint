@@ -165,8 +165,10 @@ a, a:link,
 
 /* pure buttons */
 
+.pure-button {
+	border: 1px solid #ccc;
+}
 .form-actions .pure-button {
-	background-color: #fa0;
 }
 #edit-preview.pure-button {
 	background-color: #D3EDA3;
