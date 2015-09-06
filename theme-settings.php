@@ -652,7 +652,7 @@ function zeropoint_settings($saved_settings) {
 // Info
   $form['tnt_container']['info'] = array(
     '#type' => 'fieldset',
-    '#description'   => t('<div class="messages info">All the theme settings are <b>multilingual variables</b>. You may have different settings for each language.</div>'),
+    '#description'   => t('<div class="messages info">Some of the theme settings are <b>multilingual variables</b>. You may have different settings for each language.</div>'),
     '#collapsible' => FALSE,
     '#collapsed' => FALSE,
   );

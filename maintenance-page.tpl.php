@@ -103,9 +103,7 @@
 <div id="bottom_left">
 <div id="bottom_right">
 
-<div id="footer" class="pure-g">
-
-</div>
+<div id="footer"></div>
 <div id="brand"></div>
 
 </div></div></div></div>

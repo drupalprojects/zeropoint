@@ -597,6 +597,7 @@ li.topic_reply {
 	text-transform: uppercase;
 	font-family: "times new roman", Verdana;
 	margin: 0 2px;
+	text-align: left; /* LTR */
 }
 .pure-menu-children {
 	box-shadow: 5px 5px 5px #999;
@@ -612,7 +613,7 @@ li.topic_reply {
 /* Dropdown arrows */
 .pure-menu-horizontal .pure-menu-has-children > .pure-menu-link:after {
 	content: "\25BE";
-	margin: 0 -1.3em 0 0; /* LTR */
+	margin: 0 -.6em 0 0; /* LTR */
 }
 .pure-menu-has-children .pure-menu-has-children > .pure-menu-link:after {
 	content: "\25B8";

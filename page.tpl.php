@@ -50,7 +50,7 @@
 <body class="<?php print $body_classes; ?>">
 <div id="skip-link">
   <a href="#main" class="element-invisible element-focusable"><?php print t('Skip to main content') ?></a>
-  <a href="#search-block-form" class="element-invisible element-focusable"><?php print t('Skip to search') ?></a>
+  <a href="#search" class="element-invisible element-focusable"><?php print t('Skip to search') ?></a>
 </div>
 
 <div id="top_bg">
@@ -90,7 +90,7 @@
     </a>
   <?php endif; ?>
   <?php if(isset($primary_links)) { ?>
-    <a href="#" id="toggles" class="menu-toggle"><s class="bars"></s><s class="bars"></s></a>
+    <a href="#" id="toggles" class="menu-toggle"><s class="bars"></s><s class="bars"></s><div class="element-invisible">toggle</div></a>
     <div class="pure-menu pure-menu-horizontal menu-transform">
       <h2 class="element-invisible"><?php print t('Main menu'); ?></h2>
       <?php print zeropoint_main_menu(); ?>
@@ -171,10 +171,8 @@
 <div id="bottom_left">
 <div id="bottom_right">
 
-<div id="footer" class="pure-g">
-<div class="<?php print resp_class(); ?>1-5"></div>
-<div class="<?php print resp_class(); ?>3-5"><?php print $footer_message ?></div>
-<div class="<?php print resp_class(); ?>1-5"></div>
+<div id="footer">
+<div><?php print $footer_message ?></div>
 </div>
 <div id="brand"></div>
 
@@ -185,10 +183,10 @@
 <?php print $closure ?>
 
 <!--[if IE 9]>
-<script type="text/javascript" src="<?php print base_path() . drupal_get_path('theme', 'zeropoint') ?>/js/classList.min.js"></script>
+<script type="text/javascript" async src="<?php print base_path() . drupal_get_path('theme', 'zeropoint') ?>/js/classList.min.js"></script>
 <![endif]-->
 <!--[if gte IE 9]><!-->
-<script type="text/javascript" src="<?php print base_path() . drupal_get_path('theme', 'zeropoint') ?>/js/toggles.js"></script>
+<script type="text/javascript" async src="<?php print base_path() . drupal_get_path('theme', 'zeropoint') ?>/js/toggles.min.js"></script>
 <!--<![endif]-->
 </body>
 </html>
