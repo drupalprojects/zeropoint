@@ -34,7 +34,7 @@
     </a>
   <?php endif; ?>
   <?php if ($main_menu): ?>
-    <a href="#" id="toggles" class="menu-toggle"><s class="bars"></s><s class="bars"></s></a>
+    <a href="#" id="toggles" class="menu-toggle"><s class="bars"></s><s class="bars"></s><div class="element-invisible">toggle</div></a>
     <div class="pure-menu pure-menu-horizontal menu-transform">
       <h2 class="element-invisible"><?php print t('Main menu'); ?></h2>
       <?php print theme('links__system_main_menu', array('links' => menu_tree(variable_get('menu_main_links_source', 'main-menu')))); ?>

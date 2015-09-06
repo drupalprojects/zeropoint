@@ -40,13 +40,14 @@ ul.links li {
 .pure-menu-heading { float: right; margin: 0 18px 0 0; }
 .menu-toggle { float: left; margin: 0 0 0 18px; }
 .menu-toggle .bars { right: .5em; }
+.pure-menu-link { text-align: right; }
 .pure-menu-children .pure-menu-children {
 	left: auto;
 	right: 100%;
 	box-shadow: -1px 5px 5px #999;
 }
 .pure-menu-has-children > .pure-menu-link:after {
-	margin: 0 0 0 -1em !important;
+	margin: 0 0 0 -.8em !important;
 	padding-left: 0;
 	padding-right: .5em;
 }
