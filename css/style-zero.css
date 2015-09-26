@@ -32,6 +32,7 @@ body {
 }
 .clearfix {
 	display: block;
+	min-height: 0;
 }
 /* End hide from IE-mac */
 
@@ -255,9 +256,6 @@ blockquote {
 	margin: 0;
 	padding: 0;
 }
-#header .form-text, #header .form-submit {
-	display: inline-block;
-}
 .logoimg {
 	float: left; /* LTR */
 	padding: 0 20px 5px 20px;
@@ -396,15 +394,6 @@ div.admin-panel h3 {
 #profile .profile .name {
 	padding-bottom: .5em;
 }
-.pure-button, .form-item {
-	margin: .2em;
-}
-.pure-form select {
-	padding: .4em .7em;
-}
-.pure-form input, .pure-form select {
-	max-width: 100%;
-}
 .himg #headimg {
 	border-bottom: 1px solid #eee;
 }
@@ -479,6 +468,25 @@ li.topic_reply {
 }
 
 
+/* pure forms */
+
+.pure-button, .form-item {
+	margin: .2em;
+}
+.pure-form select {
+	padding: .4em .7em;
+}
+#header .form-text, #header .form-submit {
+	display: inline-block;
+}
+#header .form-text {
+	margin: .3em 0;
+}
+.pure-form input, .pure-form select {
+	max-width: 100%;
+}
+
+
 /* pager */
 .item-list .pager li {
 	padding: .6em 1em;
@@ -530,6 +538,7 @@ li.topic_reply {
 .menu-wrapper {
 	-webkit-font-smoothing: antialiased;
 	position: relative;
+	z-index: 90;
 }
 .pure-menu-heading {
 	padding: .4em 0 0 0;
@@ -588,6 +597,9 @@ li.topic_reply {
 }
 .pure-menu-list {
 	padding: 0 18px;
+}
+.pure-menu-list li { /* IE7 */
+	list-style: none;
 }
 .pure-menu-link, .pure-menu-disabled {
 	padding: .35em 1.5em;

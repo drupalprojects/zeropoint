@@ -434,7 +434,7 @@ if (module_exists('uc_product') && uc_product_is_product($vars) && $vars['templa
     $date = t('') . format_date($vars['node']->created, 'medium');               // Format date as small, medium, or large
     $author = theme('username', $vars['node']);
     $author_only_separator = t('');
-    $author_date_separator = t(' &#151; ');
+    $author_date_separator = t(' - ');
     $submitted_by_content_type = (theme_get_setting('submitted_by_enable_content_type') == 1) ? $vars['node']->type : 'default';
     $date_setting = (theme_get_setting('submitted_by_date_'. $submitted_by_content_type) == 1);
     $author_setting = (theme_get_setting('submitted_by_author_'. $submitted_by_content_type) == 1);
@@ -1005,10 +1005,10 @@ function login_links(){
   $loginlinks = theme_get_setting('loginlinks');
   if ($loginlinks == '1'){
     if ($user->uid != 0) {
-      print '<h2 class="element-invisible">'.t('Login links').'</h2><ul class="links inline"><li class="uin first"><a href="' .url('user/'.$user->uid). '">' .$user->name. '</a></li><li class="uout"><a href="' .url('logout'). '">' .t('Logout'). '</a></li></ul>';
+      print '<div class="element-invisible">'.t('Login links').'</div><ul class="links inline"><li class="uin first"><a href="' .url('user/'.$user->uid). '">' .$user->name. '</a></li><li class="uout"><a href="' .url('logout'). '">' .t('Logout'). '</a></li></ul>';
     }
     else {
-      print '<h2 class="element-invisible">'.t('Login links').'</h2><ul class="links inline"><li class="ulog first"><a href="' .url('user'). '" rel="nofollow">' .t('Login'). '</a></li><li class="ureg"><a href="' .url('user/register'). '" rel="nofollow">' .t('Register'). '</a></li></ul>';
+      print '<div class="element-invisible">'.t('Login links').'</div><ul class="links inline"><li class="ulog first"><a href="' .url('user'). '" rel="nofollow">' .t('Login'). '</a></li><li class="ureg"><a href="' .url('user/register'). '" rel="nofollow">' .t('Register'). '</a></li></ul>';
     }
   }
 }

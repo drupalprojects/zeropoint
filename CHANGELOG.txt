@@ -1,5 +1,9 @@
 ZERO POINT responsive theme for Drupal 6
 
+0 Point 6.x-4.3 (Sep 26, 2015)
+------------------------------
+    o Minor bugs were addressed
+
 0 Point 6.x-4.2 (Sep 6, 2015)
 ------------------------------
     o Minor bugs were addressed

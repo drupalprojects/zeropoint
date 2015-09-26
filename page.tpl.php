@@ -91,8 +91,8 @@
   <?php endif; ?>
   <?php if(isset($primary_links)) { ?>
     <a href="#" id="toggles" class="menu-toggle"><s class="bars"></s><s class="bars"></s><div class="element-invisible">toggle</div></a>
-    <div class="pure-menu pure-menu-horizontal menu-transform">
-      <h2 class="element-invisible"><?php print t('Main menu'); ?></h2>
+    <div class="pure-menu pure-menu-horizontal menu-transform" role="navigation" aria-label="Menu">
+      <div class="element-invisible"><?php print t('Primary menu'); ?></div>
       <?php print zeropoint_main_menu(); ?>
     </div>
   <?php } ?>
@@ -108,8 +108,10 @@
 <div id="body_right">
 
 <?php if (isset($secondary_links)) { ?>
-  <h2 class="element-invisible"><?php print t('Secondary menu'); ?></h2>
+<div role="navigation" aria-label="Submenu">
+  <div class="element-invisible"><?php print t('Secondary menu'); ?></div>
   <?php print theme('links', $secondary_links, array('class' =>'links', 'id' => 'submenu')); ?>
+</div>
 <?php } ?>
 
 <div id="breadcrumb" class="clearfix"><?php print $breadcrumb; ?></div>
@@ -131,7 +133,7 @@
   </div>
 <?php } ?>
 <div class="<?php print cont_class($variables); ?>">
-  <div id="main">
+  <div id="main" role="main">
     <?php if ($mission) { ?><div id="mission"><?php print $mission ?></div><?php } ?>
     <?php if ($content_top):?><div id="content-top"><?php print $content_top; ?></div><?php endif; ?>
     <?php if ($title): if ($is_front){ print '<h2 class="title">'. $title .'</h2>'; } else { print '<h1 class="title">'. $title .'</h1>'; } endif; ?>
@@ -160,8 +162,10 @@
 <?php endif; ?>
 
 <?php if ((isset($primary_links)) && theme_get_setting('menu2')) { ?>
-  <h2 class="element-invisible"><?php print t('Main menu'); ?></h2>
+<div role="navigation" aria-label="Menu 2">
+  <div class="element-invisible"><?php print t('Primary menu'); ?></div>
   <?php print theme('links', $primary_links, array('class' =>'links', 'id' => 'menu2')) ?>
+</div>
 <?php } ?>
 
 </div></div></div></div>

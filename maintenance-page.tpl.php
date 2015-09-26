@@ -89,7 +89,7 @@
 <div class="clearfix">
 <div id="middlecontainer" class="pure-g">
   <div class="pure-u-1">
-    <div id="main">
+    <div id="main" role="main">
       <h2 class="title"><?php print $title ?></h2>
       <?php print $content; ?>
     </div>

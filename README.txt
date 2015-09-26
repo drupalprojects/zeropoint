@@ -5,16 +5,17 @@ Thank you for downloading this theme!
 
 ABOUT THE 0 POINT THEME:
 -------------------------------------------------------------------------+
-Zero Point is an advanced responsive, "mobile first", with layout and style configuration 
-options built in that you can control through Drupal's UI. It uses Yahoo Pure.css, a powerful 
-responsive CSS framework and also fully supports right to left languages. Pure is 
-ridiculously tiny. The entire set of modules clocks in at 4.0KB minified and gzipped.
+Zero Point is an advanced responsive, "mobile first" theme, with layout and 
+style configuration options built in that you can control through Drupal's UI. 
+It uses Yahoo Pure.css, a powerful responsive CSS framework and also fully 
+supports right to left languages. Pure is ridiculously tiny. The entire set 
+of modules clocks in at 4.0KB minified and gzipped.
 
-The theme validates HTML5, it is cross-browser compatible (including IE6), it passes WAVE 
-(http://wave.webaim.org/) and FAE (http://fae.cita.uiuc.edu/), and it is almost 100% mobile 
-optimized according with W3C mobileOK Checker (https://validator.w3.org/mobile/).
+The theme validates HTML5, it is cross-browser compatible, and it complies 
+with WAVE (http://wave.webaim.org/) and FAE (http://fae.cita.uiuc.edu/).
 
-Zero Point 6.x-4.x is a complete redesign made with mobile in mind: compatible, light and fast.
+Zero Point 6.x-4.x is a complete redesign made with mobile in mind: 
+compatible, light and fast.
 
 |==================|
 | Theme's features |
@@ -28,7 +29,7 @@ Zero Point 6.x-4.x is a complete redesign made with mobile in mind: compatible, 
 - Page icons;
 - Drop-down primary links menu;
 - Primary/secondary links menu position (center, left, right);
-- Helpful body classes (unique classes for each page, term, website section, browser, etc.);
+- Helpful body classes (unique classes for each page, term, website section, etc.);
 - Full breadcrumb;
 - Possibility to change "Submitted by" display;
 - Bi-directional right to left (RTL) theming;
@@ -112,16 +113,18 @@ UPGRADING to a new version of 0 Point
 2. Put the site in "Off-line" mode.
 3. Check "Rebuild theme registry on every page" at /admin/build/themes/settings/zeropoint
 4. Place the zeropoint directory into your themes directory (sites/all/themes/zeropoint).
-   In case you have done customization to the Zero Point theme, remember to overwrite theme's
-   custom-style.css with your modified custom-style.css file.
-5. Clear cached data at admin/settings/performance or, if you use Administration Menu module, 
-   "Flush all caches".
-6. Put the site in "On-line" mode. It is always a good idea to refresh the browser's cache (CTRL+F5).
-7. Check the theme's settings at /admin/build/themes/settings/zeropoint. Remember that all the theme's
-   settings are multilingual variables, so you can have different settings for each language.
+   In case you have done customization to the Zero Point theme, remember to 
+   overwrite theme's custom-style.css with your modified custom-style.css file.
+5. Clear cached data at admin/settings/performance or, if you use Administration 
+   Menu module, "Flush all caches".
+6. Put the site in "On-line" mode. It is always a good idea to refresh the browser's 
+   cache (CTRL+F5).
+7. Check the theme's settings at /admin/build/themes/settings/zeropoint. Remember that 
+   some of the theme's settings are multilingual variables, so you can have different 
+   settings for each language.
 
-NOTE: In some very rare cases, if after upgrading the theme can not be configured you should 
-delete all the zeropoint records in the data base.
+NOTE: In some very rare cases, if after upgrading the theme can not be configured 
+you should delete all the zeropoint records in the data base.
 
 
 RESOURCES
@@ -136,17 +139,19 @@ SITES USING "ZERO POINT" THEME
 Demo/test site: http://www.softwo.com
 
 Various implementations of Zero Point theme can be found here:
-http://www.radut.net/ (modified theme)
+http://www.radut.net/ (customized theme)
+http://www.smokersassociation.org/ (customized theme)
 http://www.eucopyright.com/
-http://www.301.ro/
+http://www.301.ro/ (customized theme)
 http://www.mlnar.ro/
 
 
 RELATED THEMES
 -------------------------------------------------------------------------+
 
-- Yahoo Pure.CSS Framework (https://www.drupal.org/project/pure_css) - an advanced responsive, 
-  mobile-first, HTML5, base-theme, designed with mobile and SEO in mind: compatible, light and fast.
+- Yahoo Pure.CSS Framework (https://www.drupal.org/project/pure_css) - an 
+  advanced responsive, mobile-first, HTML5, base-theme, designed with mobile 
+  and SEO in mind: compatible, light and fast.
 - ABC (https://www.drupal.org/project/abc) - a very customizable HTML5 theme
 - Black Hole (https://www.drupal.org/project/black_hole) - a dark HTML5 theme
 
