@@ -81,7 +81,6 @@ ul.links li {
 
 
 /* BLOCK ICONS */
-
 .bi32 .block-icon {
 	margin: -5px -5px 0 0;
 }
@@ -95,19 +94,18 @@ ul.links li {
 
 
 /* PAGE ICONS */
-
-.pi .print-page, .pi .print-mail, .pi .print-pdf {
+.pi .book_printer, .pi .book_mail, .pi .book_pdf {
 	margin: 0 5px 0 0;
-	padding: 0 20px 0 0;
+	padding: 0 25px 0 0;
 }
-.pi .print-page {
-	background: url(../images/all/icons/printer.png) no-repeat right center;
+.pi .book_printer {
+	background: url(../images/all/icons/printer.png) no-repeat 97% center;
 }
-.pi .print-mail {
-	background: url(../images/all/icons/email.png) no-repeat right center;
+.pi .book_mail {
+	background: url(../images/all/icons/email.png) no-repeat 97% center;
 }
-.pi .print-pdf {
-	background: url(../images/all/icons/pdf.png) no-repeat right center;
+.pi .book_pdf {
+	background: url(../images/all/icons/pdf.png) no-repeat 97% center;
 }
 .pi .field-type-taxonomy-term-reference {
 	background: url(../images/all/icons/tag.png) no-repeat right top;

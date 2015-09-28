@@ -42,7 +42,7 @@ h1 {
 	font-size: 1.6em;
 	line-height: normal;
 }
-h2, .block-title { font-size: 1.3em; }
+h2, h3.block-title, .block-title { font-size: 1.3em; }
 h3 { font-size: 1.1em; }
 h4, h5, h6 { font-size: 1em; }
 
@@ -59,6 +59,9 @@ pre {
 	background: #eee;
 	padding: .75em 1.5em;
 	border: 1px solid #ddd;
+}
+table {
+	width: 100%;
 }
 th, td {
 	padding: .3em;
@@ -711,26 +714,21 @@ div.messages,
 
 /* PAGE ICONS */
 
-.pi .print-icon {
+.book_printer img, .book_mail img, .book_pdf img {
 	display: none;
 }
-.pi .print_html, .pi .print_mail, .pi .print_pdf,
 .pi .book_printer, .pi .book_mail, .pi .book_pdf {
-	margin: auto 0;
-	padding: 0;
-}
-.pi .print-page, .pi .print-mail, .pi .print-pdf {
 	margin: 0 0 0 5px; /* LTR */
-	padding: 0 0 0 20px; /* LTR */
+	padding: 0 0 0 24px; /* LTR */
 }
-.pi .print-page {
-	background: url(../images/all/icons/printer.png) no-repeat left center; /* LTR */
+.pi .book_printer {
+	background: url(../images/all/icons/printer.png) no-repeat 4px center; /* LTR */
 }
-.pi .print-mail {
-	background: url(../images/all/icons/email.png) no-repeat left center; /* LTR */
+.pi .book_mail {
+	background: url(../images/all/icons/email.png) no-repeat 4px center; /* LTR */
 }
-.pi .print-pdf {
-	background: url(../images/all/icons/pdf.png) no-repeat left center; /* LTR */
+.pi .book_pdf {
+	background: url(../images/all/icons/pdf.png) no-repeat 4px center; /* LTR */
 }
 .pi .field-type-taxonomy-term-reference {
 	background: url(../images/all/icons/tag.png) no-repeat left top; /* LTR */
