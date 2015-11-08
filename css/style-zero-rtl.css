@@ -33,6 +33,9 @@ th { text-align: right; }
 html.js fieldset.collapsible .fieldset-legend {
 	padding-right: 1.7em;
 }
+.page-admin-appearance-settings .fieldset-wrapper {
+	margin: 0 1em 0 0;
+}
 
 /* MENU & link STYLES */
 ul li.collapsed {
@@ -44,11 +47,11 @@ ul.links li {
 }
 .pure-menu-heading {
 	float: right;
-	margin: 0 18px 0 0;
+	margin: 0 10px 0 0;
 }
 .menu-toggle {
 	float: left;
-	margin: 0 0 0 18px;
+	margin: 0 0 0 10px;
 }
 .menu-toggle .bars {
 	right: .5em;
@@ -175,9 +178,6 @@ ul.links li {
 
 
 @media screen and (max-width: 48em) {
-	.ml #submenu,	.mc #submenu {
-		text-align: right;
-	}
 	.pure-menu-allow-hover:hover > .pure-menu-children {
 		right: 0;
 		padding: 0 1em 0 0;
