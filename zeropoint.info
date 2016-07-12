@@ -39,7 +39,6 @@ settings[fntsize] = 0
 settings[roundcorners] = 1
 settings[headerimg] = 1
 settings[loginlinks] = 1
-settings[devlink] = 0
 settings[breadcrumb_display] = 1
 settings[postedby] = 0
 settings[page_h1] = 0
