@@ -85,7 +85,6 @@
 </div></div></div></div>
 
 <?php print $page_bottom; ?>
-<?php print $page_b; ?>
 
 </body>
 </html>

@@ -1,5 +1,9 @@
 CHANGELOG - ZERO POINT responsive theme for Drupal 7
 
+0 Point 7.x-4.10 (Jul 17, 2016)
+------------------------------
+    o #2767477: Error on Maintenance Page
+
 0 Point 7.x-4.8 (Jul 12, 2016)
 ------------------------------
     o Minor bugs were addressed
